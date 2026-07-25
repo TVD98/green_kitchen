@@ -1,0 +1,35 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Flutter (Dart SDK ^3.12), feature-first Clean Architecture + BLoC.
+  App name: green_kitchen. Brand: Duolingo-like green (#58CC02), Nunito via google_fonts.
+  UI design system: local package packages/green_kitchen_ui (path dependency).
+  Prefer conventional commits. Do not publish private packages to pub.dev.
+
+  Cursor skill for architecture:
+  - Use project skill `.cursor/skills/flutter-clean-architecture/SKILL.md`
+    whenever creating/scaffolding features or domain/data/presentation layers.
+  - Structure: lib/features/<feature>/{domain,data,presentation} with BLoC in presentation.
+  - Dependency rule: Presentation -> Domain <- Data (Domain is pure Dart).
+
+  Design system (green_kitchen_ui):
+  - Import only via package:green_kitchen_ui/green_kitchen_ui.dart (never src/ paths).
+  - App themes: AppTheme.light / AppTheme.dark.
+  - Prefer AppColors, AppTypography, AppSpacing, AppRadius, and base widgets
+    (AppButton, AppText, AppTextField, AppCard, AppDialog, AppLoading) over ad-hoc UI.
+
+rules:
+  proposal:
+    - Always include a Non-goals mindset in What Changes / Impact when relevant
+    - If the change adds a feature module, note that it follows flutter-clean-architecture
+    - If the change touches UI, note green_kitchen_ui tokens/widgets/theme usage
+  design:
+    - New features MUST follow Clean Architecture + BLoC feature-first layout from flutter-clean-architecture skill
+    - UI MUST use green_kitchen_ui; do not invent parallel color/typography/spacing systems
+  tasks:
+    - Break tasks into small, verifiable steps
+    - Include flutter analyze / pub get verification steps
+    - For feature work: include scaffolding domain/data/presentation (+ bloc) tasks
+    - For UI work: include wiring AppTheme / green_kitchen_ui widgets where relevant
+  specs:
+    - UI-facing requirements SHOULD reference design-system behavior (theme/tokens/widgets) when applicable
