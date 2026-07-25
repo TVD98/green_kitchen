@@ -1,80 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'core/di/injection.dart';
+import 'core/router/app_router.dart';
+import 'features/auth/presentation/bloc/auth_bloc.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
+  final authBloc = getIt<AuthBloc>()..add(const AuthStarted());
+  runApp(GreenKitchenApp(authBloc: authBloc));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GreenKitchenApp extends StatelessWidget {
+  const GreenKitchenApp({super.key, required this.authBloc});
+
+  final AuthBloc authBloc;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Green Kitchen',
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.system,
-      home: const MyHomePage(title: 'Green Kitchen'),
-    );
-  }
-}
+    final appRouter = AppRouter(authBloc);
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: AppText(widget.title, variant: AppTextVariant.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Center(
-          child: AppCard(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const AppText(
-                  'You have pushed the button this many times:',
-                  variant: AppTextVariant.body,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                AppText(
-                  '$_counter',
-                  variant: AppTextVariant.display,
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                AppButton(
-                  label: 'Increment',
-                  onPressed: _incrementCounter,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    return BlocProvider.value(
+      value: authBloc,
+      child: MaterialApp.router(
+        title: 'Green Kitchen',
+        theme: AppTheme.light,
+        darkTheme: AppTheme.dark,
+        themeMode: ThemeMode.system,
+        routerConfig: appRouter.router,
+        builder: (context, child) {
+          return BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              if (state.status == AuthStatus.unknown) {
+                return const Scaffold(
+                  body: Center(child: AppLoading()),
+                );
+              }
+              return child ?? const SizedBox.shrink();
+            },
+          );
+        },
       ),
     );
   }
