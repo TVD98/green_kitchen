@@ -1,17 +1,37 @@
 # green_kitchen
 
-A new Flutter project.
+Flutter client for Green Kitchen (auth + pantry discovery).
+
+## Backend API
+
+Sibling NestJS API: [`green_kitchen_api`](https://github.com/TVD98/green_kitchen_api).
+
+By default the app uses a fake auth backend (`USE_FAKE_AUTH=true`) so UI works offline. Point at the real API:
+
+```bash
+# Start API (from green_kitchen_api)
+docker compose up --build -d
+
+# Android emulator
+flutter run \
+  --dart-define=API_BASE_URL=http://10.0.2.2:3000/api/v1 \
+  --dart-define=USE_FAKE_AUTH=false
+
+# iOS simulator / desktop
+flutter run \
+  --dart-define=API_BASE_URL=http://localhost:3000/api/v1 \
+  --dart-define=USE_FAKE_AUTH=false
+```
+
+DI switch lives in `lib/core/di/injection.dart` (`USE_FAKE_AUTH`). Base URL: `lib/core/network/dio_client.dart` (`API_BASE_URL`).
+
+Password-reset OTP is logged in the API console (and may appear as `dev_otp` outside production). Social login is stubbed on the server.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub get
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Resources: [Flutter docs](https://docs.flutter.dev/).
