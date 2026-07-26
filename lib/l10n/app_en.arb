@@ -1,0 +1,111 @@
+{
+  "@@locale": "en",
+  "appTitle": "Green Kitchen",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Settings screen title"
+  },
+  "languageSettingsTitle": "Language",
+  "@languageSettingsTitle": {
+    "description": "Language settings section title"
+  },
+  "languageSystem": "System",
+  "@languageSystem": {
+    "description": "Follow device language option"
+  },
+  "languageVietnamese": "Vietnamese",
+  "@languageVietnamese": {
+    "description": "Vietnamese language option"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language option"
+  },
+  "languageSampleHint": "This text follows your language setting.",
+  "@languageSampleHint": {
+    "description": "Sample string to verify localization wiring"
+  },
+  "openLanguageSettings": "Language",
+  "@openLanguageSettings": {
+    "description": "Action label to open language settings"
+  },
+  "authWelcomeTitle": "Let's Get Started!",
+  "authWelcomeSubtitle": "Let's dive in into your account",
+  "authSignUp": "Sign up",
+  "authSignIn": "Sign in",
+  "authPrivacyPolicy": "Privacy Policy",
+  "authTermsOfService": "Terms of Service",
+  "authPrivacyTermsSeparator": "  ·  ",
+  "authContinueWithGoogle": "Continue with Google",
+  "authContinueWithFacebook": "Continue with Facebook",
+  "authOrContinueWith": "or continue with",
+  "authGoogle": "Google",
+  "authFacebook": "Facebook",
+  "authLoginTitle": "Welcome Back!",
+  "authLoginSubtitle": "Sign in to continue your journey of healthier cooking.",
+  "authEmail": "Email",
+  "authPassword": "Password",
+  "authRememberMe": "Remember me",
+  "authForgotPassword": "Forgot Password?",
+  "authNoAccountPrompt": "Don't have an account? ",
+  "authSignupTitle": "Join Green Kitchen Today!",
+  "authSignupSubtitle": "Create your account to start cooking healthier meals.",
+  "authAgreeTerms": "I agree to Terms & Conditions",
+  "authHaveAccountPrompt": "Already have an account? ",
+  "authForgotTitle": "Forgot Password?",
+  "authForgotSubtitle": "Enter the email you used to sign up. We will send you a one-time code to reset your password.",
+  "authRegisteredEmail": "Registered email address",
+  "authSendOtp": "Send OTP Code",
+  "authOtpTitle": "Enter OTP Code",
+  "authOtpSubtitle": "Enter the OTP code from your email to verify your identity.",
+  "authOtpResendInSeconds": "You can resend the code in {seconds} seconds",
+  "@authOtpResendInSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "authOtpResendNow": "You can resend the code now",
+  "authResendCode": "Resend code",
+  "authRequestNewCode": "Request a new code",
+  "authResetTitle": "Secure Your Account",
+  "authResetSubtitle": "Your new password must be at least 8 characters long. Avoid using the same one as before.",
+  "authCreateNewPassword": "Create new password",
+  "authConfirmNewPassword": "Confirm new password",
+  "authRequestNewResetCode": "Request a new reset code",
+  "authSaveNewPassword": "Save New Password",
+  "authPasswordUpdatedTitle": "You're all set!",
+  "authPasswordUpdatedSubtitle": "Your password has been updated.",
+  "authLogOut": "Log out",
+  "authHomeWelcome": "Welcome!",
+  "authHomeWelcomeNamed": "Welcome, {name}!",
+  "@authHomeWelcomeNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "authValidationEmailInvalid": "Invalid email. Please check and try again.",
+  "authValidationPasswordWeak": "Password must be 8–32 characters and include upper, lower, number, and special character.",
+  "authValidationPasswordRequired": "Please enter your password.",
+  "authValidationPasswordMismatch": "Passwords do not match.",
+  "authValidationOtpInvalid": "OTP must be 4 digits.",
+  "authErrorNetwork": "No network connection. Please try again.",
+  "authErrorServer": "Something went wrong. Please try again in a few minutes.",
+  "authErrorInvalidCredentials": "Incorrect email or password.",
+  "authErrorInvalidOtp": "Incorrect OTP. Please try again.",
+  "authErrorOtpExpired": "OTP has expired. Please request a new code.",
+  "authErrorUserExists": "This email is already registered.",
+  "authErrorAccountLocked": "Your account is temporarily locked due to too many failed attempts.",
+  "authErrorRateLimited": "Too many attempts. Please try again in 1 minute.",
+  "authErrorSocial": "Social sign-in failed. Please try again.",
+  "authErrorInvalidResetToken": "This password reset link is no longer valid.",
+  "authErrorResetTokenExpired": "Your password reset session has expired. Please try again.",
+  "authErrorSessionExpired": "Your session has expired. Please sign in again.",
+  "authErrorInvalidInput": "Invalid input. Please check and try again."
+}

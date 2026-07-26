@@ -21,18 +21,30 @@ context: |
     AppDropdown, AppChips, AppSelectionList, AppSwitch, AppSlider, AppRadio,
     AppRadioGroup) over ad-hoc UI.
 
+  Localization (app-owned gen-l10n):
+  - Supported locales: vi, en. System default; unsupported device locale falls back to vi.
+  - App owns ARB / AppLocalizations; green_kitchen_ui stays locale-agnostic (accepts String).
+  - New feature screens MUST NOT hardcode user-facing copy; resolve via AppLocalizations
+    and pass localized strings into green_kitchen_ui widgets.
+  - API/backend error message localization is out of scope unless a change explicitly includes it.
+
 rules:
   proposal:
     - Always include a Non-goals mindset in What Changes / Impact when relevant
     - If the change adds a feature module, note that it follows flutter-clean-architecture
     - If the change touches UI, note green_kitchen_ui tokens/widgets/theme usage
+    - If the change adds or modifies user-facing UI, note app localization (no hardcoded copy on new screens)
   design:
     - New features MUST follow Clean Architecture + BLoC feature-first layout from flutter-clean-architecture skill
     - UI MUST use green_kitchen_ui; do not invent parallel color/typography/spacing systems
+    - New/changed user-facing UI MUST use app localization (AppLocalizations / ARB); do not hardcode product copy in feature screens
+    - Do not put product translation catalogs inside green_kitchen_ui
   tasks:
     - Break tasks into small, verifiable steps
     - Include flutter analyze / pub get verification steps
     - For feature work: include scaffolding domain/data/presentation (+ bloc) tasks
     - For UI work: include wiring AppTheme / green_kitchen_ui widgets where relevant
+    - For UI-facing work: include ARB key updates (en + vi) and AppLocalizations usage; no hardcoded user-facing strings on new screens
   specs:
     - UI-facing requirements SHOULD reference design-system behavior (theme/tokens/widgets) when applicable
+    - UI-facing requirements SHOULD reference localization behavior (AppLocalizations / no hardcoded copy) when applicable

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/forgot_password.dart';
 import '../bloc/forgot_password_bloc.dart';
 import '../utils/auth_failure_messages.dart';
@@ -27,6 +28,7 @@ class _ForgotPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
       listener: (context, state) {
         if (state.status == ForgotPasswordStatus.success &&
@@ -44,7 +46,9 @@ class _ForgotPasswordView extends StatelessWidget {
         } else if (state.status == ForgotPasswordStatus.failure &&
             state.failure != null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(messageForFailure(state.failure!))),
+            SnackBar(
+              content: Text(messageForFailure(state.failure!, l10n)),
+            ),
           );
         }
       },
@@ -61,21 +65,22 @@ class _ForgotPasswordView extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AppText(
-                      'Forgot Password?',
+                    AppText(
+                      l10n.authForgotTitle,
                       variant: AppTextVariant.headline,
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     AppText(
-                      'Enter the email you used to sign up. We will send you a one-time code to reset your password.',
+                      l10n.authForgotSubtitle,
                       variant: AppTextVariant.body,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                     const SizedBox(height: AppSpacing.xl),
                     AppTextField(
-                      label: 'Registered email address',
-                      hint: 'Email',
-                      errorText: state.emailError,
+                      label: l10n.authRegisteredEmail,
+                      hint: l10n.authEmail,
+                      errorText:
+                          localizeValidationError(state.emailError, l10n),
                       keyboardType: TextInputType.emailAddress,
                       onChanged: (value) => context
                           .read<ForgotPasswordBloc>()
@@ -83,7 +88,7 @@ class _ForgotPasswordView extends StatelessWidget {
                     ),
                     const Spacer(),
                     AppButton(
-                      label: 'Send OTP Code',
+                      label: l10n.authSendOtp,
                       isLoading: loading,
                       onPressed: state.canSubmit
                           ? () => context

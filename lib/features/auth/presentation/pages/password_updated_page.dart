@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
+import '../../../../l10n/app_localizations.dart';
+
 class PasswordUpdatedPage extends StatelessWidget {
   const PasswordUpdatedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -28,21 +31,21 @@ class PasswordUpdatedPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppSpacing.xl),
-              const AppText(
-                "You're all set!",
+              AppText(
+                l10n.authPasswordUpdatedTitle,
                 variant: AppTextVariant.headline,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppSpacing.sm),
               AppText(
-                'Your password has been updated.',
+                l10n.authPasswordUpdatedSubtitle,
                 variant: AppTextVariant.body,
                 textAlign: TextAlign.center,
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
               const Spacer(),
               AppButton(
-                label: 'Sign in',
+                label: l10n.authSignIn,
                 onPressed: () => context.go('/login'),
               ),
             ],

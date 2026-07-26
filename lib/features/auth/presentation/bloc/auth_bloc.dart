@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/error/failures.dart';
 import '../../domain/entities/auth_session.dart';
 import '../../domain/usecases/get_cached_session.dart';
 import '../../domain/usecases/log_out.dart';
@@ -58,7 +59,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await _logOut();
     emit(
       const AuthState.unauthenticated(
-        message: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.',
+        message: FailureCodes.sessionExpired,
       ),
     );
   }

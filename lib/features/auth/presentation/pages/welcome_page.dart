@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/datasources/social_auth_service.dart';
 import '../../domain/usecases/log_in_with_social.dart';
 import '../bloc/auth_bloc.dart';
@@ -32,6 +33,7 @@ class _WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.status == LoginStatus.success && state.session != null) {
@@ -41,7 +43,9 @@ class _WelcomeView extends StatelessWidget {
         } else if (state.status == LoginStatus.failure &&
             state.failure != null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(messageForFailure(state.failure!))),
+            SnackBar(
+              content: Text(messageForFailure(state.failure!, l10n)),
+            ),
           );
         }
       },
@@ -66,14 +70,14 @@ class _WelcomeView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
-                const AppText(
-                  "Let's Get Started!",
+                AppText(
+                  l10n.authWelcomeTitle,
                   variant: AppTextVariant.headline,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 AppText(
-                  "Let's dive in into your account",
+                  l10n.authWelcomeSubtitle,
                   variant: AppTextVariant.body,
                   textAlign: TextAlign.center,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -94,12 +98,12 @@ class _WelcomeView extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpacing.xl),
                 AppButton(
-                  label: 'Sign up',
+                  label: l10n.authSignUp,
                   onPressed: () => context.push('/signup'),
                 ),
                 const SizedBox(height: AppSpacing.md),
                 AppButton(
-                  label: 'Sign in',
+                  label: l10n.authSignIn,
                   variant: AppButtonVariant.outline,
                   onPressed: () => context.push('/login'),
                 ),
@@ -107,10 +111,10 @@ class _WelcomeView extends StatelessWidget {
                 AppLinkText(
                   align: TextAlign.center,
                   style: AppTextVariant.caption,
-                  spans: const [
-                    AppTextSpan(text: 'Privacy Policy'),
-                    AppTextSpan(text: '  ·  '),
-                    AppTextSpan(text: 'Terms of Service'),
+                  spans: [
+                    AppTextSpan(text: l10n.authPrivacyPolicy),
+                    AppTextSpan(text: l10n.authPrivacyTermsSeparator),
+                    AppTextSpan(text: l10n.authTermsOfService),
                   ],
                 ),
               ],

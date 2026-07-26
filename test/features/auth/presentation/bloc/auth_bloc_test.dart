@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:green_kitchen/core/error/failures.dart';
 import 'package:green_kitchen/core/error/result.dart';
 import 'package:green_kitchen/features/auth/domain/entities/auth_session.dart';
 import 'package:green_kitchen/features/auth/domain/entities/auth_tokens.dart';
@@ -77,7 +78,7 @@ void main() {
     act: (bloc) => bloc.add(const AuthSessionExpired()),
     expect: () => [
       const AuthState.unauthenticated(
-        message: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.',
+        message: FailureCodes.sessionExpired,
       ),
     ],
   );

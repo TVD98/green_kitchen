@@ -5,6 +5,7 @@ import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/forgot_password.dart';
 import '../../domain/usecases/verify_otp.dart';
 import '../bloc/otp_bloc.dart';
@@ -46,6 +47,7 @@ class _OtpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<OtpBloc, OtpState>(
       listener: (context, state) {
         if (state.status == OtpStatus.success && state.resetToken != null) {
@@ -55,7 +57,9 @@ class _OtpView extends StatelessWidget {
           );
         } else if (state.status == OtpStatus.failure && state.failure != null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(messageForFailure(state.failure!))),
+            SnackBar(
+              content: Text(messageForFailure(state.failure!, l10n)),
+            ),
           );
         }
       },
@@ -69,16 +73,18 @@ class _OtpView extends StatelessWidget {
             child: BlocBuilder<OtpBloc, OtpState>(
               builder: (context, state) {
                 final loading = state.status == OtpStatus.loading;
+                final codeError =
+                    localizeValidationError(state.codeError, l10n);
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AppText(
-                      'Enter OTP Code',
+                    AppText(
+                      l10n.authOtpTitle,
                       variant: AppTextVariant.headline,
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     AppText(
-                      'Enter the OTP code from your email to verify your identity.',
+                      l10n.authOtpSubtitle,
                       variant: AppTextVariant.body,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
@@ -89,10 +95,10 @@ class _OtpView extends StatelessWidget {
                       onChanged: (value) =>
                           context.read<OtpBloc>().add(OtpCodeChanged(value)),
                     ),
-                    if (state.codeError != null) ...[
+                    if (codeError != null) ...[
                       const SizedBox(height: AppSpacing.sm),
                       AppText(
-                        state.codeError!,
+                        codeError,
                         variant: AppTextVariant.caption,
                         color: AppColors.error,
                       ),
@@ -100,8 +106,10 @@ class _OtpView extends StatelessWidget {
                     const SizedBox(height: AppSpacing.lg),
                     AppText(
                       state.resendSecondsLeft > 0
-                          ? 'You can resend the code in ${state.resendSecondsLeft} seconds'
-                          : 'You can resend the code now',
+                          ? l10n.authOtpResendInSeconds(
+                              state.resendSecondsLeft,
+                            )
+                          : l10n.authOtpResendNow,
                       variant: AppTextVariant.body,
                       textAlign: TextAlign.center,
                     ),
@@ -110,7 +118,7 @@ class _OtpView extends StatelessWidget {
                       align: TextAlign.center,
                       spans: [
                         AppTextSpan(
-                          text: 'Resend code',
+                          text: l10n.authResendCode,
                           onTap: state.canResend
                               ? () => context
                                   .read<OtpBloc>()
@@ -125,7 +133,7 @@ class _OtpView extends StatelessWidget {
                         align: TextAlign.center,
                         spans: [
                           AppTextSpan(
-                            text: 'Request a new code',
+                            text: l10n.authRequestNewCode,
                             onTap: () => context.go('/forgot-password'),
                           ),
                         ],

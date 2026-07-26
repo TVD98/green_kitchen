@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/datasources/social_auth_service.dart';
 import '../../domain/entities/social_provider.dart';
 import '../../domain/usecases/log_in_with_social.dart';
@@ -34,6 +35,7 @@ class _SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<SignupBloc, SignupState>(
       listener: (context, state) {
         if (state.status == SignupStatus.success && state.session != null) {
@@ -43,7 +45,9 @@ class _SignupView extends StatelessWidget {
         } else if (state.status == SignupStatus.failure &&
             state.failure != null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(messageForFailure(state.failure!))),
+            SnackBar(
+              content: Text(messageForFailure(state.failure!, l10n)),
+            ),
           );
         }
       },
@@ -60,21 +64,22 @@ class _SignupView extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AppText(
-                      'Join Green Kitchen Today!',
+                    AppText(
+                      l10n.authSignupTitle,
                       variant: AppTextVariant.headline,
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     AppText(
-                      'Create your account to start cooking healthier meals.',
+                      l10n.authSignupSubtitle,
                       variant: AppTextVariant.body,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                     const SizedBox(height: AppSpacing.xl),
                     AppTextField(
-                      label: 'Email',
-                      hint: 'Email',
-                      errorText: state.emailError,
+                      label: l10n.authEmail,
+                      hint: l10n.authEmail,
+                      errorText:
+                          localizeValidationError(state.emailError, l10n),
                       keyboardType: TextInputType.emailAddress,
                       onChanged: (value) => context
                           .read<SignupBloc>()
@@ -82,10 +87,11 @@ class _SignupView extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSpacing.md),
                     AppTextField(
-                      label: 'Password',
-                      hint: 'Password',
+                      label: l10n.authPassword,
+                      hint: l10n.authPassword,
                       obscureText: true,
-                      errorText: state.passwordError,
+                      errorText:
+                          localizeValidationError(state.passwordError, l10n),
                       onChanged: (value) => context
                           .read<SignupBloc>()
                           .add(SignupPasswordChanged(value)),
@@ -96,8 +102,8 @@ class _SignupView extends StatelessWidget {
                       onChanged: (value) => context
                           .read<SignupBloc>()
                           .add(SignupTermsChanged(value)),
-                      child: const AppText(
-                        'I agree to Terms & Conditions',
+                      child: AppText(
+                        l10n.authAgreeTerms,
                         variant: AppTextVariant.caption,
                       ),
                     ),
@@ -106,9 +112,9 @@ class _SignupView extends StatelessWidget {
                       align: TextAlign.center,
                       style: AppTextVariant.caption,
                       spans: [
-                        const AppTextSpan(text: 'Already have an account? '),
+                        AppTextSpan(text: l10n.authHaveAccountPrompt),
                         AppTextSpan(
-                          text: 'Sign in',
+                          text: l10n.authSignIn,
                           onTap: () => context.go('/login'),
                         ),
                       ],
@@ -129,7 +135,7 @@ class _SignupView extends StatelessWidget {
                     ),
                     const Spacer(),
                     AppButton(
-                      label: 'Sign up',
+                      label: l10n.authSignUp,
                       isLoading: loading,
                       onPressed: state.canSubmit
                           ? () => context

@@ -1,5 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/auth/data/datasources/auth_remote_data_source.dart';
 import '../../features/auth/data/datasources/fake_auth_remote_data_source.dart';
@@ -17,6 +18,12 @@ import '../../features/auth/domain/usecases/reset_password.dart';
 import '../../features/auth/domain/usecases/sign_up.dart';
 import '../../features/auth/domain/usecases/verify_otp.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/locale_preference/data/datasources/locale_preference_local_data_source.dart';
+import '../../features/locale_preference/data/repositories/locale_preference_repository_impl.dart';
+import '../../features/locale_preference/domain/repositories/locale_preference_repository.dart';
+import '../../features/locale_preference/domain/usecases/get_locale_preference.dart';
+import '../../features/locale_preference/domain/usecases/set_locale_preference.dart';
+import '../../features/locale_preference/presentation/cubit/locale_preference_cubit.dart';
 import '../device/device_info_provider.dart';
 import '../network/dio_client.dart';
 import '../storage/key_value_store.dart';
@@ -37,10 +44,30 @@ Future<void> configureDependencies({
     return;
   }
 
+  final prefs = await SharedPreferences.getInstance();
+
   getIt
     ..registerLazySingleton<KeyValueStore>(
       () => keyValueStore ??
           SecureKeyValueStore(const FlutterSecureStorage()),
+    )
+    ..registerLazySingleton<SharedPreferences>(() => prefs)
+    ..registerLazySingleton(
+      () => LocalePreferenceLocalDataSource(getIt<SharedPreferences>()),
+    )
+    ..registerLazySingleton<LocalePreferenceRepository>(
+      () => LocalePreferenceRepositoryImpl(
+        getIt<LocalePreferenceLocalDataSource>(),
+      ),
+    )
+    ..registerLazySingleton(() => GetLocalePreference(getIt()))
+    ..registerLazySingleton(() => SetLocalePreference(getIt()))
+    ..registerLazySingleton(
+      () => LocalePreferenceCubit(
+        getLocalePreference: getIt(),
+        setLocalePreference: getIt(),
+        initialPreference: getIt<LocalePreferenceLocalDataSource>().read(),
+      ),
     )
     ..registerLazySingleton<DioClient>(DioClient.new)
     ..registerLazySingleton<DeviceInfoProvider>(

@@ -1,5 +1,23 @@
 import 'package:equatable/equatable.dart';
 
+/// Stable message codes for default (client-owned) failures.
+/// Custom / API messages may still be passed as free-form [message].
+abstract final class FailureCodes {
+  static const network = 'auth.error.network';
+  static const server = 'auth.error.server';
+  static const invalidCredentials = 'auth.error.invalidCredentials';
+  static const invalidOtp = 'auth.error.invalidOtp';
+  static const otpExpired = 'auth.error.otpExpired';
+  static const userExists = 'auth.error.userExists';
+  static const accountLocked = 'auth.error.accountLocked';
+  static const rateLimited = 'auth.error.rateLimited';
+  static const social = 'auth.error.social';
+  static const invalidResetToken = 'auth.error.invalidResetToken';
+  static const resetTokenExpired = 'auth.error.resetTokenExpired';
+  static const sessionExpired = 'auth.error.sessionExpired';
+  static const invalidInput = 'auth.error.invalidInput';
+}
+
 sealed class Failure extends Equatable {
   const Failure(this.message);
 
@@ -10,15 +28,11 @@ sealed class Failure extends Equatable {
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure([
-    super.message = 'Không có kết nối mạng. Vui lòng thử lại.',
-  ]);
+  const NetworkFailure([super.message = FailureCodes.network]);
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure([
-    super.message = 'Đã có lỗi xảy ra. Vui lòng thử lại sau ít phút.',
-  ]);
+  const ServerFailure([super.message = FailureCodes.server]);
 }
 
 sealed class AuthFailure extends Failure {
@@ -27,67 +41,50 @@ sealed class AuthFailure extends Failure {
 
 class InvalidCredentialsFailure extends AuthFailure {
   const InvalidCredentialsFailure([
-    super.message = 'Email hoặc mật khẩu không chính xác.',
+    super.message = FailureCodes.invalidCredentials,
   ]);
 }
 
 class InvalidOtpFailure extends AuthFailure {
-  const InvalidOtpFailure([
-    super.message = 'Mã OTP không chính xác. Vui lòng thử lại.',
-  ]);
+  const InvalidOtpFailure([super.message = FailureCodes.invalidOtp]);
 }
 
 class OtpExpiredFailure extends AuthFailure {
-  const OtpExpiredFailure([
-    super.message = 'Mã OTP đã hết hạn. Vui lòng yêu cầu gửi lại mã.',
-  ]);
+  const OtpExpiredFailure([super.message = FailureCodes.otpExpired]);
 }
 
 class UserExistsFailure extends AuthFailure {
-  const UserExistsFailure([
-    super.message = 'Email này đã được đăng ký.',
-  ]);
+  const UserExistsFailure([super.message = FailureCodes.userExists]);
 }
 
 class AccountLockedFailure extends AuthFailure {
-  const AccountLockedFailure([
-    super.message =
-        'Tài khoản của bạn tạm thời bị khóa do nhập sai quá nhiều lần.',
-  ]);
+  const AccountLockedFailure([super.message = FailureCodes.accountLocked]);
 }
 
 class RateLimitedFailure extends AuthFailure {
-  const RateLimitedFailure([
-    super.message = 'Bạn đã thao tác quá nhanh. Vui lòng thử lại sau 1 phút.',
-  ]);
+  const RateLimitedFailure([super.message = FailureCodes.rateLimited]);
 }
 
 class SocialAuthFailure extends AuthFailure {
-  const SocialAuthFailure([
-    super.message = 'Đăng nhập mạng xã hội thất bại. Vui lòng thử lại.',
-  ]);
+  const SocialAuthFailure([super.message = FailureCodes.social]);
 }
 
 class InvalidResetTokenFailure extends AuthFailure {
   const InvalidResetTokenFailure([
-    super.message = 'Liên kết đặt lại mật khẩu không còn hợp lệ.',
+    super.message = FailureCodes.invalidResetToken,
   ]);
 }
 
 class ResetTokenExpiredFailure extends AuthFailure {
   const ResetTokenExpiredFailure([
-    super.message = 'Phiên đặt lại mật khẩu đã hết hạn. Vui lòng thử lại.',
+    super.message = FailureCodes.resetTokenExpired,
   ]);
 }
 
 class SessionExpiredFailure extends AuthFailure {
-  const SessionExpiredFailure([
-    super.message = 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.',
-  ]);
+  const SessionExpiredFailure([super.message = FailureCodes.sessionExpired]);
 }
 
 class InvalidInputFailure extends AuthFailure {
-  const InvalidInputFailure([
-    super.message = 'Thông tin nhập vào không hợp lệ. Vui lòng kiểm tra lại.',
-  ]);
+  const InvalidInputFailure([super.message = FailureCodes.invalidInput]);
 }

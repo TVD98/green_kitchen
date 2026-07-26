@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/datasources/social_auth_service.dart';
 import '../../domain/entities/social_provider.dart';
 import '../../domain/usecases/log_in_with_password.dart';
@@ -34,6 +35,7 @@ class _LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.status == LoginStatus.success && state.session != null) {
@@ -43,7 +45,9 @@ class _LoginView extends StatelessWidget {
         } else if (state.status == LoginStatus.failure &&
             state.failure != null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(messageForFailure(state.failure!))),
+            SnackBar(
+              content: Text(messageForFailure(state.failure!, l10n)),
+            ),
           );
         }
       },
@@ -60,21 +64,22 @@ class _LoginView extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AppText(
-                      'Welcome Back!',
+                    AppText(
+                      l10n.authLoginTitle,
                       variant: AppTextVariant.headline,
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     AppText(
-                      'Sign in to continue your journey of healthier cooking.',
+                      l10n.authLoginSubtitle,
                       variant: AppTextVariant.body,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                     const SizedBox(height: AppSpacing.xl),
                     AppTextField(
-                      label: 'Email',
-                      hint: 'Email',
-                      errorText: state.emailError,
+                      label: l10n.authEmail,
+                      hint: l10n.authEmail,
+                      errorText:
+                          localizeValidationError(state.emailError, l10n),
                       keyboardType: TextInputType.emailAddress,
                       onChanged: (value) => context
                           .read<LoginBloc>()
@@ -82,10 +87,11 @@ class _LoginView extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSpacing.md),
                     AppTextField(
-                      label: 'Password',
-                      hint: 'Password',
+                      label: l10n.authPassword,
+                      hint: l10n.authPassword,
                       obscureText: true,
-                      errorText: state.passwordError,
+                      errorText:
+                          localizeValidationError(state.passwordError, l10n),
                       onChanged: (value) => context
                           .read<LoginBloc>()
                           .add(LoginPasswordChanged(value)),
@@ -100,8 +106,8 @@ class _LoginView extends StatelessWidget {
                             onChanged: (value) => context
                                 .read<LoginBloc>()
                                 .add(LoginRememberMeChanged(value)),
-                            child: const AppText(
-                              'Remember me',
+                            child: AppText(
+                              l10n.authRememberMe,
                               variant: AppTextVariant.caption,
                             ),
                           ),
@@ -110,7 +116,7 @@ class _LoginView extends StatelessWidget {
                           style: AppTextVariant.caption,
                           spans: [
                             AppTextSpan(
-                              text: 'Forgot Password?',
+                              text: l10n.authForgotPassword,
                               onTap: () => context.push('/forgot-password'),
                             ),
                           ],
@@ -122,9 +128,9 @@ class _LoginView extends StatelessWidget {
                       align: TextAlign.center,
                       style: AppTextVariant.caption,
                       spans: [
-                        const AppTextSpan(text: "Don't have an account? "),
+                        AppTextSpan(text: l10n.authNoAccountPrompt),
                         AppTextSpan(
-                          text: 'Sign up',
+                          text: l10n.authSignUp,
                           onTap: () => context.go('/signup'),
                         ),
                       ],
@@ -143,7 +149,7 @@ class _LoginView extends StatelessWidget {
                     ),
                     const Spacer(),
                     AppButton(
-                      label: 'Sign in',
+                      label: l10n.authSignIn,
                       isLoading: loading,
                       onPressed: state.canSubmit
                           ? () => context

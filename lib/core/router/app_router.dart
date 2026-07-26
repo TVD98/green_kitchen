@@ -12,6 +12,7 @@ import '../../features/auth/presentation/pages/password_updated_page.dart';
 import '../../features/auth/presentation/pages/reset_password_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
+import '../../features/locale_preference/presentation/pages/language_settings_page.dart';
 
 class AppRouter {
   AppRouter(this.authBloc);
@@ -91,6 +92,10 @@ class AppRouter {
       GoRoute(
         path: '/home',
         builder: (context, state) => const HomePage(),
+      ),
+      GoRoute(
+        path: '/settings/language',
+        builder: (context, state) => const LanguageSettingsPage(),
       ),
     ],
   );

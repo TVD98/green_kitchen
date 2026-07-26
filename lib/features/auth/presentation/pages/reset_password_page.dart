@@ -5,6 +5,7 @@ import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/reset_password.dart';
 import '../bloc/reset_password_bloc.dart';
 import '../utils/auth_failure_messages.dart';
@@ -31,6 +32,7 @@ class _ResetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<ResetPasswordBloc, ResetPasswordState>(
       listener: (context, state) {
         if (state.status == ResetPasswordStatus.success) {
@@ -38,7 +40,9 @@ class _ResetPasswordView extends StatelessWidget {
         } else if (state.status == ResetPasswordStatus.failure &&
             state.failure != null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(messageForFailure(state.failure!))),
+            SnackBar(
+              content: Text(messageForFailure(state.failure!, l10n)),
+            ),
           );
         }
       },
@@ -55,32 +59,34 @@ class _ResetPasswordView extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AppText(
-                      'Secure Your Account',
+                    AppText(
+                      l10n.authResetTitle,
                       variant: AppTextVariant.headline,
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     AppText(
-                      'Your new password must be at least 8 characters long. Avoid using the same one as before.',
+                      l10n.authResetSubtitle,
                       variant: AppTextVariant.body,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                     const SizedBox(height: AppSpacing.xl),
                     AppTextField(
-                      label: 'Create new password',
-                      hint: 'Password',
+                      label: l10n.authCreateNewPassword,
+                      hint: l10n.authPassword,
                       obscureText: true,
-                      errorText: state.passwordError,
+                      errorText:
+                          localizeValidationError(state.passwordError, l10n),
                       onChanged: (value) => context
                           .read<ResetPasswordBloc>()
                           .add(ResetPasswordChanged(value)),
                     ),
                     const SizedBox(height: AppSpacing.md),
                     AppTextField(
-                      label: 'Confirm new password',
-                      hint: 'Password',
+                      label: l10n.authConfirmNewPassword,
+                      hint: l10n.authPassword,
                       obscureText: true,
-                      errorText: state.confirmError,
+                      errorText:
+                          localizeValidationError(state.confirmError, l10n),
                       onChanged: (value) => context
                           .read<ResetPasswordBloc>()
                           .add(ResetConfirmPasswordChanged(value)),
@@ -92,7 +98,7 @@ class _ResetPasswordView extends StatelessWidget {
                         align: TextAlign.center,
                         spans: [
                           AppTextSpan(
-                            text: 'Request a new reset code',
+                            text: l10n.authRequestNewResetCode,
                             onTap: () => context.go('/forgot-password'),
                           ),
                         ],
@@ -100,7 +106,7 @@ class _ResetPasswordView extends StatelessWidget {
                     ],
                     const Spacer(),
                     AppButton(
-                      label: 'Save New Password',
+                      label: l10n.authSaveNewPassword,
                       isLoading: loading,
                       onPressed: state.canSubmit
                           ? () => context

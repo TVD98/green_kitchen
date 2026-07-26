@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/social_provider.dart';
 
 class SocialAuthRow extends StatelessWidget {
@@ -17,6 +18,7 @@ class SocialAuthRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       children: [
         Row(
@@ -25,7 +27,7 @@ class SocialAuthRow extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
               child: AppText(
-                'or continue with',
+                l10n.authOrContinueWith,
                 variant: AppTextVariant.caption,
               ),
             ),
@@ -37,13 +39,13 @@ class SocialAuthRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _SocialIconButton(
-              label: 'Google',
+              label: l10n.authGoogle,
               icon: Icons.g_mobiledata,
               onPressed: enabled ? onGoogle : null,
             ),
             const SizedBox(width: AppSpacing.md),
             _SocialIconButton(
-              label: 'Facebook',
+              label: l10n.authFacebook,
               icon: Icons.facebook,
               onPressed: enabled ? onFacebook : null,
             ),
@@ -66,16 +68,17 @@ class SocialAuthButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       children: [
         AppButton(
-          label: 'Continue with Google',
+          label: l10n.authContinueWithGoogle,
           variant: AppButtonVariant.outline,
           onPressed: enabled ? () => onProvider(SocialProvider.google) : null,
         ),
         const SizedBox(height: AppSpacing.md),
         AppButton(
-          label: 'Continue with Facebook',
+          label: l10n.authContinueWithFacebook,
           variant: AppButtonVariant.outline,
           onPressed:
               enabled ? () => onProvider(SocialProvider.facebook) : null,

@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green_kitchen/core/di/injection.dart';
 import 'package:green_kitchen/core/storage/key_value_store.dart';
 import 'package:green_kitchen/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:green_kitchen/features/locale_preference/presentation/cubit/locale_preference_cubit.dart';
 import 'package:green_kitchen/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   setUpAll(() {
@@ -13,13 +15,22 @@ void main() {
   });
 
   setUp(() async {
+    SharedPreferences.setMockInitialValues({
+      'locale_preference': 'en',
+    });
     await GetIt.I.reset();
     await configureDependencies(keyValueStore: MemoryKeyValueStore());
   });
 
   testWidgets('Welcome screen is shown when unauthenticated', (tester) async {
     final authBloc = getIt<AuthBloc>()..add(const AuthStarted());
-    await tester.pumpWidget(GreenKitchenApp(authBloc: authBloc));
+    final localeCubit = getIt<LocalePreferenceCubit>();
+    await tester.pumpWidget(
+      GreenKitchenApp(
+        authBloc: authBloc,
+        localePreferenceCubit: localeCubit,
+      ),
+    );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
 
