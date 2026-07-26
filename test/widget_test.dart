@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_kitchen/core/di/injection.dart';
+import 'package:green_kitchen/core/storage/key_value_store.dart';
+import 'package:green_kitchen/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:green_kitchen/main.dart';
 
 void main() {
@@ -9,16 +12,22 @@ void main() {
     GoogleFonts.config.allowRuntimeFetching = false;
   });
 
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  setUp(() async {
+    await GetIt.I.reset();
+    await configureDependencies(keyValueStore: MemoryKeyValueStore());
+  });
 
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    await tester.tap(find.byIcon(Icons.add));
+  testWidgets('Welcome screen is shown when unauthenticated', (tester) async {
+    final authBloc = getIt<AuthBloc>()..add(const AuthStarted());
+    await tester.pumpWidget(GreenKitchenApp(authBloc: authBloc));
     await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
 
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text("Let's Get Started!"), findsOneWidget);
+    expect(find.text('Sign up'), findsOneWidget);
+    expect(find.text('Sign in'), findsOneWidget);
+    expect(find.text('Continue with Google'), findsOneWidget);
+    expect(find.text('Continue with Facebook'), findsOneWidget);
+    expect(find.textContaining('Apple'), findsNothing);
   });
 }
