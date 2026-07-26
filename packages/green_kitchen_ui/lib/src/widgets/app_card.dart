@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../tokens/app_radius.dart';
 import '../tokens/app_spacing.dart';
 
-/// Surface card using design-system spacing and radius.
+/// Surface card with mode-aware soft elevation.
 class AppCard extends StatelessWidget {
   const AppCard({
     super.key,
@@ -18,6 +18,7 @@ class AppCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     final content = Padding(
       padding: padding ?? const EdgeInsets.all(AppSpacing.md),
       child: child,
@@ -25,11 +26,11 @@ class AppCard extends StatelessWidget {
 
     return Material(
       color: Theme.of(context).colorScheme.surface,
-      borderRadius: BorderRadius.circular(AppRadius.md),
+      elevation: brightness == Brightness.light ? 2 : 0,
+      shadowColor: Colors.black.withValues(alpha: 0.08),
+      borderRadius: BorderRadius.circular(AppRadius.card),
       clipBehavior: Clip.antiAlias,
-      child: onTap == null
-          ? content
-          : InkWell(onTap: onTap, child: content),
+      child: onTap == null ? content : InkWell(onTap: onTap, child: content),
     );
   }
 }

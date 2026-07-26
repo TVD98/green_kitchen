@@ -2,7 +2,7 @@ schema: spec-driven
 
 context: |
   Tech stack: Flutter (Dart SDK ^3.12), feature-first Clean Architecture + BLoC.
-  App name: green_kitchen. Brand: Duolingo-like green (#58CC02), Nunito via google_fonts.
+  App name: green_kitchen. Brand: Focuso coral (#FF4749), Urbanist via google_fonts.
   UI design system: local package packages/green_kitchen_ui (path dependency).
   Prefer conventional commits. Do not publish private packages to pub.dev.
 
@@ -16,7 +16,10 @@ context: |
   - Import only via package:green_kitchen_ui/green_kitchen_ui.dart (never src/ paths).
   - App themes: AppTheme.light / AppTheme.dark.
   - Prefer AppColors, AppTypography, AppSpacing, AppRadius, and base widgets
-    (AppButton, AppText, AppTextField, AppCard, AppDialog, AppLoading) over ad-hoc UI.
+    (AppButton, AppText, AppTextField, AppCard, AppDialog, AppLoading, AppLinkText,
+    AppCheckbox, AppBottomSheet, AppTabs, AppNavigationHeader, AppPageIndicator,
+    AppDropdown, AppChips, AppSelectionList, AppSwitch, AppSlider, AppRadio,
+    AppRadioGroup) over ad-hoc UI.
 
 rules:
   proposal:
