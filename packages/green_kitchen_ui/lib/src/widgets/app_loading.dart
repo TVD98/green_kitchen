@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../tokens/app_colors.dart';
 
-/// Centered brand-colored loading indicator.
+/// Centered white spinning [CircularProgressIndicator].
 class AppLoading extends StatelessWidget {
   const AppLoading({
     super.key,
@@ -21,7 +21,7 @@ class AppLoading extends StatelessWidget {
         height: size,
         child: CircularProgressIndicator(
           strokeWidth: strokeWidth,
-          color: AppColors.primary,
+          color: AppColors.absoluteWhite,
         ),
       ),
     );

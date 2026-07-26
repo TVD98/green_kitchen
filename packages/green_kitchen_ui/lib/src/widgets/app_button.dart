@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import '../tokens/app_colors.dart';
 import '../tokens/app_radius.dart';
 import '../tokens/app_spacing.dart';
+import '../tokens/app_typography.dart';
 
-enum AppButtonVariant { primary, secondary, outline, text }
+enum AppButtonVariant { social, primary, soft, outline, text }
 
-/// Brand button with variants, loading, and disabled states.
+/// Brand button with Focuso variants, loading, and disabled states.
 class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     required this.label,
     this.onPressed,
     this.variant = AppButtonVariant.primary,
+    this.leading,
     this.isLoading = false,
     this.isExpanded = true,
   });
@@ -20,6 +22,7 @@ class AppButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
   final AppButtonVariant variant;
+  final Widget? leading;
   final bool isLoading;
   final bool isExpanded;
 
@@ -27,55 +30,122 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final child = isLoading
+    final brightness = Theme.of(context).brightness;
+    final VoidCallback? handler = _enabled ? onPressed : null;
+
+    final labelStyle = AppTypography.body(
+      weight: FontWeight.w600,
+      color: _foreground(brightness),
+    );
+
+    final content = isLoading
         ? SizedBox(
             height: 20,
             width: 20,
             child: CircularProgressIndicator(
               strokeWidth: 2,
-              color: variant == AppButtonVariant.primary ||
-                      variant == AppButtonVariant.secondary
-                  ? Colors.white
-                  : AppColors.primary,
+              color: _foreground(brightness),
             ),
           )
-        : Text(label);
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (leading != null) ...[
+                IconTheme(
+                  data: IconThemeData(
+                    color: _foreground(brightness),
+                    size: 20,
+                  ),
+                  child: leading!,
+                ),
+                const SizedBox(width: AppSpacing.gap10),
+              ],
+              Flexible(child: Text(label, style: labelStyle)),
+            ],
+          );
 
-    final VoidCallback? handler = _enabled ? onPressed : null;
+    final shape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+    );
+    final padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 14);
 
     final button = switch (variant) {
       AppButtonVariant.primary => FilledButton(
           onPressed: handler,
-          child: child,
+          style: FilledButton.styleFrom(
+            backgroundColor: AppColors.brand,
+            foregroundColor: AppColors.absoluteWhite,
+            disabledBackgroundColor: AppColors.brand.withValues(alpha: 0.4),
+            shape: shape,
+            padding: padding,
+            elevation: brightness == Brightness.light ? 1 : 0,
+          ),
+          child: content,
         ),
-      AppButtonVariant.secondary => FilledButton(
+      AppButtonVariant.soft => FilledButton(
           onPressed: handler,
           style: FilledButton.styleFrom(
-            backgroundColor: AppColors.secondary,
-            foregroundColor: AppColors.lightOnSurface,
+            backgroundColor: AppColors.softBrand(brightness),
+            foregroundColor: brightness == Brightness.light
+                ? AppColors.brand
+                : AppColors.absoluteWhite,
             disabledBackgroundColor:
-                AppColors.secondary.withValues(alpha: 0.4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppRadius.md),
-            ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.lg,
-              vertical: 14,
-            ),
+                AppColors.softBrand(brightness).withValues(alpha: 0.4),
+            shape: shape,
+            padding: padding,
+            elevation: 0,
           ),
-          child: child,
+          child: content,
+        ),
+      AppButtonVariant.social => OutlinedButton(
+          onPressed: handler,
+          style: OutlinedButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.onSurface,
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            side: BorderSide(color: AppColors.stroke(brightness)),
+            shape: shape,
+            padding: padding,
+          ),
+          child: content,
         ),
       AppButtonVariant.outline => OutlinedButton(
           onPressed: handler,
-          child: child,
+          style: OutlinedButton.styleFrom(
+            foregroundColor: AppColors.brand,
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            side: const BorderSide(color: AppColors.brand),
+            shape: shape,
+            padding: padding,
+          ),
+          child: content,
         ),
       AppButtonVariant.text => TextButton(
           onPressed: handler,
-          child: child,
+          style: TextButton.styleFrom(
+            foregroundColor: AppColors.brand,
+            shape: shape,
+            padding: padding,
+          ),
+          child: content,
         ),
     };
 
     if (!isExpanded) return button;
     return SizedBox(width: double.infinity, child: button);
+  }
+
+  Color _foreground(Brightness brightness) {
+    return switch (variant) {
+      AppButtonVariant.primary => AppColors.absoluteWhite,
+      AppButtonVariant.soft => brightness == Brightness.light
+          ? AppColors.brand
+          : AppColors.absoluteWhite,
+      AppButtonVariant.social =>
+        brightness == Brightness.light
+            ? AppColors.lightOnSurface
+            : AppColors.darkOnSurface,
+      AppButtonVariant.outline || AppButtonVariant.text => AppColors.brand,
+    };
   }
 }
