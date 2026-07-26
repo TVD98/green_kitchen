@@ -24,7 +24,7 @@ class PasswordUpdatedPage extends StatelessWidget {
                 child: const Icon(
                   Icons.lock_outline,
                   size: 48,
-                  color: Colors.white,
+                  color: AppColors.absoluteWhite,
                 ),
               ),
               const SizedBox(height: AppSpacing.xl),

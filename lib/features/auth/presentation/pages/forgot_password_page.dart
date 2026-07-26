@@ -49,11 +49,8 @@ class _ForgotPasswordView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () => context.pop(),
-          ),
+        appBar: AppNavigationHeader(
+          onBack: () => context.pop(),
         ),
         body: SafeArea(
           child: Padding(

@@ -19,7 +19,7 @@ The server SHALL return the same generic `OTP_SENT` success response whether or 
 - **THEN** the app SHALL still navigate to the OTP screen without disclosing that the email is unknown
 
 ### Requirement: Enter OTP uses four digit boxes
-The Enter OTP screen SHALL follow the Focuso OTP frame: title, email-OTP instructional copy, **exactly four** single-digit boxes with auto-advance and digit-only input, a resend countdown, a disabled Resend action during cooldown, using `green_kitchen_ui` styling (primary focus border from Green Kitchen tokens).
+The Enter OTP screen SHALL follow the Focuso OTP frame: title, email-OTP instructional copy, **exactly four** single-digit boxes with auto-advance and digit-only input, a resend countdown, a disabled Resend action during cooldown, using `green_kitchen_ui` styling (primary focus border from `AppColors.primary`).
 
 #### Scenario: OTP accepts only four digits
 - **WHEN** the user enters OTP digits

@@ -26,16 +26,8 @@ class ResetPasswordPage extends StatelessWidget {
   }
 }
 
-class _ResetPasswordView extends StatefulWidget {
+class _ResetPasswordView extends StatelessWidget {
   const _ResetPasswordView();
-
-  @override
-  State<_ResetPasswordView> createState() => _ResetPasswordViewState();
-}
-
-class _ResetPasswordViewState extends State<_ResetPasswordView> {
-  bool _obscurePassword = true;
-  bool _obscureConfirm = true;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +43,8 @@ class _ResetPasswordViewState extends State<_ResetPasswordView> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () => context.pop(),
-          ),
+        appBar: AppNavigationHeader(
+          onBack: () => context.pop(),
         ),
         body: SafeArea(
           child: Padding(
@@ -80,52 +69,35 @@ class _ResetPasswordViewState extends State<_ResetPasswordView> {
                     AppTextField(
                       label: 'Create new password',
                       hint: 'Password',
-                      obscureText: _obscurePassword,
+                      obscureText: true,
                       errorText: state.passwordError,
                       onChanged: (value) => context
                           .read<ResetPasswordBloc>()
                           .add(ResetPasswordChanged(value)),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () => setState(
-                          () => _obscurePassword = !_obscurePassword,
-                        ),
-                        icon: Icon(
-                          _obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                      ),
-                    ),
+                    const SizedBox(height: AppSpacing.md),
                     AppTextField(
                       label: 'Confirm new password',
                       hint: 'Password',
-                      obscureText: _obscureConfirm,
+                      obscureText: true,
                       errorText: state.confirmError,
                       onChanged: (value) => context
                           .read<ResetPasswordBloc>()
                           .add(ResetConfirmPasswordChanged(value)),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () =>
-                            setState(() => _obscureConfirm = !_obscureConfirm),
-                        icon: Icon(
-                          _obscureConfirm
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                      ),
-                    ),
                     if (state.failure is InvalidResetTokenFailure ||
-                        state.failure is ResetTokenExpiredFailure)
-                      TextButton(
-                        onPressed: () => context.go('/forgot-password'),
-                        child: const Text('Request a new reset code'),
+                        state.failure is ResetTokenExpiredFailure) ...[
+                      const SizedBox(height: AppSpacing.md),
+                      AppLinkText(
+                        align: TextAlign.center,
+                        spans: [
+                          AppTextSpan(
+                            text: 'Request a new reset code',
+                            onTap: () => context.go('/forgot-password'),
+                          ),
+                        ],
                       ),
+                    ],
                     const Spacer(),
                     AppButton(
                       label: 'Save New Password',

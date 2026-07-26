@@ -29,15 +29,8 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _LoginView extends StatefulWidget {
+class _LoginView extends StatelessWidget {
   const _LoginView();
-
-  @override
-  State<_LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<_LoginView> {
-  bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +48,8 @@ class _LoginViewState extends State<_LoginView> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () => context.pop(),
-          ),
+        appBar: AppNavigationHeader(
+          onBack: () => context.pop(),
         ),
         body: SafeArea(
           child: Padding(
@@ -94,61 +84,48 @@ class _LoginViewState extends State<_LoginView> {
                     AppTextField(
                       label: 'Password',
                       hint: 'Password',
-                      obscureText: _obscure,
+                      obscureText: true,
                       errorText: state.passwordError,
                       onChanged: (value) => context
                           .read<LoginBloc>()
                           .add(LoginPasswordChanged(value)),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () => setState(() => _obscure = !_obscure),
-                        icon: Icon(
-                          _obscure ? Icons.visibility_off : Icons.visibility,
-                        ),
-                      ),
-                    ),
+                    const SizedBox(height: AppSpacing.md),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Checkbox(
-                          value: state.rememberMe,
-                          activeColor: AppColors.primary,
-                          onChanged: (value) => context
-                              .read<LoginBloc>()
-                              .add(LoginRememberMeChanged(value ?? false)),
-                        ),
-                        const Expanded(
-                          child: AppText(
-                            'Remember me',
-                            variant: AppTextVariant.caption,
+                        Expanded(
+                          child: AppCheckbox(
+                            value: state.rememberMe,
+                            onChanged: (value) => context
+                                .read<LoginBloc>()
+                                .add(LoginRememberMeChanged(value)),
+                            child: const AppText(
+                              'Remember me',
+                              variant: AppTextVariant.caption,
+                            ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () => context.push('/forgot-password'),
-                          child: const AppText(
-                            'Forgot Password?',
-                            variant: AppTextVariant.caption,
-                            color: AppColors.primary,
-                          ),
+                        AppLinkText(
+                          style: AppTextVariant.caption,
+                          spans: [
+                            AppTextSpan(
+                              text: 'Forgot Password?',
+                              onTap: () => context.push('/forgot-password'),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                     const SizedBox(height: AppSpacing.sm),
-                    Wrap(
-                      alignment: WrapAlignment.center,
-                      children: [
-                        const AppText(
-                          "Don't have an account? ",
-                          variant: AppTextVariant.caption,
-                        ),
-                        GestureDetector(
+                    AppLinkText(
+                      align: TextAlign.center,
+                      style: AppTextVariant.caption,
+                      spans: [
+                        const AppTextSpan(text: "Don't have an account? "),
+                        AppTextSpan(
+                          text: 'Sign up',
                           onTap: () => context.go('/signup'),
-                          child: const AppText(
-                            'Sign up',
-                            variant: AppTextVariant.caption,
-                            color: AppColors.primary,
-                          ),
                         ),
                       ],
                     ),

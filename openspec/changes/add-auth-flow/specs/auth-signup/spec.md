@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: Welcome entry point
-The app SHALL present a Welcome screen to unauthenticated users whose layout follows the Focuso Welcome frame (logo, title, subtitle, social actions, Sign up / Sign in CTAs, legal links) and whose visuals use `AppTheme` and `green_kitchen_ui` widgets (`AppButton`, `AppText`). Primary accent color SHALL be Green Kitchen primary, not Focuso coral.
+The app SHALL present a Welcome screen to unauthenticated users whose layout follows the Focuso Welcome frame (logo, title, subtitle, social actions, Sign up / Sign in CTAs, legal links) and whose visuals use `AppTheme` and `green_kitchen_ui` widgets (`AppButton`, `AppText`, and related package controls). Primary accent color SHALL be the package token `AppColors.primary` (`#FF4749`).
 
 #### Scenario: Unauthenticated user opens the app
 - **WHEN** the app starts and no valid session exists

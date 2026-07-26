@@ -56,7 +56,7 @@ class _WelcomeView extends StatelessWidget {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.15),
+                    color: AppColors.softBrand(Theme.of(context).brightness),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
@@ -100,14 +100,18 @@ class _WelcomeView extends StatelessWidget {
                 const SizedBox(height: AppSpacing.md),
                 AppButton(
                   label: 'Sign in',
-                  variant: AppButtonVariant.secondary,
+                  variant: AppButtonVariant.outline,
                   onPressed: () => context.push('/login'),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                AppText(
-                  'Privacy Policy  ·  Terms of Service',
-                  variant: AppTextVariant.caption,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                AppLinkText(
+                  align: TextAlign.center,
+                  style: AppTextVariant.caption,
+                  spans: const [
+                    AppTextSpan(text: 'Privacy Policy'),
+                    AppTextSpan(text: '  ·  '),
+                    AppTextSpan(text: 'Terms of Service'),
+                  ],
                 ),
               ],
             ),

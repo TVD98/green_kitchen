@@ -60,11 +60,8 @@ class _OtpView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () => context.pop(),
-          ),
+        appBar: AppNavigationHeader(
+          onBack: () => context.pop(),
         ),
         body: SafeArea(
           child: Padding(
@@ -109,26 +106,29 @@ class _OtpView extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: AppSpacing.sm),
-                    TextButton(
-                      onPressed: state.canResend
-                          ? () => context
-                              .read<OtpBloc>()
-                              .add(const OtpResendRequested())
-                          : null,
-                      child: Text(
-                        'Resend code',
-                        style: TextStyle(
-                          color: state.canResend
-                              ? AppColors.primary
-                              : Theme.of(context).disabledColor,
+                    AppLinkText(
+                      align: TextAlign.center,
+                      spans: [
+                        AppTextSpan(
+                          text: 'Resend code',
+                          onTap: state.canResend
+                              ? () => context
+                                  .read<OtpBloc>()
+                                  .add(const OtpResendRequested())
+                              : null,
                         ),
-                      ),
+                      ],
                     ),
                     if (state.failure is InvalidResetTokenFailure ||
                         state.failure is ResetTokenExpiredFailure)
-                      TextButton(
-                        onPressed: () => context.go('/forgot-password'),
-                        child: const Text('Request a new code'),
+                      AppLinkText(
+                        align: TextAlign.center,
+                        spans: [
+                          AppTextSpan(
+                            text: 'Request a new code',
+                            onTap: () => context.go('/forgot-password'),
+                          ),
+                        ],
                       ),
                   ],
                 );

@@ -29,15 +29,8 @@ class SignupPage extends StatelessWidget {
   }
 }
 
-class _SignupView extends StatefulWidget {
+class _SignupView extends StatelessWidget {
   const _SignupView();
-
-  @override
-  State<_SignupView> createState() => _SignupViewState();
-}
-
-class _SignupViewState extends State<_SignupView> {
-  bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +48,8 @@ class _SignupViewState extends State<_SignupView> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () => context.pop(),
-          ),
+        appBar: AppNavigationHeader(
+          onBack: () => context.pop(),
         ),
         body: SafeArea(
           child: Padding(
@@ -94,53 +84,32 @@ class _SignupViewState extends State<_SignupView> {
                     AppTextField(
                       label: 'Password',
                       hint: 'Password',
-                      obscureText: _obscure,
+                      obscureText: true,
                       errorText: state.passwordError,
                       onChanged: (value) => context
                           .read<SignupBloc>()
                           .add(SignupPasswordChanged(value)),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () => setState(() => _obscure = !_obscure),
-                        icon: Icon(
-                          _obscure ? Icons.visibility_off : Icons.visibility,
-                        ),
+                    const SizedBox(height: AppSpacing.md),
+                    AppCheckbox(
+                      value: state.acceptedTerms,
+                      onChanged: (value) => context
+                          .read<SignupBloc>()
+                          .add(SignupTermsChanged(value)),
+                      child: const AppText(
+                        'I agree to Terms & Conditions',
+                        variant: AppTextVariant.caption,
                       ),
                     ),
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: state.acceptedTerms,
-                          activeColor: AppColors.primary,
-                          onChanged: (value) => context
-                              .read<SignupBloc>()
-                              .add(SignupTermsChanged(value ?? false)),
-                        ),
-                        Expanded(
-                          child: AppText(
-                            'I agree to Terms & Conditions',
-                            variant: AppTextVariant.caption,
-                          ),
-                        ),
-                      ],
-                    ),
                     const SizedBox(height: AppSpacing.sm),
-                    Wrap(
-                      alignment: WrapAlignment.center,
-                      children: [
-                        const AppText(
-                          'Already have an account? ',
-                          variant: AppTextVariant.caption,
-                        ),
-                        GestureDetector(
+                    AppLinkText(
+                      align: TextAlign.center,
+                      style: AppTextVariant.caption,
+                      spans: [
+                        const AppTextSpan(text: 'Already have an account? '),
+                        AppTextSpan(
+                          text: 'Sign in',
                           onTap: () => context.go('/login'),
-                          child: const AppText(
-                            'Sign in',
-                            variant: AppTextVariant.caption,
-                            color: AppColors.primary,
-                          ),
                         ),
                       ],
                     ),

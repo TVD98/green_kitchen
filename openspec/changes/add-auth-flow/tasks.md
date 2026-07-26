@@ -44,9 +44,9 @@
 
 ## 6. Welcome, Signup, and social entry
 
-- [x] 6.1 Build the Welcome screen from Focuso Welcome layout using `AppButton` / `AppText` and Green Kitchen tokens (no Focuso coral)
+- [x] 6.1 Build the Welcome screen from Focuso Welcome layout using `AppButton` / `AppText` and `green_kitchen_ui` tokens (`AppColors.primary` = `#FF4749`)
 - [x] 6.2 Implement `SignupBloc` with email/password validation, terms gating, and submission states
-- [x] 6.3 Build the Signup screen from Focuso Sign up layout with `AppTextField`, terms checkbox, Google/Facebook row (no Apple/X), and bottom CTA
+- [x] 6.3 Build the Signup screen from Focuso Sign up layout with `AppNavigationHeader`, `AppTextField`, `AppCheckbox` terms gate, `AppLinkText` Sign in link, Google/Facebook row (no Apple/X), and bottom CTA
 - [x] 6.4 Wire email signup to persist tokens and navigate to Home
 - [x] 6.5 Wire Google and Facebook on Welcome/Signup through `LogInWithSocial` → `AuthBloc`
 - [x] 6.6 Map `ERR_USER_EXISTS` and `ERR_SOCIAL_AUTH_FAILED` to user-facing messages while preserving form values
@@ -55,7 +55,7 @@
 ## 7. Login flow
 
 - [x] 7.1 Implement `LoginBloc` with email/password validation, Remember me, and submission states (no phone mode)
-- [x] 7.2 Build the Login screen from Focuso Sign in layout with password toggle, Remember me, Forgot Password link, Sign up link, and Google/Facebook row
+- [x] 7.2 Build the Login screen from Focuso Sign in layout with `AppNavigationHeader`, password toggle, `AppCheckbox` Remember me, `AppLinkText` Forgot Password / Sign up links, and Google/Facebook row
 - [x] 7.3 Wire email login to persist tokens and navigate to Home
 - [x] 7.4 Wire Google and Facebook login through `LogInWithSocial`
 - [x] 7.5 Map `ERR_INVALID_CREDENTIALS`, `ERR_ACCOUNT_LOCKED`, `ERR_TOO_MANY_REQUESTS`, `ERR_SOCIAL_AUTH_FAILED`, and `ERR_INTERNAL_SERVER` to their user-facing messages
@@ -76,7 +76,7 @@
 
 ## 9. Verification
 
-- [x] 9.1 Confirm no auth screen defines Focuso coral or other ad-hoc colors/typography/spacing outside `green_kitchen_ui`
+- [x] 9.1 Confirm no auth screen hardcodes colors, typography, or spacing outside `green_kitchen_ui` (valid primary is the package token `AppColors.primary` = `#FF4749`)
 - [x] 9.2 Confirm Apple and X social buttons are absent and phone fields/modes are absent
 - [x] 9.3 Confirm tokens never appear in logs and are never written outside secure storage
 - [x] 9.4 Confirm OTP UI uses exactly four digits and no magic-link / deep-link reset path remains

@@ -10,7 +10,7 @@
 - Add forgot/reset password for email accounts via a **4-digit email OTP**, then a new-password screen and a success screen (no magic link / deep link).
 - Define the auth HTTP contract (`/api/v1/auth/*`): `signup`, `login`, `social-login`, `forgot-password`, `verify-otp`, `reset-password`, `refresh-token`, `logout`.
 - Add secure session handling: tokens stored in Keychain (iOS) / EncryptedSharedPreferences (Android), silent refresh on `401`, and force logout when the refresh token is rejected.
-- Add auth screens aligned to the Focuso Figma layout/structure (Welcome, Sign up, Sign in, Forgot password, Enter OTP, New password, Password updated), mapped onto `green_kitchen_ui` tokens, `AppTheme`, and base widgets (`AppTextField`, `AppButton`, `AppLoading`, `AppDialog`). Brand color remains Green Kitchen green — not Focuso coral.
+- Add auth screens aligned to the Focuso Figma layout/structure (Welcome, Sign up, Sign in, Forgot password, Enter OTP, New password, Password updated). Screens use `green_kitchen_ui` Focuso tokens, `AppTheme`, and package widgets (`AppTextField`, `AppButton`, `AppCheckbox`, `AppLinkText`, `AppNavigationHeader`, `AppLoading`, `AppDialog`).
 - Replace the placeholder counter home with an auth-gated entry point that routes to Welcome or Home based on session state.
 
 Non-goals for this change: phone number + SMS OTP flows, Apple / X social login, biometric login (tracked as a separate change that depends on `auth-session`), 2FA/MFA on unknown devices, guest mode, magic-link password reset, and SSL pinning.
@@ -24,7 +24,7 @@ Non-goals for this change: phone number + SMS OTP flows, Apple / X social login,
 - `auth-session`: Secure token storage, authenticated request handling, silent refresh on expiry, force logout, and session-based app entry routing.
 
 ### Modified Capabilities
-None. `openspec/specs/` is currently empty; the design-system capabilities from `add-green-kitchen-ui` are consumed as-is without requirement changes.
+None. Auth only consumes the archived design-system specs (`design-system-tokens`, `design-system-theme`, `design-system-widgets`) whose brand primary is Focuso `#FF4749`; this change does not revise those requirements.
 
 ## Impact
 
@@ -32,5 +32,5 @@ None. `openspec/specs/` is currently empty; the design-system capabilities from 
 - **Removed code**: the placeholder `MyHomePage` counter screen in `lib/main.dart`.
 - **Dependencies (new)**: HTTP client (`dio`), state management (`flutter_bloc`), value equality (`equatable`), secure storage (`flutter_secure_storage`), dependency injection (`get_it`), routing (`go_router`), device identity (`device_info_plus`), and Google / Facebook auth SDKs for native social login.
 - **Backend**: the API team must implement `/api/v1/auth/*` as specified; the specs in this change are the contract of record until the service exists.
-- **UI**: screens follow Focuso Figma structure (sections, field order, CTA placement) but consume only `package:green_kitchen_ui/green_kitchen_ui.dart`; no parallel color, typography, or spacing systems and no Focuso coral palette.
+- **UI**: screens follow Focuso Figma structure (sections, field order, CTA placement) and consume only `package:green_kitchen_ui/green_kitchen_ui.dart`; no hardcoded color, typography, or spacing outside the package (valid primary is the package token `#FF4749`).
 - **Testing**: unit tests for validators, use cases, and BLoCs; widget tests for the auth screens.

@@ -6,7 +6,7 @@ Source material:
 - A Vietnamese auth design doc (original product rules).
 - Focuso Pomodoro UI Kit Figma frames for Welcome, Sign up, Sign in, Forgot password, Enter OTP, New password, and Password updated.
 
-Scope after revision: email + password only, Google + Facebook social, password reset via 4-digit email OTP, Figma layout mapped to Green Kitchen tokens. Phone/SMS OTP, Apple/X social, magic links, biometrics, and MFA are out.
+Scope after revision: email + password only, Google + Facebook social, password reset via 4-digit email OTP, Figma layout using Focuso tokens via `green_kitchen_ui` (`AppColors.primary` = `#FF4749`). Phone/SMS OTP, Apple/X social, magic links, biometrics, and MFA are out.
 
 Constraints:
 - Feature-first Clean Architecture + BLoC per `.cursor/skills/flutter-clean-architecture/SKILL.md`; domain layer stays pure Dart.
@@ -19,7 +19,7 @@ Constraints:
 - Working email auth in the Flutter app: signup, sign-in, Google/Facebook social, forgot → 4-digit email OTP → reset → success, logout.
 - Precise HTTP contract for `/api/v1/auth/*` that the backend team can build to.
 - Secure token persistence and transparent session refresh, with force logout when the session is unrecoverable.
-- Auth screens that match Focuso Figma layout/structure while using Green Kitchen brand tokens.
+- Auth screens that match Focuso Figma layout/structure using Focuso tokens via `green_kitchen_ui` (`AppColors.primary` = `#FF4749`).
 - Reusable foundations (Dio client, failure model, DI container, router) that later features inherit.
 - Testable layering: validators, use cases, and BLoCs unit-testable without Flutter bindings or a live server.
 
@@ -30,7 +30,6 @@ Constraints:
 - Biometric login — a separate change that builds on `auth-session`.
 - 2FA/MFA, guest mode, SSL pinning.
 - Backend implementation; only the contract is specified here.
-- Adopting Focuso coral as the brand color.
 
 ## Decisions
 
@@ -67,11 +66,11 @@ Use Focuso frames as structural reference only:
 - Screen composition (header + form + social row + bottom CTA).
 - Field order, checkbox/link placement, OTP 4-box row, success illustration + single CTA.
 
-Map visuals to Green Kitchen:
-- Primary / CTA / focused borders / link accents → `AppColors.primary` (and related tokens), never Focuso coral.
+Map visuals to package tokens and widgets:
+- Primary / CTA / focused borders / link accents → `AppColors.primary` (`#FF4749`) and related tokens.
 - Typography → `AppTypography` / `AppText` variants.
 - Spacing / radius → `AppSpacing` / `AppRadius`.
-- Controls → `AppTextField`, `AppButton`, `AppLoading`, `AppDialog`.
+- Controls → `AppTextField`, `AppButton`, `AppCheckbox`, `AppLinkText`, `AppNavigationHeader`, `AppLoading`, `AppDialog`.
 
 - Rationale: brand consistency with the already-shipped design system while reusing a proven auth IA.
 
@@ -113,5 +112,5 @@ Email format (RFC 5322), password rules (8–32 chars with upper, lower, digit, 
 - **4-digit OTP is easier to brute-force than 6 digits or a magic link** → Server rate limits + short expiry + lockout after failed attempts; client honors resend cooldown and surfaces `ERR_TOO_MANY_REQUESTS`.
 - **Google/Facebook SDK setup and store credentials** → Fake social path for UI; platform config tasks are explicit; Apple/X deferred.
 - **Concurrent 401s could trigger multiple refresh calls or a refresh loop** → Single-flight refresh guarded by a shared completer; the refresh request itself bypasses the interceptor and a failed refresh immediately forces logout.
-- **Focuso coral vs Green Kitchen green** → Enforce token mapping in review checklist; no hardcoded coral hex in auth screens.
+- **Ad-hoc styling drift** → No hardcoded color, typography, or spacing outside `green_kitchen_ui`; a review checklist verifies auth screens use package tokens and widgets (valid primary is the package token `#FF4749`).
 - **This change introduces several dependencies at once** → They are conventional for this architecture and are set up in `core/` so later features reuse rather than re-choose them.
