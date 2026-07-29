@@ -545,32 +545,200 @@ abstract class AppLocalizations {
   /// No description provided for @discoverTitle.
   ///
   /// In en, this message translates to:
-  /// **'What\'s in your kitchen?'**
+  /// **'What do you want to cook today?'**
   String get discoverTitle;
 
   /// No description provided for @discoverSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Add ingredients you have and we\'ll suggest dishes.'**
+  /// **'Describe what you want or pick a quick start below.'**
   String get discoverSubtitle;
 
-  /// No description provided for @discoverIngredientHint.
+  /// No description provided for @discoverPromptHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. quick vegetarian dinner…'**
+  String get discoverPromptHint;
+
+  /// No description provided for @discoverVoiceSuggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak instead of typing'**
+  String get discoverVoiceSuggestion;
+
+  /// No description provided for @discoverUsePreferencesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use food preferences'**
+  String get discoverUsePreferencesTitle;
+
+  /// No description provided for @discoverUsePreferencesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestions based on your taste and diet'**
+  String get discoverUsePreferencesSubtitle;
+
+  /// No description provided for @discoverExcludeAllergiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exclude allergies'**
+  String get discoverExcludeAllergiesTitle;
+
+  /// No description provided for @discoverExcludeAllergiesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid ingredients you\'re allergic to'**
+  String get discoverExcludeAllergiesSubtitle;
+
+  /// No description provided for @discoverQuickStartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick start'**
+  String get discoverQuickStartLabel;
+
+  /// No description provided for @discoverQuickStartFridge.
+  ///
+  /// In en, this message translates to:
+  /// **'Fridge ingredients'**
+  String get discoverQuickStartFridge;
+
+  /// No description provided for @discoverQuickStartCravings.
+  ///
+  /// In en, this message translates to:
+  /// **'Cravings'**
+  String get discoverQuickStartCravings;
+
+  /// No description provided for @discoverQuickStartFastHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast & healthy'**
+  String get discoverQuickStartFastHealthy;
+
+  /// No description provided for @discoverQuickStartVegetarian.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetarian only'**
+  String get discoverQuickStartVegetarian;
+
+  /// No description provided for @discoverFindRecipes.
+  ///
+  /// In en, this message translates to:
+  /// **'Find recipes'**
+  String get discoverFindRecipes;
+
+  /// No description provided for @discoverAiDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'AI-generated suggestions. Check ingredients and allergies before cooking.'**
+  String get discoverAiDisclaimer;
+
+  /// No description provided for @discoverVoicePermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission is required for voice input.'**
+  String get discoverVoicePermissionDenied;
+
+  /// No description provided for @discoverFridgeSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick ingredients'**
+  String get discoverFridgeSheetTitle;
+
+  /// No description provided for @discoverFridgeSheetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select up to 7 ingredients you have'**
+  String get discoverFridgeSheetSubtitle;
+
+  /// No description provided for @discoverFridgeSearchHint.
   ///
   /// In en, this message translates to:
   /// **'Search ingredients…'**
-  String get discoverIngredientHint;
+  String get discoverFridgeSearchHint;
 
-  /// No description provided for @discoverSuggestDishes.
+  /// No description provided for @discoverFridgeSearchEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Suggest dishes'**
-  String get discoverSuggestDishes;
+  /// **'Type an ingredient name to search'**
+  String get discoverFridgeSearchEmpty;
 
-  /// No description provided for @discoverFilters.
+  /// No description provided for @discoverFridgeAddIngredients.
   ///
   /// In en, this message translates to:
-  /// **'Filters'**
-  String get discoverFilters;
+  /// **'Add ingredients ({count}/{max})'**
+  String discoverFridgeAddIngredients(int count, int max);
+
+  /// No description provided for @discoverFridgeClearSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear selection'**
+  String get discoverFridgeClearSelection;
+
+  /// No description provided for @discoverPromptFridgeWithIngredients.
+  ///
+  /// In en, this message translates to:
+  /// **'I have: {ingredients}. Suggest dishes to cook.'**
+  String discoverPromptFridgeWithIngredients(String ingredients);
+
+  /// No description provided for @discoverPromptFridgeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'I have ingredients in my fridge. Suggest dishes to cook.'**
+  String get discoverPromptFridgeEmpty;
+
+  /// No description provided for @discoverPromptCravingsWithInput.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m craving: {craving}. What can I cook?'**
+  String discoverPromptCravingsWithInput(String craving);
+
+  /// No description provided for @discoverPromptCravingsTemplate.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m craving: ... What can I cook?'**
+  String get discoverPromptCravingsTemplate;
+
+  /// No description provided for @discoverPromptFastHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest quick and healthy dishes'**
+  String get discoverPromptFastHealthy;
+
+  /// No description provided for @discoverPromptVegetarian.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest vegetarian dishes'**
+  String get discoverPromptVegetarian;
+
+  /// No description provided for @discoverIngredientCategoryVegetable.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetables'**
+  String get discoverIngredientCategoryVegetable;
+
+  /// No description provided for @discoverIngredientCategoryProtein.
+  ///
+  /// In en, this message translates to:
+  /// **'Protein'**
+  String get discoverIngredientCategoryProtein;
+
+  /// No description provided for @discoverIngredientCategoryDairy.
+  ///
+  /// In en, this message translates to:
+  /// **'Dairy'**
+  String get discoverIngredientCategoryDairy;
+
+  /// No description provided for @discoverIngredientCategoryGrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Grains'**
+  String get discoverIngredientCategoryGrain;
+
+  /// No description provided for @discoverIngredientCategoryOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get discoverIngredientCategoryOther;
 
   /// No description provided for @discoverRecentSearches.
   ///
@@ -584,11 +752,23 @@ abstract class AppLocalizations {
   /// **'No recent searches yet.'**
   String get discoverNoRecent;
 
-  /// No description provided for @discoverSelectedIngredients.
+  /// No description provided for @discoveryResultsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Selected'**
-  String get discoverSelectedIngredients;
+  /// **'Search results'**
+  String get discoveryResultsTitle;
+
+  /// No description provided for @discoveryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching recipes found.'**
+  String get discoveryEmpty;
+
+  /// No description provided for @discoveryRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get discoveryRetry;
 
   /// No description provided for @pantryResultsTitle.
   ///

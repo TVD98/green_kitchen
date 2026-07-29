@@ -50,3 +50,12 @@ class SearchPantry {
   }) =>
       _repository.search(ingredients: ingredients, filters: filters);
 }
+
+class SearchDiscovery {
+  SearchDiscovery(this._repository);
+
+  final DiscoveryRepository _repository;
+
+  Future<Result<List<Recipe>>> call(DiscoverySearchQuery query) =>
+      _repository.search(query);
+}

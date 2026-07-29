@@ -21,3 +21,7 @@ abstract class PantryRepository {
     PantryFilters? filters,
   });
 }
+
+abstract class DiscoveryRepository {
+  Future<Result<List<Recipe>>> search(DiscoverySearchQuery query);
+}

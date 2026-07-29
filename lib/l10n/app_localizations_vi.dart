@@ -253,20 +253,115 @@ class AppLocalizationsVi extends AppLocalizations {
   String get tabProfile => 'Cá nhân';
 
   @override
-  String get discoverTitle => 'Hôm nay bạn có gì?';
+  String get discoverTitle => 'Hôm nay bạn muốn nấu gì?';
 
   @override
   String get discoverSubtitle =>
-      'Thêm nguyên liệu bạn có, chúng tôi sẽ gợi ý món nấu.';
+      'Mô tả món bạn muốn hoặc chọn gợi ý nhanh bên dưới.';
 
   @override
-  String get discoverIngredientHint => 'Tìm nguyên liệu…';
+  String get discoverPromptHint => 'Ví dụ: món chay nhanh cho bữa tối…';
 
   @override
-  String get discoverSuggestDishes => 'Gợi ý món';
+  String get discoverVoiceSuggestion => 'Nói thay vì gõ';
 
   @override
-  String get discoverFilters => 'Bộ lọc';
+  String get discoverUsePreferencesTitle => 'Dùng sở thích ăn uống';
+
+  @override
+  String get discoverUsePreferencesSubtitle =>
+      'Gợi ý theo khẩu vị và chế độ ăn của bạn';
+
+  @override
+  String get discoverExcludeAllergiesTitle => 'Loại trừ dị ứng';
+
+  @override
+  String get discoverExcludeAllergiesSubtitle => 'Tránh nguyên liệu bạn dị ứng';
+
+  @override
+  String get discoverQuickStartLabel => 'Bắt đầu nhanh';
+
+  @override
+  String get discoverQuickStartFridge => 'Nguyên liệu trong tủ lạnh';
+
+  @override
+  String get discoverQuickStartCravings => 'Cơn thèm';
+
+  @override
+  String get discoverQuickStartFastHealthy => 'Nhanh & lành mạnh';
+
+  @override
+  String get discoverQuickStartVegetarian => 'Chỉ ăn chay';
+
+  @override
+  String get discoverFindRecipes => 'Tìm công thức';
+
+  @override
+  String get discoverAiDisclaimer =>
+      'Gợi ý do AI tạo. Hãy kiểm tra nguyên liệu và dị ứng trước khi nấu.';
+
+  @override
+  String get discoverVoicePermissionDenied =>
+      'Cần quyền micro để dùng nhập giọng nói.';
+
+  @override
+  String get discoverFridgeSheetTitle => 'Chọn nguyên liệu';
+
+  @override
+  String get discoverFridgeSheetSubtitle => 'Chọn tối đa 7 nguyên liệu bạn có';
+
+  @override
+  String get discoverFridgeSearchHint => 'Tìm nguyên liệu…';
+
+  @override
+  String get discoverFridgeSearchEmpty => 'Gõ tên nguyên liệu để tìm';
+
+  @override
+  String discoverFridgeAddIngredients(int count, int max) {
+    return 'Thêm nguyên liệu ($count/$max)';
+  }
+
+  @override
+  String get discoverFridgeClearSelection => 'Xóa lựa chọn';
+
+  @override
+  String discoverPromptFridgeWithIngredients(String ingredients) {
+    return 'Tôi có: $ingredients. Gợi ý món nấu.';
+  }
+
+  @override
+  String get discoverPromptFridgeEmpty =>
+      'Tôi có nguyên liệu trong tủ lạnh. Gợi ý món nấu.';
+
+  @override
+  String discoverPromptCravingsWithInput(String craving) {
+    return 'Tôi đang thèm: $craving. Tôi có thể nấu gì?';
+  }
+
+  @override
+  String get discoverPromptCravingsTemplate =>
+      'Tôi đang thèm: ... Tôi có thể nấu gì?';
+
+  @override
+  String get discoverPromptFastHealthy => 'Gợi ý món nhanh và lành mạnh';
+
+  @override
+  String get discoverPromptVegetarian => 'Gợi ý món chay';
+
+  @override
+  String get discoverIngredientCategoryVegetable => 'Rau củ';
+
+  @override
+  String get discoverIngredientCategoryProtein => 'Protein';
+
+  @override
+  String get discoverIngredientCategoryDairy => 'Sữa';
+
+  @override
+  String get discoverIngredientCategoryGrain => 'Ngũ cốc';
+
+  @override
+  String get discoverIngredientCategoryOther => 'Khác';
 
   @override
   String get discoverRecentSearches => 'Tìm gần đây';
@@ -275,7 +370,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get discoverNoRecent => 'Chưa có lần tìm nào.';
 
   @override
-  String get discoverSelectedIngredients => 'Đã chọn';
+  String get discoveryResultsTitle => 'Kết quả tìm kiếm';
+
+  @override
+  String get discoveryEmpty => 'Không tìm thấy công thức phù hợp.';
+
+  @override
+  String get discoveryRetry => 'Thử lại';
 
   @override
   String get pantryResultsTitle => 'Món gợi ý';

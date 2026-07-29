@@ -133,6 +133,9 @@ Future<void> configureDependencies({
     ..registerLazySingleton(
       () => PantryRemoteDataSource(dio: getIt<DioClient>().dio),
     )
+    ..registerLazySingleton(
+      () => DiscoveryRemoteDataSource(dio: getIt<DioClient>().dio),
+    )
     ..registerLazySingleton<RecipesRepository>(
       () => RecipesRepositoryImpl(remote: getIt<RecipesRemoteDataSource>()),
     )
@@ -141,6 +144,9 @@ Future<void> configureDependencies({
     )
     ..registerLazySingleton<PantryRepository>(
       () => PantryRepositoryImpl(remote: getIt<PantryRemoteDataSource>()),
+    )
+    ..registerLazySingleton<DiscoveryRepository>(
+      () => DiscoveryRepositoryImpl(remote: getIt<DiscoveryRemoteDataSource>()),
     )
     ..registerLazySingleton(
       () => RecipeInteractionsLocalDataSource(getIt<SharedPreferences>()),
@@ -157,6 +163,7 @@ Future<void> configureDependencies({
       () => SearchIngredients(getIt<IngredientsRepository>()),
     )
     ..registerLazySingleton(() => SearchPantry(getIt<PantryRepository>()))
+    ..registerLazySingleton(() => SearchDiscovery(getIt<DiscoveryRepository>()))
     ..registerLazySingleton(() => RecordRecipeViewed(getIt()))
     ..registerLazySingleton(() => ToggleRecipeSaved(getIt()))
     ..registerLazySingleton(() => IsRecipeSaved(getIt()))
@@ -165,10 +172,13 @@ Future<void> configureDependencies({
     ..registerLazySingleton(() => GetPantrySessions(getIt()))
     ..registerLazySingleton(() => SavePantrySession(getIt()))
     ..registerLazySingleton(() => GetRecentIngredientSets(getIt()))
+    ..registerLazySingleton(() => SaveRecentIngredientSet(getIt()))
+    ..registerLazySingleton(() => SaveDiscoverySession(getIt()))
     ..registerFactory(
       () => DiscoverBloc(
         searchIngredients: getIt(),
         getRecentIngredientSets: getIt(),
+        saveRecentIngredientSet: getIt(),
       ),
     )
     ..registerFactoryParam<PantryBloc, List<String>, PantryFilters>(

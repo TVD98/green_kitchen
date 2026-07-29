@@ -2,50 +2,74 @@ part of 'discover_bloc.dart';
 
 final class DiscoverState extends Equatable {
   const DiscoverState({
-    this.query = '',
-    this.selectedIngredients = const [],
-    this.suggestions = const [],
-    this.recentIngredientSets = const [],
+    this.prompt = '',
+    this.usePreferences = true,
+    this.excludeAllergies = false,
     this.filters = const PantryFilters(),
-    this.isLoadingSuggestions = false,
+    this.sheetQuery = '',
+    this.sheetSelectedIngredients = const [],
+    this.sheetSuggestions = const [],
+    this.recentIngredientSets = const [],
+    this.isLoadingSheetSuggestions = false,
   });
 
-  final String query;
-  final List<String> selectedIngredients;
-  final List<Ingredient> suggestions;
-  final List<List<String>> recentIngredientSets;
+  final String prompt;
+  final bool usePreferences;
+  final bool excludeAllergies;
   final PantryFilters filters;
-  final bool isLoadingSuggestions;
+  final String sheetQuery;
+  final List<String> sheetSelectedIngredients;
+  final List<Ingredient> sheetSuggestions;
+  final List<List<String>> recentIngredientSets;
+  final bool isLoadingSheetSuggestions;
 
-  bool get canSearch => selectedIngredients.isNotEmpty;
+  bool get canSearch => prompt.trim().isNotEmpty;
+
+  bool get canApplyFridgeSelection => sheetSelectedIngredients.isNotEmpty;
+
+  bool isSheetIngredientSelected(String name) =>
+      sheetSelectedIngredients.contains(name);
+
+  bool get isSheetSelectionFull =>
+      sheetSelectedIngredients.length >= DiscoverConstants.maxFridgeIngredients;
 
   DiscoverState copyWith({
-    String? query,
-    List<String>? selectedIngredients,
-    List<Ingredient>? suggestions,
-    List<List<String>>? recentIngredientSets,
+    String? prompt,
+    bool? usePreferences,
+    bool? excludeAllergies,
     PantryFilters? filters,
-    bool? isLoadingSuggestions,
+    String? sheetQuery,
+    List<String>? sheetSelectedIngredients,
+    List<Ingredient>? sheetSuggestions,
+    List<List<String>>? recentIngredientSets,
+    bool? isLoadingSheetSuggestions,
   }) {
     return DiscoverState(
-      query: query ?? this.query,
-      selectedIngredients: selectedIngredients ?? this.selectedIngredients,
-      suggestions: suggestions ?? this.suggestions,
+      prompt: prompt ?? this.prompt,
+      usePreferences: usePreferences ?? this.usePreferences,
+      excludeAllergies: excludeAllergies ?? this.excludeAllergies,
+      filters: filters ?? this.filters,
+      sheetQuery: sheetQuery ?? this.sheetQuery,
+      sheetSelectedIngredients:
+          sheetSelectedIngredients ?? this.sheetSelectedIngredients,
+      sheetSuggestions: sheetSuggestions ?? this.sheetSuggestions,
       recentIngredientSets:
           recentIngredientSets ?? this.recentIngredientSets,
-      filters: filters ?? this.filters,
-      isLoadingSuggestions:
-          isLoadingSuggestions ?? this.isLoadingSuggestions,
+      isLoadingSheetSuggestions:
+          isLoadingSheetSuggestions ?? this.isLoadingSheetSuggestions,
     );
   }
 
   @override
   List<Object?> get props => [
-        query,
-        selectedIngredients,
-        suggestions,
-        recentIngredientSets,
+        prompt,
+        usePreferences,
+        excludeAllergies,
         filters,
-        isLoadingSuggestions,
+        sheetQuery,
+        sheetSelectedIngredients,
+        sheetSuggestions,
+        recentIngredientSets,
+        isLoadingSheetSuggestions,
       ];
 }

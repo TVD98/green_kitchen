@@ -27,3 +27,18 @@ class PantrySession extends Equatable {
   @override
   List<Object?> get props => [ingredients, recipeIds, searchedAt];
 }
+
+class DiscoverySession extends Equatable {
+  const DiscoverySession({
+    required this.prompt,
+    required this.recipeIds,
+    required this.searchedAt,
+  });
+
+  final String prompt;
+  final List<String> recipeIds;
+  final DateTime searchedAt;
+
+  @override
+  List<Object?> get props => [prompt, recipeIds, searchedAt];
+}

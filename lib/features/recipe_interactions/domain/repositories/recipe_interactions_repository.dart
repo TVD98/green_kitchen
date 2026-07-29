@@ -15,5 +15,11 @@ abstract class RecipeInteractionsRepository {
 
   Future<void> savePantrySession(PantrySession session);
 
+  Future<List<DiscoverySession>> getDiscoverySessions();
+
+  Future<void> saveDiscoverySession(DiscoverySession session);
+
   Future<List<List<String>>> getRecentIngredientSets();
+
+  Future<void> saveRecentIngredientSet(List<String> ingredients);
 }

@@ -11,6 +11,8 @@ import '../../features/auth/presentation/pages/password_updated_page.dart';
 import '../../features/auth/presentation/pages/reset_password_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
+import '../../features/discover/presentation/models/discovery_search_args.dart';
+import '../../features/discover/presentation/pages/discovery_results_page.dart';
 import '../../features/discover/presentation/pages/discover_page.dart';
 import '../../features/home_shell/presentation/pages/home_shell_page.dart';
 import '../../features/locale_preference/presentation/pages/language_settings_page.dart';
@@ -111,6 +113,13 @@ class AppRouter {
         builder: (context, state) {
           final args = state.extra! as PantrySearchArgs;
           return PantryResultsPage(args: args);
+        },
+      ),
+      GoRoute(
+        path: '/discovery/results',
+        builder: (context, state) {
+          final args = state.extra! as DiscoverySearchArgs;
+          return DiscoveryResultsPage(args: args);
         },
       ),
       GoRoute(

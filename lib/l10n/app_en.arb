@@ -112,14 +112,60 @@
   "tabRecipes": "Recipes",
   "tabSuggestions": "For you",
   "tabProfile": "Profile",
-  "discoverTitle": "What's in your kitchen?",
-  "discoverSubtitle": "Add ingredients you have and we'll suggest dishes.",
-  "discoverIngredientHint": "Search ingredients…",
-  "discoverSuggestDishes": "Suggest dishes",
-  "discoverFilters": "Filters",
+  "discoverTitle": "What do you want to cook today?",
+  "discoverSubtitle": "Describe what you want or pick a quick start below.",
+  "discoverPromptHint": "e.g. quick vegetarian dinner…",
+  "discoverVoiceSuggestion": "Speak instead of typing",
+  "discoverUsePreferencesTitle": "Use food preferences",
+  "discoverUsePreferencesSubtitle": "Suggestions based on your taste and diet",
+  "discoverExcludeAllergiesTitle": "Exclude allergies",
+  "discoverExcludeAllergiesSubtitle": "Avoid ingredients you're allergic to",
+  "discoverQuickStartLabel": "Quick start",
+  "discoverQuickStartFridge": "Fridge ingredients",
+  "discoverQuickStartCravings": "Cravings",
+  "discoverQuickStartFastHealthy": "Fast & healthy",
+  "discoverQuickStartVegetarian": "Vegetarian only",
+  "discoverFindRecipes": "Find recipes",
+  "discoverAiDisclaimer": "AI-generated suggestions. Check ingredients and allergies before cooking.",
+  "discoverVoicePermissionDenied": "Microphone permission is required for voice input.",
+  "discoverFridgeSheetTitle": "Pick ingredients",
+  "discoverFridgeSheetSubtitle": "Select up to 7 ingredients you have",
+  "discoverFridgeSearchHint": "Search ingredients…",
+  "discoverFridgeSearchEmpty": "Type an ingredient name to search",
+  "discoverFridgeAddIngredients": "Add ingredients ({count}/{max})",
+  "@discoverFridgeAddIngredients": {
+    "placeholders": {
+      "count": { "type": "int" },
+      "max": { "type": "int" }
+    }
+  },
+  "discoverFridgeClearSelection": "Clear selection",
+  "discoverPromptFridgeWithIngredients": "I have: {ingredients}. Suggest dishes to cook.",
+  "@discoverPromptFridgeWithIngredients": {
+    "placeholders": {
+      "ingredients": { "type": "String" }
+    }
+  },
+  "discoverPromptFridgeEmpty": "I have ingredients in my fridge. Suggest dishes to cook.",
+  "discoverPromptCravingsWithInput": "I'm craving: {craving}. What can I cook?",
+  "@discoverPromptCravingsWithInput": {
+    "placeholders": {
+      "craving": { "type": "String" }
+    }
+  },
+  "discoverPromptCravingsTemplate": "I'm craving: ... What can I cook?",
+  "discoverPromptFastHealthy": "Suggest quick and healthy dishes",
+  "discoverPromptVegetarian": "Suggest vegetarian dishes",
+  "discoverIngredientCategoryVegetable": "Vegetables",
+  "discoverIngredientCategoryProtein": "Protein",
+  "discoverIngredientCategoryDairy": "Dairy",
+  "discoverIngredientCategoryGrain": "Grains",
+  "discoverIngredientCategoryOther": "Other",
   "discoverRecentSearches": "Recent searches",
   "discoverNoRecent": "No recent searches yet.",
-  "discoverSelectedIngredients": "Selected",
+  "discoveryResultsTitle": "Search results",
+  "discoveryEmpty": "No matching recipes found.",
+  "discoveryRetry": "Try again",
   "pantryResultsTitle": "Suggested dishes",
   "pantryRetry": "Try again",
   "pantryEmpty": "No recipes found for these ingredients.",

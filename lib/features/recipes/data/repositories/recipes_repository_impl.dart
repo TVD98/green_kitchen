@@ -116,3 +116,31 @@ class PantryRepositoryImpl implements PantryRepository {
     }
   }
 }
+
+class DiscoveryRepositoryImpl implements DiscoveryRepository {
+  DiscoveryRepositoryImpl({required DiscoveryRemoteDataSource remote})
+      : _remote = remote;
+
+  final DiscoveryRemoteDataSource _remote;
+
+  @override
+  Future<Result<List<Recipe>>> search(DiscoverySearchQuery query) async {
+    try {
+      final models = await _remote.search(
+        prompt: query.prompt,
+        usePreferences: query.usePreferences,
+        excludeAllergies: query.excludeAllergies,
+        maxTime: query.filters.maxTime,
+        difficulty: query.filters.difficulty,
+        tags: query.filters.tags,
+      );
+      return Success(models.map((m) => m.toEntity()).toList(growable: false));
+    } on ApiException catch (e) {
+      return Err(e.toFailure());
+    } on DioException catch (_) {
+      return const Err(NetworkFailure());
+    } catch (_) {
+      return const Err(ServerFailure());
+    }
+  }
+}

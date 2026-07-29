@@ -1,10 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../recipe_interactions/domain/usecases/recipe_interaction_usecases.dart';
 import '../../../recipes/domain/entities/ingredient.dart';
 import '../../../recipes/domain/entities/pantry_filters.dart';
-import '../../../recipe_interactions/domain/usecases/recipe_interaction_usecases.dart';
 import '../../../recipes/domain/usecases/recipe_usecases.dart';
+import '../utils/discover_constants.dart';
+import '../utils/quick_start_preset.dart';
 
 part 'discover_event.dart';
 part 'discover_state.dart';
@@ -13,19 +15,29 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
   DiscoverBloc({
     required SearchIngredients searchIngredients,
     required GetRecentIngredientSets getRecentIngredientSets,
+    required SaveRecentIngredientSet saveRecentIngredientSet,
   })  : _searchIngredients = searchIngredients,
         _getRecentIngredientSets = getRecentIngredientSets,
+        _saveRecentIngredientSet = saveRecentIngredientSet,
         super(const DiscoverState()) {
     on<DiscoverStarted>(_onStarted);
-    on<DiscoverQueryChanged>(_onQueryChanged);
-    on<DiscoverIngredientAdded>(_onIngredientAdded);
-    on<DiscoverIngredientRemoved>(_onIngredientRemoved);
-    on<DiscoverRecentSelected>(_onRecentSelected);
+    on<DiscoverPromptChanged>(_onPromptChanged);
+    on<DiscoverPromptCleared>(_onPromptCleared);
+    on<DiscoverUsePreferencesToggled>(_onUsePreferencesToggled);
+    on<DiscoverExcludeAllergiesToggled>(_onExcludeAllergiesToggled);
     on<DiscoverFiltersUpdated>(_onFiltersUpdated);
+    on<DiscoverQuickStartSelected>(_onQuickStartSelected);
+    on<DiscoverVoiceTranscriptAppended>(_onVoiceTranscriptAppended);
+    on<DiscoverSheetQueryChanged>(_onSheetQueryChanged);
+    on<DiscoverSheetIngredientToggled>(_onSheetIngredientToggled);
+    on<DiscoverSheetSelectionCleared>(_onSheetSelectionCleared);
+    on<DiscoverSheetRecentSelected>(_onSheetRecentSelected);
+    on<DiscoverFridgeApplied>(_onFridgeApplied);
   }
 
   final SearchIngredients _searchIngredients;
   final GetRecentIngredientSets _getRecentIngredientSets;
+  final SaveRecentIngredientSet _saveRecentIngredientSet;
 
   Future<void> _onStarted(
     DiscoverStarted event,
@@ -35,16 +47,86 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     emit(state.copyWith(recentIngredientSets: recent));
   }
 
-  Future<void> _onQueryChanged(
-    DiscoverQueryChanged event,
+  void _onPromptChanged(
+    DiscoverPromptChanged event,
+    Emitter<DiscoverState> emit,
+  ) {
+    final trimmed = event.prompt.length > DiscoverConstants.maxPromptLength
+        ? event.prompt.substring(0, DiscoverConstants.maxPromptLength)
+        : event.prompt;
+    emit(state.copyWith(prompt: trimmed));
+  }
+
+  void _onPromptCleared(
+    DiscoverPromptCleared event,
+    Emitter<DiscoverState> emit,
+  ) {
+    emit(state.copyWith(prompt: ''));
+  }
+
+  void _onUsePreferencesToggled(
+    DiscoverUsePreferencesToggled event,
+    Emitter<DiscoverState> emit,
+  ) {
+    emit(state.copyWith(usePreferences: event.enabled));
+  }
+
+  void _onExcludeAllergiesToggled(
+    DiscoverExcludeAllergiesToggled event,
+    Emitter<DiscoverState> emit,
+  ) {
+    emit(state.copyWith(excludeAllergies: event.enabled));
+  }
+
+  void _onFiltersUpdated(
+    DiscoverFiltersUpdated event,
+    Emitter<DiscoverState> emit,
+  ) {
+    emit(state.copyWith(filters: event.filters));
+  }
+
+  void _onQuickStartSelected(
+    DiscoverQuickStartSelected event,
+    Emitter<DiscoverState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        prompt: event.prompt,
+        filters: event.filters ?? const PantryFilters(),
+      ),
+    );
+  }
+
+  void _onVoiceTranscriptAppended(
+    DiscoverVoiceTranscriptAppended event,
+    Emitter<DiscoverState> emit,
+  ) {
+    final transcript = event.transcript.trim();
+    if (transcript.isEmpty) {
+      return;
+    }
+    final combined = '${state.prompt} $transcript'.trim();
+    final capped = combined.length > DiscoverConstants.maxPromptLength
+        ? combined.substring(0, DiscoverConstants.maxPromptLength)
+        : combined;
+    emit(state.copyWith(prompt: capped));
+  }
+
+  Future<void> _onSheetQueryChanged(
+    DiscoverSheetQueryChanged event,
     Emitter<DiscoverState> emit,
   ) async {
-    emit(state.copyWith(query: event.query, isLoadingSuggestions: true));
+    emit(
+      state.copyWith(
+        sheetQuery: event.query,
+        isLoadingSheetSuggestions: true,
+      ),
+    );
     if (event.query.trim().isEmpty) {
       emit(
         state.copyWith(
-          suggestions: const [],
-          isLoadingSuggestions: false,
+          sheetSuggestions: const [],
+          isLoadingSheetSuggestions: false,
         ),
       );
       return;
@@ -55,61 +137,67 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     );
     result.fold(
       (_) => emit(
-        state.copyWith(suggestions: const [], isLoadingSuggestions: false),
+        state.copyWith(
+          sheetSuggestions: const [],
+          isLoadingSheetSuggestions: false,
+        ),
       ),
       (items) => emit(
-        state.copyWith(suggestions: items, isLoadingSuggestions: false),
+        state.copyWith(
+          sheetSuggestions: items,
+          isLoadingSheetSuggestions: false,
+        ),
       ),
     );
   }
 
-  void _onIngredientAdded(
-    DiscoverIngredientAdded event,
+  void _onSheetIngredientToggled(
+    DiscoverSheetIngredientToggled event,
     Emitter<DiscoverState> emit,
   ) {
     final name = event.name.trim();
-    if (name.isEmpty || state.selectedIngredients.contains(name)) {
+    if (name.isEmpty) {
       return;
     }
-    emit(
-      state.copyWith(
-        selectedIngredients: [...state.selectedIngredients, name],
-        query: '',
-        suggestions: const [],
-      ),
-    );
+    final selected = List<String>.from(state.sheetSelectedIngredients);
+    if (selected.contains(name)) {
+      selected.remove(name);
+    } else {
+      if (selected.length >= DiscoverConstants.maxFridgeIngredients) {
+        return;
+      }
+      selected.add(name);
+    }
+    emit(state.copyWith(sheetSelectedIngredients: selected));
   }
 
-  void _onIngredientRemoved(
-    DiscoverIngredientRemoved event,
+  void _onSheetSelectionCleared(
+    DiscoverSheetSelectionCleared event,
+    Emitter<DiscoverState> emit,
+  ) {
+    emit(state.copyWith(sheetSelectedIngredients: const []));
+  }
+
+  void _onSheetRecentSelected(
+    DiscoverSheetRecentSelected event,
     Emitter<DiscoverState> emit,
   ) {
     emit(
       state.copyWith(
-        selectedIngredients: state.selectedIngredients
-            .where((item) => item != event.name)
-            .toList(growable: false),
+        sheetSelectedIngredients: List<String>.from(event.ingredients),
+        sheetQuery: '',
+        sheetSuggestions: const [],
       ),
     );
   }
 
-  void _onRecentSelected(
-    DiscoverRecentSelected event,
+  Future<void> _onFridgeApplied(
+    DiscoverFridgeApplied event,
     Emitter<DiscoverState> emit,
-  ) {
-    emit(
-      state.copyWith(
-        selectedIngredients: List<String>.from(event.ingredients),
-        query: '',
-        suggestions: const [],
-      ),
-    );
-  }
-
-  void _onFiltersUpdated(
-    DiscoverFiltersUpdated event,
-    Emitter<DiscoverState> emit,
-  ) {
-    emit(state.copyWith(filters: event.filters));
+  ) async {
+    emit(state.copyWith(prompt: event.prompt));
+    await _saveRecentIngredientSet(event.ingredients);
+    final recent = await _getRecentIngredientSets();
+    emit(state.copyWith(recentIngredientSets: recent));
   }
 }

@@ -42,3 +42,25 @@ class RecipeSearchQuery extends Equatable {
   @override
   List<Object?> get props => [q, maxTime, difficulty, tags];
 }
+
+class DiscoverySearchQuery extends Equatable {
+  const DiscoverySearchQuery({
+    required this.prompt,
+    this.usePreferences = false,
+    this.excludeAllergies = false,
+    this.filters = const PantryFilters(),
+  });
+
+  final String prompt;
+  final bool usePreferences;
+  final bool excludeAllergies;
+  final PantryFilters filters;
+
+  @override
+  List<Object?> get props => [
+        prompt,
+        usePreferences,
+        excludeAllergies,
+        filters,
+      ];
+}

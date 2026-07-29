@@ -7,10 +7,16 @@ import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../pantry/presentation/models/pantry_search_args.dart';
-import '../../../recipes/domain/entities/pantry_filters.dart';
 import '../bloc/discover_bloc.dart';
-import '../widgets/selected_ingredient_chips.dart';
+import '../models/discovery_search_args.dart';
+import '../services/discover_speech_service.dart';
+import '../utils/quick_start_preset.dart';
+import '../widgets/discover_bottom_bar.dart';
+import '../widgets/discover_hero_section.dart';
+import '../widgets/discover_option_tile.dart';
+import '../widgets/discover_prompt_card.dart';
+import '../widgets/discover_quick_start_grid.dart';
+import '../widgets/fridge_ingredients_sheet.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -20,109 +26,109 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
-  Timer? _debounce;
-  final _controller = TextEditingController();
+  final _promptController = TextEditingController();
+  final _speechService = DiscoverSpeechService();
+  bool _isListening = false;
 
   @override
   void dispose() {
-    _debounce?.cancel();
-    _controller.dispose();
+    _speechService.stopListening();
+    _promptController.dispose();
     super.dispose();
   }
 
-  void _onQueryChanged(BuildContext context, String value) {
-    _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 300), () {
-      if (mounted) {
-        final lang = Localizations.localeOf(context).languageCode;
-        context.read<DiscoverBloc>().add(
-              DiscoverQueryChanged(value, lang: lang),
-            );
-      }
-    });
-  }
-
-  Future<void> _openFilters(BuildContext context, PantryFilters filters) async {
+  Future<void> _openFridgeSheet(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
     final bloc = context.read<DiscoverBloc>();
-    final maxTimeController =
-        TextEditingController(text: filters.maxTime?.toString() ?? '');
-    var difficulty = filters.difficulty;
-
-    await showModalBottomSheet<void>(
+    final applied = await AppBottomSheet.show<bool>(
       context: context,
-      builder: (sheetContext) {
-        return StatefulBuilder(
-          builder: (context, setSheetState) {
-            return Padding(
-              padding: const EdgeInsets.all(AppSpacing.lg),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  AppText(l10n.filterTitle, variant: AppTextVariant.title),
-                  const SizedBox(height: AppSpacing.md),
-                  AppTextField(
-                    controller: maxTimeController,
-                    label: l10n.filterMaxTime,
-                    keyboardType: TextInputType.number,
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  AppText(l10n.filterDifficulty, variant: AppTextVariant.label),
-                  const SizedBox(height: AppSpacing.sm),
-                  Wrap(
-                    spacing: AppSpacing.gap8,
-                    children: [
-                      ChoiceChip(
-                        label: Text(l10n.filterAny),
-                        selected: difficulty == null,
-                        onSelected: (_) =>
-                            setSheetState(() => difficulty = null),
-                      ),
-                      ChoiceChip(
-                        label: Text(l10n.filterEasy),
-                        selected: difficulty == 'easy',
-                        onSelected: (_) =>
-                            setSheetState(() => difficulty = 'easy'),
-                      ),
-                      ChoiceChip(
-                        label: Text(l10n.filterMedium),
-                        selected: difficulty == 'medium',
-                        onSelected: (_) =>
-                            setSheetState(() => difficulty = 'medium'),
-                      ),
-                      ChoiceChip(
-                        label: Text(l10n.filterHard),
-                        selected: difficulty == 'hard',
-                        onSelected: (_) =>
-                            setSheetState(() => difficulty = 'hard'),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-                  AppButton(
-                    label: l10n.filterApply,
-                    onPressed: () {
-                      final parsed = int.tryParse(maxTimeController.text.trim());
-                      bloc.add(
-                        DiscoverFiltersUpdated(
-                          PantryFilters(
-                            maxTime: parsed,
-                            difficulty: difficulty,
-                          ),
-                        ),
-                      );
-                      Navigator.of(sheetContext).pop();
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
+      child: BlocProvider.value(
+        value: bloc,
+        child: const FridgeIngredientsSheet(),
+      ),
+    );
+    if (applied == true && context.mounted) {
+      final state = bloc.state;
+      final built = QuickStartPreset.fridge.build(
+        l10n,
+        userInput: state.sheetSelectedIngredients.join(', '),
+      );
+      bloc.add(
+        DiscoverFridgeApplied(
+          built.prompt,
+          List<String>.from(state.sheetSelectedIngredients),
+        ),
+      );
+      _promptController.text = built.prompt;
+      _promptController.selection = TextSelection.collapsed(
+        offset: built.prompt.length,
+      );
+    }
+  }
+
+  void _onQuickStartSelected(BuildContext context, QuickStartPreset preset) {
+    if (preset == QuickStartPreset.fridge) {
+      _openFridgeSheet(context);
+      return;
+    }
+    final l10n = AppLocalizations.of(context)!;
+    final built = preset.build(l10n);
+    context.read<DiscoverBloc>().add(
+          DiscoverQuickStartSelected(
+            preset,
+            built.prompt,
+            filters: built.filters,
+          ),
         );
+    _promptController.text = built.prompt;
+    _promptController.selection = TextSelection.collapsed(
+      offset: built.prompt.length,
+    );
+  }
+
+  Future<void> _startVoiceInput(BuildContext context) async {
+    final l10n = AppLocalizations.of(context)!;
+    setState(() => _isListening = true);
+    final started = await _speechService.startListening(
+      onResult: (transcript) {
+        if (mounted) {
+          context.read<DiscoverBloc>().add(
+                DiscoverVoiceTranscriptAppended(transcript),
+              );
+          final next = context.read<DiscoverBloc>().state.prompt;
+          _promptController.text = next;
+          _promptController.selection = TextSelection.collapsed(offset: next.length);
+        }
+      },
+      onError: (_) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l10n.discoverVoicePermissionDenied)),
+          );
+        }
       },
     );
-    maxTimeController.dispose();
+    if (!started) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.discoverVoicePermissionDenied)),
+      );
+    }
+    if (mounted) {
+      setState(() => _isListening = false);
+    }
+  }
+
+  void _navigateToResults(BuildContext context, DiscoverState state) {
+    context.push(
+      '/discovery/results',
+      extra: DiscoverySearchArgs(
+        prompt: state.prompt.trim(),
+        usePreferences: state.usePreferences,
+        excludeAllergies: state.excludeAllergies,
+        filters: state.filters,
+      ),
+    );
   }
 
   @override
@@ -131,110 +137,80 @@ class _DiscoverPageState extends State<DiscoverPage> {
 
     return BlocProvider(
       create: (_) => getIt<DiscoverBloc>()..add(const DiscoverStarted()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: AppText(l10n.tabDiscover, variant: AppTextVariant.title),
-        ),
-        body: BlocBuilder<DiscoverBloc, DiscoverState>(
-          builder: (context, state) {
-            return ListView(
-              padding: const EdgeInsets.all(AppSpacing.lg),
+      child: BlocListener<DiscoverBloc, DiscoverState>(
+        listenWhen: (prev, next) => prev.prompt != next.prompt,
+        listener: (context, state) {
+          if (_promptController.text != state.prompt) {
+            _promptController.text = state.prompt;
+          }
+        },
+        child: Scaffold(
+          body: SafeArea(
+            child: Column(
               children: [
-                AppText(l10n.discoverTitle, variant: AppTextVariant.headline),
-                const SizedBox(height: AppSpacing.sm),
-                AppText(
-                  l10n.discoverSubtitle,
-                  variant: AppTextVariant.body,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                AppTextField(
-                  controller: _controller,
-                  label: l10n.discoverIngredientHint,
-                  onChanged: (value) => _onQueryChanged(context, value),
-                ),
-                if (state.isLoadingSuggestions)
-                  const Padding(
-                    padding: EdgeInsets.only(top: AppSpacing.md),
-                    child: AppLoading(),
-                  )
-                else if (state.suggestions.isNotEmpty)
-                  ...state.suggestions.map(
-                    (item) => ListTile(
-                      title: Text(item.canonicalName),
-                      subtitle: Text(item.category),
-                      onTap: () {
-                        context.read<DiscoverBloc>().add(
-                              DiscoverIngredientAdded(item.canonicalName),
-                            );
-                        _controller.clear();
-                      },
-                    ),
-                  ),
-                const SizedBox(height: AppSpacing.md),
-                AppText(
-                  l10n.discoverSelectedIngredients,
-                  variant: AppTextVariant.label,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                SelectedIngredientChips(
-                  ingredients: state.selectedIngredients,
-                  onRemove: (name) => context
-                      .read<DiscoverBloc>()
-                      .add(DiscoverIngredientRemoved(name)),
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                Row(
-                  children: [
-                    Expanded(
-                      child: AppButton(
-                        label: l10n.discoverSuggestDishes,
-                        onPressed: state.canSearch
-                            ? () {
-                                context.push(
-                                  '/pantry/results',
-                                  extra: PantrySearchArgs(
-                                    ingredients: state.selectedIngredients,
-                                    filters: state.filters,
-                                  ),
-                                );
-                              }
-                            : null,
-                      ),
-                    ),
-                    const SizedBox(width: AppSpacing.sm),
-                    IconButton(
-                      onPressed: () => _openFilters(context, state.filters),
-                      icon: const Icon(Icons.tune),
-                      tooltip: l10n.discoverFilters,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                AppText(
-                  l10n.discoverRecentSearches,
-                  variant: AppTextVariant.title,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                if (state.recentIngredientSets.isEmpty)
-                  AppText(
-                    l10n.discoverNoRecent,
-                    variant: AppTextVariant.body,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  )
-                else
-                  ...state.recentIngredientSets.map(
-                    (set) => ListTile(
-                      title: Text(set.join(', ')),
-                      trailing: const Icon(Icons.history),
-                      onTap: () => context.read<DiscoverBloc>().add(
-                            DiscoverRecentSelected(set),
+                Expanded(
+                  child: BlocBuilder<DiscoverBloc, DiscoverState>(
+                    builder: (context, state) {
+                      return ListView(
+                        padding: const EdgeInsets.all(AppSpacing.lg),
+                        children: [
+                          const DiscoverHeroSection(),
+                          const SizedBox(height: AppSpacing.lg),
+                          DiscoverPromptCard(
+                            controller: _promptController,
+                            onChanged: (value) => context
+                                .read<DiscoverBloc>()
+                                .add(DiscoverPromptChanged(value)),
+                            onClear: () {
+                              context
+                                  .read<DiscoverBloc>()
+                                  .add(const DiscoverPromptCleared());
+                              _promptController.clear();
+                            },
+                            onVoiceTap: () => _startVoiceInput(context),
+                            isListening: _isListening,
                           ),
-                    ),
+                          const SizedBox(height: AppSpacing.lg),
+                          DiscoverOptionTile(
+                            icon: Icons.restaurant_menu_outlined,
+                            title: l10n.discoverUsePreferencesTitle,
+                            subtitle: l10n.discoverUsePreferencesSubtitle,
+                            value: state.usePreferences,
+                            onChanged: (value) => context
+                                .read<DiscoverBloc>()
+                                .add(DiscoverUsePreferencesToggled(value)),
+                          ),
+                          DiscoverOptionTile(
+                            icon: Icons.health_and_safety_outlined,
+                            title: l10n.discoverExcludeAllergiesTitle,
+                            subtitle: l10n.discoverExcludeAllergiesSubtitle,
+                            value: state.excludeAllergies,
+                            onChanged: (value) => context
+                                .read<DiscoverBloc>()
+                                .add(DiscoverExcludeAllergiesToggled(value)),
+                          ),
+                          const SizedBox(height: AppSpacing.lg),
+                          DiscoverQuickStartGrid(
+                            onPresetSelected: (preset) =>
+                                _onQuickStartSelected(context, preset),
+                          ),
+                          const SizedBox(height: AppSpacing.xl),
+                        ],
+                      );
+                    },
                   ),
+                ),
+                BlocBuilder<DiscoverBloc, DiscoverState>(
+                  builder: (context, state) {
+                    return DiscoverBottomBar(
+                      canSearch: state.canSearch,
+                      onSearch: () => _navigateToResults(context, state),
+                    );
+                  },
+                ),
               ],
-            );
-          },
+            ),
+          ),
         ),
       ),
     );
