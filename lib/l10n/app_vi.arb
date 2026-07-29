@@ -74,14 +74,60 @@
   "tabRecipes": "Công thức",
   "tabSuggestions": "Gợi ý",
   "tabProfile": "Cá nhân",
-  "discoverTitle": "Hôm nay bạn có gì?",
-  "discoverSubtitle": "Thêm nguyên liệu bạn có, chúng tôi sẽ gợi ý món nấu.",
-  "discoverIngredientHint": "Tìm nguyên liệu…",
-  "discoverSuggestDishes": "Gợi ý món",
-  "discoverFilters": "Bộ lọc",
+  "discoverTitle": "Hôm nay bạn muốn nấu gì?",
+  "discoverSubtitle": "Mô tả món bạn muốn hoặc chọn gợi ý nhanh bên dưới.",
+  "discoverPromptHint": "Ví dụ: món chay nhanh cho bữa tối…",
+  "discoverVoiceSuggestion": "Nói thay vì gõ",
+  "discoverUsePreferencesTitle": "Dùng sở thích ăn uống",
+  "discoverUsePreferencesSubtitle": "Gợi ý theo khẩu vị và chế độ ăn của bạn",
+  "discoverExcludeAllergiesTitle": "Loại trừ dị ứng",
+  "discoverExcludeAllergiesSubtitle": "Tránh nguyên liệu bạn dị ứng",
+  "discoverQuickStartLabel": "Bắt đầu nhanh",
+  "discoverQuickStartFridge": "Nguyên liệu trong tủ lạnh",
+  "discoverQuickStartCravings": "Cơn thèm",
+  "discoverQuickStartFastHealthy": "Nhanh & lành mạnh",
+  "discoverQuickStartVegetarian": "Chỉ ăn chay",
+  "discoverFindRecipes": "Tìm công thức",
+  "discoverAiDisclaimer": "Gợi ý do AI tạo. Hãy kiểm tra nguyên liệu và dị ứng trước khi nấu.",
+  "discoverVoicePermissionDenied": "Cần quyền micro để dùng nhập giọng nói.",
+  "discoverFridgeSheetTitle": "Chọn nguyên liệu",
+  "discoverFridgeSheetSubtitle": "Chọn tối đa 7 nguyên liệu bạn có",
+  "discoverFridgeSearchHint": "Tìm nguyên liệu…",
+  "discoverFridgeSearchEmpty": "Gõ tên nguyên liệu để tìm",
+  "discoverFridgeAddIngredients": "Thêm nguyên liệu ({count}/{max})",
+  "@discoverFridgeAddIngredients": {
+    "placeholders": {
+      "count": { "type": "int" },
+      "max": { "type": "int" }
+    }
+  },
+  "discoverFridgeClearSelection": "Xóa lựa chọn",
+  "discoverPromptFridgeWithIngredients": "Tôi có: {ingredients}. Gợi ý món nấu.",
+  "@discoverPromptFridgeWithIngredients": {
+    "placeholders": {
+      "ingredients": { "type": "String" }
+    }
+  },
+  "discoverPromptFridgeEmpty": "Tôi có nguyên liệu trong tủ lạnh. Gợi ý món nấu.",
+  "discoverPromptCravingsWithInput": "Tôi đang thèm: {craving}. Tôi có thể nấu gì?",
+  "@discoverPromptCravingsWithInput": {
+    "placeholders": {
+      "craving": { "type": "String" }
+    }
+  },
+  "discoverPromptCravingsTemplate": "Tôi đang thèm: ... Tôi có thể nấu gì?",
+  "discoverPromptFastHealthy": "Gợi ý món nhanh và lành mạnh",
+  "discoverPromptVegetarian": "Gợi ý món chay",
+  "discoverIngredientCategoryVegetable": "Rau củ",
+  "discoverIngredientCategoryProtein": "Protein",
+  "discoverIngredientCategoryDairy": "Sữa",
+  "discoverIngredientCategoryGrain": "Ngũ cốc",
+  "discoverIngredientCategoryOther": "Khác",
   "discoverRecentSearches": "Tìm gần đây",
   "discoverNoRecent": "Chưa có lần tìm nào.",
-  "discoverSelectedIngredients": "Đã chọn",
+  "discoveryResultsTitle": "Kết quả tìm kiếm",
+  "discoveryEmpty": "Không tìm thấy công thức phù hợp.",
+  "discoveryRetry": "Thử lại",
   "pantryResultsTitle": "Món gợi ý",
   "pantryRetry": "Thử lại",
   "pantryEmpty": "Không tìm thấy công thức cho bộ nguyên liệu này.",

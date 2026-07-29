@@ -97,6 +97,43 @@ class RecipeInteractionsRepositoryImpl implements RecipeInteractionsRepository {
   Future<List<List<String>>> getRecentIngredientSets() =>
       _local.readRecentIngredientSets();
 
+  @override
+  Future<void> saveRecentIngredientSet(List<String> ingredients) async {
+    if (ingredients.isEmpty) {
+      return;
+    }
+    final recent = await _local.readRecentIngredientSets();
+    recent.removeWhere((set) => _sameIngredientSet(set, ingredients));
+    recent.insert(0, List<String>.from(ingredients));
+    while (recent.length >
+        RecipeInteractionsLocalDataSource.maxRecentIngredientSets) {
+      recent.removeLast();
+    }
+    await _local.writeRecentIngredientSets(recent);
+  }
+
+  @override
+  Future<List<DiscoverySession>> getDiscoverySessions() async {
+    final items = await _local.readDiscoverySessions();
+    return items
+        .map(RecipeInteractionsLocalDataSource.discoverySessionFromJson)
+        .toList(growable: false);
+  }
+
+  @override
+  Future<void> saveDiscoverySession(DiscoverySession session) async {
+    final items = await _local.readDiscoverySessions();
+    items.insert(
+      0,
+      RecipeInteractionsLocalDataSource.discoverySessionToJson(session),
+    );
+    while (items.length >
+        RecipeInteractionsLocalDataSource.maxDiscoverySessions) {
+      items.removeLast();
+    }
+    await _local.writeDiscoverySessions(items);
+  }
+
   bool _sameIngredientSet(List<String> a, List<String> b) {
     if (a.length != b.length) {
       return false;

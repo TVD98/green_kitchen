@@ -250,20 +250,117 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tabProfile => 'Profile';
 
   @override
-  String get discoverTitle => 'What\'s in your kitchen?';
+  String get discoverTitle => 'What do you want to cook today?';
 
   @override
   String get discoverSubtitle =>
-      'Add ingredients you have and we\'ll suggest dishes.';
+      'Describe what you want or pick a quick start below.';
 
   @override
-  String get discoverIngredientHint => 'Search ingredients…';
+  String get discoverPromptHint => 'e.g. quick vegetarian dinner…';
 
   @override
-  String get discoverSuggestDishes => 'Suggest dishes';
+  String get discoverVoiceSuggestion => 'Speak instead of typing';
 
   @override
-  String get discoverFilters => 'Filters';
+  String get discoverUsePreferencesTitle => 'Use food preferences';
+
+  @override
+  String get discoverUsePreferencesSubtitle =>
+      'Suggestions based on your taste and diet';
+
+  @override
+  String get discoverExcludeAllergiesTitle => 'Exclude allergies';
+
+  @override
+  String get discoverExcludeAllergiesSubtitle =>
+      'Avoid ingredients you\'re allergic to';
+
+  @override
+  String get discoverQuickStartLabel => 'Quick start';
+
+  @override
+  String get discoverQuickStartFridge => 'Fridge ingredients';
+
+  @override
+  String get discoverQuickStartCravings => 'Cravings';
+
+  @override
+  String get discoverQuickStartFastHealthy => 'Fast & healthy';
+
+  @override
+  String get discoverQuickStartVegetarian => 'Vegetarian only';
+
+  @override
+  String get discoverFindRecipes => 'Find recipes';
+
+  @override
+  String get discoverAiDisclaimer =>
+      'AI-generated suggestions. Check ingredients and allergies before cooking.';
+
+  @override
+  String get discoverVoicePermissionDenied =>
+      'Microphone permission is required for voice input.';
+
+  @override
+  String get discoverFridgeSheetTitle => 'Pick ingredients';
+
+  @override
+  String get discoverFridgeSheetSubtitle =>
+      'Select up to 7 ingredients you have';
+
+  @override
+  String get discoverFridgeSearchHint => 'Search ingredients…';
+
+  @override
+  String get discoverFridgeSearchEmpty => 'Type an ingredient name to search';
+
+  @override
+  String discoverFridgeAddIngredients(int count, int max) {
+    return 'Add ingredients ($count/$max)';
+  }
+
+  @override
+  String get discoverFridgeClearSelection => 'Clear selection';
+
+  @override
+  String discoverPromptFridgeWithIngredients(String ingredients) {
+    return 'I have: $ingredients. Suggest dishes to cook.';
+  }
+
+  @override
+  String get discoverPromptFridgeEmpty =>
+      'I have ingredients in my fridge. Suggest dishes to cook.';
+
+  @override
+  String discoverPromptCravingsWithInput(String craving) {
+    return 'I\'m craving: $craving. What can I cook?';
+  }
+
+  @override
+  String get discoverPromptCravingsTemplate =>
+      'I\'m craving: ... What can I cook?';
+
+  @override
+  String get discoverPromptFastHealthy => 'Suggest quick and healthy dishes';
+
+  @override
+  String get discoverPromptVegetarian => 'Suggest vegetarian dishes';
+
+  @override
+  String get discoverIngredientCategoryVegetable => 'Vegetables';
+
+  @override
+  String get discoverIngredientCategoryProtein => 'Protein';
+
+  @override
+  String get discoverIngredientCategoryDairy => 'Dairy';
+
+  @override
+  String get discoverIngredientCategoryGrain => 'Grains';
+
+  @override
+  String get discoverIngredientCategoryOther => 'Other';
 
   @override
   String get discoverRecentSearches => 'Recent searches';
@@ -272,7 +369,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discoverNoRecent => 'No recent searches yet.';
 
   @override
-  String get discoverSelectedIngredients => 'Selected';
+  String get discoveryResultsTitle => 'Search results';
+
+  @override
+  String get discoveryEmpty => 'No matching recipes found.';
+
+  @override
+  String get discoveryRetry => 'Try again';
 
   @override
   String get pantryResultsTitle => 'Suggested dishes';

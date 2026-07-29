@@ -11,40 +11,35 @@ final class DiscoverStarted extends DiscoverEvent {
   const DiscoverStarted();
 }
 
-final class DiscoverQueryChanged extends DiscoverEvent {
-  const DiscoverQueryChanged(this.query);
+final class DiscoverPromptChanged extends DiscoverEvent {
+  const DiscoverPromptChanged(this.prompt);
 
-  final String query;
+  final String prompt;
 
   @override
-  List<Object?> get props => [query];
+  List<Object?> get props => [prompt];
 }
 
-final class DiscoverIngredientAdded extends DiscoverEvent {
-  const DiscoverIngredientAdded(this.name);
-
-  final String name;
-
-  @override
-  List<Object?> get props => [name];
+final class DiscoverPromptCleared extends DiscoverEvent {
+  const DiscoverPromptCleared();
 }
 
-final class DiscoverIngredientRemoved extends DiscoverEvent {
-  const DiscoverIngredientRemoved(this.name);
+final class DiscoverUsePreferencesToggled extends DiscoverEvent {
+  const DiscoverUsePreferencesToggled(this.enabled);
 
-  final String name;
+  final bool enabled;
 
   @override
-  List<Object?> get props => [name];
+  List<Object?> get props => [enabled];
 }
 
-final class DiscoverRecentSelected extends DiscoverEvent {
-  const DiscoverRecentSelected(this.ingredients);
+final class DiscoverExcludeAllergiesToggled extends DiscoverEvent {
+  const DiscoverExcludeAllergiesToggled(this.enabled);
 
-  final List<String> ingredients;
+  final bool enabled;
 
   @override
-  List<Object?> get props => [ingredients];
+  List<Object?> get props => [enabled];
 }
 
 final class DiscoverFiltersUpdated extends DiscoverEvent {
@@ -54,4 +49,65 @@ final class DiscoverFiltersUpdated extends DiscoverEvent {
 
   @override
   List<Object?> get props => [filters];
+}
+
+final class DiscoverQuickStartSelected extends DiscoverEvent {
+  const DiscoverQuickStartSelected(this.preset, this.prompt, {this.filters});
+
+  final QuickStartPreset preset;
+  final String prompt;
+  final PantryFilters? filters;
+
+  @override
+  List<Object?> get props => [preset, prompt, filters];
+}
+
+final class DiscoverVoiceTranscriptAppended extends DiscoverEvent {
+  const DiscoverVoiceTranscriptAppended(this.transcript);
+
+  final String transcript;
+
+  @override
+  List<Object?> get props => [transcript];
+}
+
+final class DiscoverSheetQueryChanged extends DiscoverEvent {
+  const DiscoverSheetQueryChanged(this.query);
+
+  final String query;
+
+  @override
+  List<Object?> get props => [query];
+}
+
+final class DiscoverSheetIngredientToggled extends DiscoverEvent {
+  const DiscoverSheetIngredientToggled(this.name);
+
+  final String name;
+
+  @override
+  List<Object?> get props => [name];
+}
+
+final class DiscoverSheetSelectionCleared extends DiscoverEvent {
+  const DiscoverSheetSelectionCleared();
+}
+
+final class DiscoverSheetRecentSelected extends DiscoverEvent {
+  const DiscoverSheetRecentSelected(this.ingredients);
+
+  final List<String> ingredients;
+
+  @override
+  List<Object?> get props => [ingredients];
+}
+
+final class DiscoverFridgeApplied extends DiscoverEvent {
+  const DiscoverFridgeApplied(this.prompt, this.ingredients);
+
+  final String prompt;
+  final List<String> ingredients;
+
+  @override
+  List<Object?> get props => [prompt, ingredients];
 }

@@ -67,3 +67,21 @@ class GetRecentIngredientSets {
 
   Future<List<List<String>>> call() => _repository.getRecentIngredientSets();
 }
+
+class SaveRecentIngredientSet {
+  SaveRecentIngredientSet(this._repository);
+
+  final RecipeInteractionsRepository _repository;
+
+  Future<void> call(List<String> ingredients) =>
+      _repository.saveRecentIngredientSet(ingredients);
+}
+
+class SaveDiscoverySession {
+  SaveDiscoverySession(this._repository);
+
+  final RecipeInteractionsRepository _repository;
+
+  Future<void> call(DiscoverySession session) =>
+      _repository.saveDiscoverySession(session);
+}
