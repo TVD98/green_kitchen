@@ -2,7 +2,7 @@ schema: spec-driven
 
 context: |
   Tech stack: Flutter (Dart SDK ^3.12), feature-first Clean Architecture + BLoC.
-  App name: green_kitchen. Brand: Focuso coral (#FF4749), Urbanist via google_fonts.
+  App name: green_kitchen. Brand: kitchen green (#4AAF57), Urbanist via google_fonts.
   UI design system: local package packages/green_kitchen_ui (path dependency).
   Prefer conventional commits. Do not publish private packages to pub.dev.
 

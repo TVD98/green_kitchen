@@ -24,7 +24,7 @@ Non-goals for this change: phone number + SMS OTP flows, Apple / X social login,
 - `auth-session`: Secure token storage, authenticated request handling, silent refresh on expiry, force logout, and session-based app entry routing.
 
 ### Modified Capabilities
-None. Auth only consumes the archived design-system specs (`design-system-tokens`, `design-system-theme`, `design-system-widgets`) whose brand primary is Focuso `#FF4749`; this change does not revise those requirements.
+None. Auth only consumes the archived design-system specs (`design-system-tokens`, `design-system-theme`, `design-system-widgets`) whose brand primary is `#4AAF57`; this change does not revise those requirements.
 
 ## Impact
 
@@ -32,5 +32,5 @@ None. Auth only consumes the archived design-system specs (`design-system-tokens
 - **Removed code**: the placeholder `MyHomePage` counter screen in `lib/main.dart`.
 - **Dependencies (new)**: HTTP client (`dio`), state management (`flutter_bloc`), value equality (`equatable`), secure storage (`flutter_secure_storage`), dependency injection (`get_it`), routing (`go_router`), device identity (`device_info_plus`), and Google / Facebook auth SDKs for native social login.
 - **Backend**: the API team must implement `/api/v1/auth/*` as specified; the specs in this change are the contract of record until the service exists.
-- **UI**: screens follow Focuso Figma structure (sections, field order, CTA placement) and consume only `package:green_kitchen_ui/green_kitchen_ui.dart`; no hardcoded color, typography, or spacing outside the package (valid primary is the package token `#FF4749`).
+- **UI**: screens follow Focuso Figma structure (sections, field order, CTA placement) and consume only `package:green_kitchen_ui/green_kitchen_ui.dart`; no hardcoded color, typography, or spacing outside the package (valid primary is the package token `#4AAF57`).
 - **Testing**: unit tests for validators, use cases, and BLoCs; widget tests for the auth screens.

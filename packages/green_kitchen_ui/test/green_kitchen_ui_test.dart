@@ -10,9 +10,11 @@ void main() {
   });
 
   group('AppColors', () {
-    test('brand matches Focuso coral', () {
-      expect(AppColors.primary, const Color(0xFFFF4749));
+    test('brand matches kitchen green', () {
+      expect(AppColors.primary, const Color(0xFF4AAF57));
       expect(AppColors.brand, AppColors.primary);
+      expect(AppColors.accentGreen, AppColors.brand);
+      expect(AppColors.lightSoftBrand, const Color(0xFFF0FAF1));
       expect(AppColors.absoluteWhite, const Color(0xFFFFFFFF));
     });
   });

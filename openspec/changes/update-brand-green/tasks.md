@@ -1,0 +1,7 @@
+- [x] 1.1 Set `AppColors.brand` / `primary` to `#4AAF57` and `lightSoftBrand` to `#F0FAF1`
+- [x] 1.2 Alias `AppColors.accentGreen` to `AppColors.brand`
+- [x] 1.3 Update `green_kitchen_ui` color tests
+- [x] 2.1 Update `openspec/specs/design-system-tokens` brand and soft-brand requirements
+- [x] 2.2 Update `openspec/specs/design-system-theme` primary requirement
+- [x] 2.3 Update `openspec/config.yaml` brand context
+- [x] 3.1 Run `flutter test packages/green_kitchen_ui` and `flutter analyze`

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Focuso brand palette and light/dark surfaces.
+/// Green Kitchen brand palette and light/dark surfaces.
 abstract final class AppColors {
-  static const Color brand = Color(0xFFFF4749);
+  static const Color brand = Color(0xFF4AAF57);
   static const Color primary = brand;
   static const Color absoluteWhite = Color(0xFFFFFFFF);
   static const Color error = Color(0xFFF75555);
@@ -12,7 +12,7 @@ abstract final class AppColors {
   static const Color lightElevated = Color(0xFFEEEEEE);
   static const Color lightStroke = Color(0xFFE0E0E0);
   static const Color lightOnSurface = Color(0xFF212121);
-  static const Color lightSoftBrand = Color(0xFFFFF0F0);
+  static const Color lightSoftBrand = Color(0xFFF0FAF1);
 
   static const Color darkBackground = Color(0xFF181A20);
   static const Color darkSurface = Color(0xFF1F222A);
@@ -35,7 +35,7 @@ abstract final class AppColors {
 
   static const Color accentOrange = Color(0xFFFF981F);
   static const Color accentBlue = Color(0xFF1A96F0);
-  static const Color accentGreen = Color(0xFF4AAF57);
+  static const Color accentGreen = brand;
   static const Color accentPurple = Color(0xFF9D28AC);
 
   static Color softBrand(Brightness brightness) =>

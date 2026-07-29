@@ -8,7 +8,7 @@ The package SHALL provide `AppTheme.light` and `AppTheme.dark` as `ThemeData` in
 
 #### Scenario: Both themes expose the brand primary
 - **WHEN** the app applies `AppTheme.light` or `AppTheme.dark`
-- **THEN** the theme's color scheme primary SHALL be `#FF4749` in both cases
+- **THEN** the theme's color scheme primary SHALL be `#4AAF57` in both cases
 
 #### Scenario: Light theme uses light surfaces
 - **WHEN** the app applies `AppTheme.light`
