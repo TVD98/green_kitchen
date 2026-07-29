@@ -94,7 +94,7 @@ void main() {
   blocTest<DiscoverBloc, DiscoverState>(
     'loads ingredient suggestions for sheet query',
     build: () {
-      when(() => searchIngredients('tr')).thenAnswer(
+      when(() => searchIngredients('tr', lang: any(named: 'lang'))).thenAnswer(
         (_) async => const Success([
           Ingredient(
             id: '1',
@@ -132,7 +132,7 @@ void main() {
   blocTest<DiscoverBloc, DiscoverState>(
     'fridge apply saves recent set, prompt, and sheet state',
     build: () {
-      when(() => searchIngredients('cà')).thenAnswer(
+      when(() => searchIngredients('cà', lang: any(named: 'lang'))).thenAnswer(
         (_) async => const Success([
           Ingredient(
             id: '1',

@@ -72,12 +72,13 @@ final class DiscoverVoiceTranscriptAppended extends DiscoverEvent {
 }
 
 final class DiscoverSheetQueryChanged extends DiscoverEvent {
-  const DiscoverSheetQueryChanged(this.query);
+  const DiscoverSheetQueryChanged(this.query, {this.lang = 'vi'});
 
   final String query;
+  final String lang;
 
   @override
-  List<Object?> get props => [query];
+  List<Object?> get props => [query, lang];
 }
 
 final class DiscoverSheetIngredientToggled extends DiscoverEvent {

@@ -37,10 +37,16 @@ class IngredientsRemoteDataSource {
 
   final Dio _dio;
 
-  Future<List<IngredientModel>> search(String query) async {
+  Future<List<IngredientModel>> search(
+    String query, {
+    String lang = 'vi',
+  }) async {
     final response = await _dio.get<Map<String, dynamic>>(
       '/ingredients',
-      queryParameters: {'q': query},
+      queryParameters: {
+        'q': query,
+        'lang': lang,
+      },
     );
     return parseApiDataList(response, IngredientModel.fromJson);
   }

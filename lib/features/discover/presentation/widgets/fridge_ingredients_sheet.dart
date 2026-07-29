@@ -55,7 +55,10 @@ class _FridgeIngredientsSheetState extends State<FridgeIngredientsSheet> {
     _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 300), () {
       if (mounted) {
-        context.read<DiscoverBloc>().add(DiscoverSheetQueryChanged(value));
+        final lang = Localizations.localeOf(context).languageCode;
+        context.read<DiscoverBloc>().add(
+              DiscoverSheetQueryChanged(value, lang: lang),
+            );
       }
     });
   }
