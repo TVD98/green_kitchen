@@ -517,6 +517,330 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid input. Please check and try again.'**
   String get authErrorInvalidInput;
+
+  /// No description provided for @tabDiscover.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover'**
+  String get tabDiscover;
+
+  /// No description provided for @tabRecipes.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipes'**
+  String get tabRecipes;
+
+  /// No description provided for @tabSuggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'For you'**
+  String get tabSuggestions;
+
+  /// No description provided for @tabProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get tabProfile;
+
+  /// No description provided for @discoverTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s in your kitchen?'**
+  String get discoverTitle;
+
+  /// No description provided for @discoverSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add ingredients you have and we\'ll suggest dishes.'**
+  String get discoverSubtitle;
+
+  /// No description provided for @discoverIngredientHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search ingredients…'**
+  String get discoverIngredientHint;
+
+  /// No description provided for @discoverSuggestDishes.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest dishes'**
+  String get discoverSuggestDishes;
+
+  /// No description provided for @discoverFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get discoverFilters;
+
+  /// No description provided for @discoverRecentSearches.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent searches'**
+  String get discoverRecentSearches;
+
+  /// No description provided for @discoverNoRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'No recent searches yet.'**
+  String get discoverNoRecent;
+
+  /// No description provided for @discoverSelectedIngredients.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get discoverSelectedIngredients;
+
+  /// No description provided for @pantryResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested dishes'**
+  String get pantryResultsTitle;
+
+  /// No description provided for @pantryRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get pantryRetry;
+
+  /// No description provided for @pantryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No recipes found for these ingredients.'**
+  String get pantryEmpty;
+
+  /// No description provided for @pantryError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load suggestions. Please try again.'**
+  String get pantryError;
+
+  /// No description provided for @filterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search filters'**
+  String get filterTitle;
+
+  /// No description provided for @filterMaxTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Max cook time (minutes)'**
+  String get filterMaxTime;
+
+  /// No description provided for @filterDifficulty.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty'**
+  String get filterDifficulty;
+
+  /// No description provided for @filterApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get filterApply;
+
+  /// No description provided for @filterAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Any'**
+  String get filterAny;
+
+  /// No description provided for @filterEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get filterEasy;
+
+  /// No description provided for @filterMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get filterMedium;
+
+  /// No description provided for @filterHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get filterHard;
+
+  /// No description provided for @librarySegmentAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get librarySegmentAll;
+
+  /// No description provided for @librarySegmentViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewed'**
+  String get librarySegmentViewed;
+
+  /// No description provided for @librarySegmentSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get librarySegmentSaved;
+
+  /// No description provided for @librarySegmentFromPantry.
+  ///
+  /// In en, this message translates to:
+  /// **'From pantry'**
+  String get librarySegmentFromPantry;
+
+  /// No description provided for @libraryEmptyAll.
+  ///
+  /// In en, this message translates to:
+  /// **'No recipes yet. Explore or save dishes to see them here.'**
+  String get libraryEmptyAll;
+
+  /// No description provided for @libraryEmptyViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t viewed any recipes yet.'**
+  String get libraryEmptyViewed;
+
+  /// No description provided for @libraryEmptySaved.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved recipes yet.'**
+  String get libraryEmptySaved;
+
+  /// No description provided for @libraryEmptyFromPantry.
+  ///
+  /// In en, this message translates to:
+  /// **'No pantry searches yet.'**
+  String get libraryEmptyFromPantry;
+
+  /// No description provided for @suggestionsFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured today'**
+  String get suggestionsFeatured;
+
+  /// No description provided for @suggestionsPopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular'**
+  String get suggestionsPopular;
+
+  /// No description provided for @suggestionsQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick meals'**
+  String get suggestionsQuick;
+
+  /// No description provided for @suggestionsEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy recipes'**
+  String get suggestionsEasy;
+
+  /// No description provided for @suggestionsMockViews.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} views'**
+  String suggestionsMockViews(String count);
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get profileLanguage;
+
+  /// No description provided for @profileLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get profileLogout;
+
+  /// No description provided for @recipeDetailIngredients.
+  ///
+  /// In en, this message translates to:
+  /// **'Ingredients'**
+  String get recipeDetailIngredients;
+
+  /// No description provided for @recipeDetailSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps'**
+  String get recipeDetailSteps;
+
+  /// No description provided for @recipeDetailNutrition.
+  ///
+  /// In en, this message translates to:
+  /// **'Nutrition'**
+  String get recipeDetailNutrition;
+
+  /// No description provided for @recipeDetailSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get recipeDetailSave;
+
+  /// No description provided for @recipeDetailUnsave.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get recipeDetailUnsave;
+
+  /// No description provided for @recipeDetailNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe not found.'**
+  String get recipeDetailNotFound;
+
+  /// No description provided for @recipeDetailMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String recipeDetailMinutes(int minutes);
+
+  /// No description provided for @recipeDetailServings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} servings'**
+  String recipeDetailServings(int count);
+
+  /// No description provided for @recipeDifficultyEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get recipeDifficultyEasy;
+
+  /// No description provided for @recipeDifficultyMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get recipeDifficultyMedium;
+
+  /// No description provided for @recipeDifficultyHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get recipeDifficultyHard;
+
+  /// No description provided for @discoveryErrorNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe not found.'**
+  String get discoveryErrorNotFound;
+
+  /// No description provided for @discoveryErrorServer.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get discoveryErrorServer;
+
+  /// No description provided for @discoveryErrorRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many requests. Please wait and try again.'**
+  String get discoveryErrorRateLimited;
 }
 
 class _AppLocalizationsDelegate

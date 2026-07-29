@@ -107,5 +107,80 @@
   "authErrorInvalidResetToken": "This password reset link is no longer valid.",
   "authErrorResetTokenExpired": "Your password reset session has expired. Please try again.",
   "authErrorSessionExpired": "Your session has expired. Please sign in again.",
-  "authErrorInvalidInput": "Invalid input. Please check and try again."
+  "authErrorInvalidInput": "Invalid input. Please check and try again.",
+  "tabDiscover": "Discover",
+  "tabRecipes": "Recipes",
+  "tabSuggestions": "For you",
+  "tabProfile": "Profile",
+  "discoverTitle": "What's in your kitchen?",
+  "discoverSubtitle": "Add ingredients you have and we'll suggest dishes.",
+  "discoverIngredientHint": "Search ingredients…",
+  "discoverSuggestDishes": "Suggest dishes",
+  "discoverFilters": "Filters",
+  "discoverRecentSearches": "Recent searches",
+  "discoverNoRecent": "No recent searches yet.",
+  "discoverSelectedIngredients": "Selected",
+  "pantryResultsTitle": "Suggested dishes",
+  "pantryRetry": "Try again",
+  "pantryEmpty": "No recipes found for these ingredients.",
+  "pantryError": "Could not load suggestions. Please try again.",
+  "filterTitle": "Search filters",
+  "filterMaxTime": "Max cook time (minutes)",
+  "filterDifficulty": "Difficulty",
+  "filterApply": "Apply",
+  "filterAny": "Any",
+  "filterEasy": "Easy",
+  "filterMedium": "Medium",
+  "filterHard": "Hard",
+  "librarySegmentAll": "All",
+  "librarySegmentViewed": "Viewed",
+  "librarySegmentSaved": "Saved",
+  "librarySegmentFromPantry": "From pantry",
+  "libraryEmptyAll": "No recipes yet. Explore or save dishes to see them here.",
+  "libraryEmptyViewed": "You haven't viewed any recipes yet.",
+  "libraryEmptySaved": "No saved recipes yet.",
+  "libraryEmptyFromPantry": "No pantry searches yet.",
+  "suggestionsFeatured": "Featured today",
+  "suggestionsPopular": "Popular",
+  "suggestionsQuick": "Quick meals",
+  "suggestionsEasy": "Easy recipes",
+  "suggestionsMockViews": "{count} views",
+  "@suggestionsMockViews": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "profileTitle": "Profile",
+  "profileLanguage": "Language",
+  "profileLogout": "Log out",
+  "recipeDetailIngredients": "Ingredients",
+  "recipeDetailSteps": "Steps",
+  "recipeDetailNutrition": "Nutrition",
+  "recipeDetailSave": "Save",
+  "recipeDetailUnsave": "Saved",
+  "recipeDetailNotFound": "Recipe not found.",
+  "recipeDetailMinutes": "{minutes} min",
+  "@recipeDetailMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "recipeDetailServings": "{count} servings",
+  "@recipeDetailServings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recipeDifficultyEasy": "Easy",
+  "recipeDifficultyMedium": "Medium",
+  "recipeDifficultyHard": "Hard",
+  "discoveryErrorNotFound": "Recipe not found.",
+  "discoveryErrorServer": "Something went wrong. Please try again.",
+  "discoveryErrorRateLimited": "Too many requests. Please wait and try again."
 }

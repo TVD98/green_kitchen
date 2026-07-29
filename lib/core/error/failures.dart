@@ -88,3 +88,13 @@ class SessionExpiredFailure extends AuthFailure {
 class InvalidInputFailure extends AuthFailure {
   const InvalidInputFailure([super.message = FailureCodes.invalidInput]);
 }
+
+abstract final class DiscoveryFailureCodes {
+  static const notFound = 'discovery.error.notFound';
+  static const server = 'discovery.error.server';
+  static const rateLimited = 'discovery.error.rateLimited';
+}
+
+class NotFoundFailure extends Failure {
+  const NotFoundFailure([super.message = DiscoveryFailureCodes.notFound]);
+}

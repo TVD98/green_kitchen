@@ -23,6 +23,7 @@ class ApiException implements Exception {
       'ERR_INVALID_RESET_TOKEN' => const InvalidResetTokenFailure(),
       'ERR_RESET_TOKEN_EXPIRED' => const ResetTokenExpiredFailure(),
       'ERR_TOKEN_EXPIRED' => const SessionExpiredFailure(),
+      'ERR_INVALID_INPUT' when statusCode == 404 => const NotFoundFailure(),
       'ERR_INVALID_INPUT' => const InvalidInputFailure(),
       _ => const ServerFailure(),
     };

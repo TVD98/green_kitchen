@@ -69,5 +69,80 @@
   "authErrorInvalidResetToken": "Liên kết đặt lại mật khẩu không còn hợp lệ.",
   "authErrorResetTokenExpired": "Phiên đặt lại mật khẩu đã hết hạn. Vui lòng thử lại.",
   "authErrorSessionExpired": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
-  "authErrorInvalidInput": "Thông tin nhập vào không hợp lệ. Vui lòng kiểm tra lại."
+  "authErrorInvalidInput": "Thông tin nhập vào không hợp lệ. Vui lòng kiểm tra lại.",
+  "tabDiscover": "Khám phá",
+  "tabRecipes": "Công thức",
+  "tabSuggestions": "Gợi ý",
+  "tabProfile": "Cá nhân",
+  "discoverTitle": "Hôm nay bạn có gì?",
+  "discoverSubtitle": "Thêm nguyên liệu bạn có, chúng tôi sẽ gợi ý món nấu.",
+  "discoverIngredientHint": "Tìm nguyên liệu…",
+  "discoverSuggestDishes": "Gợi ý món",
+  "discoverFilters": "Bộ lọc",
+  "discoverRecentSearches": "Tìm gần đây",
+  "discoverNoRecent": "Chưa có lần tìm nào.",
+  "discoverSelectedIngredients": "Đã chọn",
+  "pantryResultsTitle": "Món gợi ý",
+  "pantryRetry": "Thử lại",
+  "pantryEmpty": "Không tìm thấy công thức cho bộ nguyên liệu này.",
+  "pantryError": "Không tải được gợi ý. Vui lòng thử lại.",
+  "filterTitle": "Bộ lọc tìm kiếm",
+  "filterMaxTime": "Thời gian nấu tối đa (phút)",
+  "filterDifficulty": "Độ khó",
+  "filterApply": "Áp dụng",
+  "filterAny": "Bất kỳ",
+  "filterEasy": "Dễ",
+  "filterMedium": "Trung bình",
+  "filterHard": "Khó",
+  "librarySegmentAll": "Tất cả",
+  "librarySegmentViewed": "Đã xem",
+  "librarySegmentSaved": "Đã lưu",
+  "librarySegmentFromPantry": "Từ tủ bếp",
+  "libraryEmptyAll": "Chưa có công thức. Khám phá hoặc lưu món để xem tại đây.",
+  "libraryEmptyViewed": "Bạn chưa xem công thức nào.",
+  "libraryEmptySaved": "Chưa có công thức đã lưu.",
+  "libraryEmptyFromPantry": "Chưa có lần tìm từ tủ bếp.",
+  "suggestionsFeatured": "Nổi bật hôm nay",
+  "suggestionsPopular": "Nhiều người quan tâm",
+  "suggestionsQuick": "Nấu nhanh",
+  "suggestionsEasy": "Dễ làm",
+  "suggestionsMockViews": "{count} lượt xem",
+  "@suggestionsMockViews": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "profileTitle": "Cá nhân",
+  "profileLanguage": "Ngôn ngữ",
+  "profileLogout": "Đăng xuất",
+  "recipeDetailIngredients": "Nguyên liệu",
+  "recipeDetailSteps": "Các bước",
+  "recipeDetailNutrition": "Dinh dưỡng",
+  "recipeDetailSave": "Lưu",
+  "recipeDetailUnsave": "Đã lưu",
+  "recipeDetailNotFound": "Không tìm thấy công thức.",
+  "recipeDetailMinutes": "{minutes} phút",
+  "@recipeDetailMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "recipeDetailServings": "{count} khẩu phần",
+  "@recipeDetailServings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recipeDifficultyEasy": "Dễ",
+  "recipeDifficultyMedium": "Trung bình",
+  "recipeDifficultyHard": "Khó",
+  "discoveryErrorNotFound": "Không tìm thấy công thức.",
+  "discoveryErrorServer": "Đã có lỗi xảy ra. Vui lòng thử lại.",
+  "discoveryErrorRateLimited": "Quá nhiều yêu cầu. Vui lòng đợi và thử lại."
 }

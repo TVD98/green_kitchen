@@ -236,4 +236,175 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authErrorInvalidInput =>
       'Invalid input. Please check and try again.';
+
+  @override
+  String get tabDiscover => 'Discover';
+
+  @override
+  String get tabRecipes => 'Recipes';
+
+  @override
+  String get tabSuggestions => 'For you';
+
+  @override
+  String get tabProfile => 'Profile';
+
+  @override
+  String get discoverTitle => 'What\'s in your kitchen?';
+
+  @override
+  String get discoverSubtitle =>
+      'Add ingredients you have and we\'ll suggest dishes.';
+
+  @override
+  String get discoverIngredientHint => 'Search ingredients…';
+
+  @override
+  String get discoverSuggestDishes => 'Suggest dishes';
+
+  @override
+  String get discoverFilters => 'Filters';
+
+  @override
+  String get discoverRecentSearches => 'Recent searches';
+
+  @override
+  String get discoverNoRecent => 'No recent searches yet.';
+
+  @override
+  String get discoverSelectedIngredients => 'Selected';
+
+  @override
+  String get pantryResultsTitle => 'Suggested dishes';
+
+  @override
+  String get pantryRetry => 'Try again';
+
+  @override
+  String get pantryEmpty => 'No recipes found for these ingredients.';
+
+  @override
+  String get pantryError => 'Could not load suggestions. Please try again.';
+
+  @override
+  String get filterTitle => 'Search filters';
+
+  @override
+  String get filterMaxTime => 'Max cook time (minutes)';
+
+  @override
+  String get filterDifficulty => 'Difficulty';
+
+  @override
+  String get filterApply => 'Apply';
+
+  @override
+  String get filterAny => 'Any';
+
+  @override
+  String get filterEasy => 'Easy';
+
+  @override
+  String get filterMedium => 'Medium';
+
+  @override
+  String get filterHard => 'Hard';
+
+  @override
+  String get librarySegmentAll => 'All';
+
+  @override
+  String get librarySegmentViewed => 'Viewed';
+
+  @override
+  String get librarySegmentSaved => 'Saved';
+
+  @override
+  String get librarySegmentFromPantry => 'From pantry';
+
+  @override
+  String get libraryEmptyAll =>
+      'No recipes yet. Explore or save dishes to see them here.';
+
+  @override
+  String get libraryEmptyViewed => 'You haven\'t viewed any recipes yet.';
+
+  @override
+  String get libraryEmptySaved => 'No saved recipes yet.';
+
+  @override
+  String get libraryEmptyFromPantry => 'No pantry searches yet.';
+
+  @override
+  String get suggestionsFeatured => 'Featured today';
+
+  @override
+  String get suggestionsPopular => 'Popular';
+
+  @override
+  String get suggestionsQuick => 'Quick meals';
+
+  @override
+  String get suggestionsEasy => 'Easy recipes';
+
+  @override
+  String suggestionsMockViews(String count) {
+    return '$count views';
+  }
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String get profileLanguage => 'Language';
+
+  @override
+  String get profileLogout => 'Log out';
+
+  @override
+  String get recipeDetailIngredients => 'Ingredients';
+
+  @override
+  String get recipeDetailSteps => 'Steps';
+
+  @override
+  String get recipeDetailNutrition => 'Nutrition';
+
+  @override
+  String get recipeDetailSave => 'Save';
+
+  @override
+  String get recipeDetailUnsave => 'Saved';
+
+  @override
+  String get recipeDetailNotFound => 'Recipe not found.';
+
+  @override
+  String recipeDetailMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String recipeDetailServings(int count) {
+    return '$count servings';
+  }
+
+  @override
+  String get recipeDifficultyEasy => 'Easy';
+
+  @override
+  String get recipeDifficultyMedium => 'Medium';
+
+  @override
+  String get recipeDifficultyHard => 'Hard';
+
+  @override
+  String get discoveryErrorNotFound => 'Recipe not found.';
+
+  @override
+  String get discoveryErrorServer => 'Something went wrong. Please try again.';
+
+  @override
+  String get discoveryErrorRateLimited =>
+      'Too many requests. Please wait and try again.';
 }

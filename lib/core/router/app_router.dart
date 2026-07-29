@@ -5,14 +5,21 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/pages/forgot_password_page.dart';
-import '../../features/auth/presentation/pages/home_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/otp_page.dart';
 import '../../features/auth/presentation/pages/password_updated_page.dart';
 import '../../features/auth/presentation/pages/reset_password_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
+import '../../features/discover/presentation/pages/discover_page.dart';
+import '../../features/home_shell/presentation/pages/home_shell_page.dart';
 import '../../features/locale_preference/presentation/pages/language_settings_page.dart';
+import '../../features/pantry/presentation/models/pantry_search_args.dart';
+import '../../features/pantry/presentation/pages/pantry_results_page.dart';
+import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/recipe_library/presentation/pages/recipe_library_page.dart';
+import '../../features/recipes/presentation/pages/recipe_detail_page.dart';
+import '../../features/suggestions/presentation/pages/suggestions_page.dart';
 
 class AppRouter {
   AppRouter(this.authBloc);
@@ -42,7 +49,11 @@ class AppRouter {
       }
 
       if (status == AuthStatus.authenticated && isAuthRoute) {
-        return '/home';
+        return '/home/discover';
+      }
+
+      if (status == AuthStatus.authenticated && loc == '/home') {
+        return '/home/discover';
       }
 
       return null;
@@ -90,12 +101,60 @@ class AppRouter {
         builder: (context, state) => const PasswordUpdatedPage(),
       ),
       GoRoute(
-        path: '/home',
-        builder: (context, state) => const HomePage(),
+        path: '/recipes/:id',
+        builder: (context, state) => RecipeDetailPage(
+          recipeId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: '/pantry/results',
+        builder: (context, state) {
+          final args = state.extra! as PantrySearchArgs;
+          return PantryResultsPage(args: args);
+        },
       ),
       GoRoute(
         path: '/settings/language',
         builder: (context, state) => const LanguageSettingsPage(),
+      ),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return HomeShellPage(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home/discover',
+                builder: (context, state) => const DiscoverPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home/library',
+                builder: (context, state) => const RecipeLibraryPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home/suggestions',
+                builder: (context, state) => const SuggestionsPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home/profile',
+                builder: (context, state) => const ProfilePage(),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );

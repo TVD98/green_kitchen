@@ -239,4 +239,175 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get authErrorInvalidInput =>
       'Thông tin nhập vào không hợp lệ. Vui lòng kiểm tra lại.';
+
+  @override
+  String get tabDiscover => 'Khám phá';
+
+  @override
+  String get tabRecipes => 'Công thức';
+
+  @override
+  String get tabSuggestions => 'Gợi ý';
+
+  @override
+  String get tabProfile => 'Cá nhân';
+
+  @override
+  String get discoverTitle => 'Hôm nay bạn có gì?';
+
+  @override
+  String get discoverSubtitle =>
+      'Thêm nguyên liệu bạn có, chúng tôi sẽ gợi ý món nấu.';
+
+  @override
+  String get discoverIngredientHint => 'Tìm nguyên liệu…';
+
+  @override
+  String get discoverSuggestDishes => 'Gợi ý món';
+
+  @override
+  String get discoverFilters => 'Bộ lọc';
+
+  @override
+  String get discoverRecentSearches => 'Tìm gần đây';
+
+  @override
+  String get discoverNoRecent => 'Chưa có lần tìm nào.';
+
+  @override
+  String get discoverSelectedIngredients => 'Đã chọn';
+
+  @override
+  String get pantryResultsTitle => 'Món gợi ý';
+
+  @override
+  String get pantryRetry => 'Thử lại';
+
+  @override
+  String get pantryEmpty => 'Không tìm thấy công thức cho bộ nguyên liệu này.';
+
+  @override
+  String get pantryError => 'Không tải được gợi ý. Vui lòng thử lại.';
+
+  @override
+  String get filterTitle => 'Bộ lọc tìm kiếm';
+
+  @override
+  String get filterMaxTime => 'Thời gian nấu tối đa (phút)';
+
+  @override
+  String get filterDifficulty => 'Độ khó';
+
+  @override
+  String get filterApply => 'Áp dụng';
+
+  @override
+  String get filterAny => 'Bất kỳ';
+
+  @override
+  String get filterEasy => 'Dễ';
+
+  @override
+  String get filterMedium => 'Trung bình';
+
+  @override
+  String get filterHard => 'Khó';
+
+  @override
+  String get librarySegmentAll => 'Tất cả';
+
+  @override
+  String get librarySegmentViewed => 'Đã xem';
+
+  @override
+  String get librarySegmentSaved => 'Đã lưu';
+
+  @override
+  String get librarySegmentFromPantry => 'Từ tủ bếp';
+
+  @override
+  String get libraryEmptyAll =>
+      'Chưa có công thức. Khám phá hoặc lưu món để xem tại đây.';
+
+  @override
+  String get libraryEmptyViewed => 'Bạn chưa xem công thức nào.';
+
+  @override
+  String get libraryEmptySaved => 'Chưa có công thức đã lưu.';
+
+  @override
+  String get libraryEmptyFromPantry => 'Chưa có lần tìm từ tủ bếp.';
+
+  @override
+  String get suggestionsFeatured => 'Nổi bật hôm nay';
+
+  @override
+  String get suggestionsPopular => 'Nhiều người quan tâm';
+
+  @override
+  String get suggestionsQuick => 'Nấu nhanh';
+
+  @override
+  String get suggestionsEasy => 'Dễ làm';
+
+  @override
+  String suggestionsMockViews(String count) {
+    return '$count lượt xem';
+  }
+
+  @override
+  String get profileTitle => 'Cá nhân';
+
+  @override
+  String get profileLanguage => 'Ngôn ngữ';
+
+  @override
+  String get profileLogout => 'Đăng xuất';
+
+  @override
+  String get recipeDetailIngredients => 'Nguyên liệu';
+
+  @override
+  String get recipeDetailSteps => 'Các bước';
+
+  @override
+  String get recipeDetailNutrition => 'Dinh dưỡng';
+
+  @override
+  String get recipeDetailSave => 'Lưu';
+
+  @override
+  String get recipeDetailUnsave => 'Đã lưu';
+
+  @override
+  String get recipeDetailNotFound => 'Không tìm thấy công thức.';
+
+  @override
+  String recipeDetailMinutes(int minutes) {
+    return '$minutes phút';
+  }
+
+  @override
+  String recipeDetailServings(int count) {
+    return '$count khẩu phần';
+  }
+
+  @override
+  String get recipeDifficultyEasy => 'Dễ';
+
+  @override
+  String get recipeDifficultyMedium => 'Trung bình';
+
+  @override
+  String get recipeDifficultyHard => 'Khó';
+
+  @override
+  String get discoveryErrorNotFound => 'Không tìm thấy công thức.';
+
+  @override
+  String get discoveryErrorServer => 'Đã có lỗi xảy ra. Vui lòng thử lại.';
+
+  @override
+  String get discoveryErrorRateLimited =>
+      'Quá nhiều yêu cầu. Vui lòng đợi và thử lại.';
 }
