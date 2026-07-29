@@ -12,12 +12,13 @@ final class DiscoverStarted extends DiscoverEvent {
 }
 
 final class DiscoverQueryChanged extends DiscoverEvent {
-  const DiscoverQueryChanged(this.query);
+  const DiscoverQueryChanged(this.query, {this.lang = 'vi'});
 
   final String query;
+  final String lang;
 
   @override
-  List<Object?> get props => [query];
+  List<Object?> get props => [query, lang];
 }
 
 final class DiscoverIngredientAdded extends DiscoverEvent {

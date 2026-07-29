@@ -54,7 +54,7 @@ void main() {
   blocTest<DiscoverBloc, DiscoverState>(
     'loads ingredient suggestions for query',
     build: () {
-      when(() => searchIngredients('tr')).thenAnswer(
+      when(() => searchIngredients('tr', lang: any(named: 'lang'))).thenAnswer(
         (_) async => const Success([
           Ingredient(
             id: '1',

@@ -12,7 +12,7 @@ abstract class RecipesRepository {
 }
 
 abstract class IngredientsRepository {
-  Future<Result<List<Ingredient>>> search(String query);
+  Future<Result<List<Ingredient>>> search(String query, {String lang = 'vi'});
 }
 
 abstract class PantryRepository {

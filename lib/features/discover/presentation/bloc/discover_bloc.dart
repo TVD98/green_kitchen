@@ -49,7 +49,10 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
       );
       return;
     }
-    final result = await _searchIngredients(event.query.trim());
+    final result = await _searchIngredients(
+      event.query.trim(),
+      lang: event.lang,
+    );
     result.fold(
       (_) => emit(
         state.copyWith(suggestions: const [], isLoadingSuggestions: false),

@@ -35,8 +35,8 @@ class SearchIngredients {
 
   final IngredientsRepository _repository;
 
-  Future<Result<List<Ingredient>>> call(String query) =>
-      _repository.search(query);
+  Future<Result<List<Ingredient>>> call(String query, {String lang = 'vi'}) =>
+      _repository.search(query, lang: lang);
 }
 
 class SearchPantry {

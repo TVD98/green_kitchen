@@ -34,7 +34,10 @@ class _DiscoverPageState extends State<DiscoverPage> {
     _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 300), () {
       if (mounted) {
-        context.read<DiscoverBloc>().add(DiscoverQueryChanged(value));
+        final lang = Localizations.localeOf(context).languageCode;
+        context.read<DiscoverBloc>().add(
+              DiscoverQueryChanged(value, lang: lang),
+            );
       }
     });
   }

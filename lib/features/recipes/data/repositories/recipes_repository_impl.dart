@@ -72,9 +72,12 @@ class IngredientsRepositoryImpl implements IngredientsRepository {
   final IngredientsRemoteDataSource _remote;
 
   @override
-  Future<Result<List<Ingredient>>> search(String query) async {
+  Future<Result<List<Ingredient>>> search(
+    String query, {
+    String lang = 'vi',
+  }) async {
     try {
-      final models = await _remote.search(query);
+      final models = await _remote.search(query, lang: lang);
       return Success(models.map((m) => m.toEntity()).toList(growable: false));
     } on ApiException catch (e) {
       return Err(e.toFailure());
