@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
-import '../utils/discover_theme.dart';
-
 class IngredientPickCard extends StatelessWidget {
   const IngredientPickCard({
     super.key,
@@ -28,13 +26,14 @@ class IngredientPickCard extends StatelessWidget {
     return SizedBox(
       height: cardHeight,
       child: Material(
-        color: DiscoverTheme.pillBackground(brightness, selected: selected),
+        color: selected
+            ? AppColors.softBrand(brightness)
+            : AppColors.elevated(brightness),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),
-          side: BorderSide(
-            color: DiscoverTheme.pillBorder(selected: selected),
-            width: selected ? 1.5 : 0,
-          ),
+          side: selected
+              ? const BorderSide(color: AppColors.brand, width: 1.5)
+              : BorderSide.none,
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -60,18 +59,19 @@ class IngredientPickCard extends StatelessWidget {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: selected
-                          ? DiscoverTheme.accent
-                          : Theme.of(context)
-                              .colorScheme
-                              .surfaceContainerHighest,
+                          ? AppColors.brand
+                          : Theme.of(context).colorScheme.surface,
                       shape: BoxShape.circle,
+                      border: selected
+                          ? null
+                          : Border.all(color: AppColors.stroke(brightness)),
                     ),
                     child: Icon(
                       selected ? Icons.check : Icons.add,
                       size: 16,
                       color: selected
                           ? AppColors.absoluteWhite
-                          : Theme.of(context).colorScheme.onSurfaceVariant,
+                          : AppColors.muted(brightness),
                     ),
                   ),
                 ),

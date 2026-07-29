@@ -18,6 +18,13 @@ The layout SHALL include, in order:
 - **WHEN** Discover is shown as part of the authenticated shell
 - **THEN** the screen SHALL NOT show a back navigation control
 
+### Requirement: Discover uses design-system colors only
+Discover presentation widgets SHALL use `green_kitchen_ui` color tokens and themed widgets only (`AppColors`, `AppTheme`, `AppButton`, `AppSwitch`, etc.). Discover MUST NOT define local theme helpers, custom accent colors, or hardcoded color values outside the design-system package.
+
+#### Scenario: Primary CTA uses AppButton
+- **WHEN** the sticky bottom CTA is rendered
+- **THEN** it SHALL use `AppButton` (primary variant) rather than a locally styled `FilledButton`
+
 ### Requirement: Prompt card supports multiline input with utilities
 The prompt card SHALL be an `AppCard` containing a multiline text field with maximum length **500** characters.
 

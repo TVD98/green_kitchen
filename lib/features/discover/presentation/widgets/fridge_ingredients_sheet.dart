@@ -8,7 +8,6 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../recipes/domain/entities/ingredient.dart';
 import '../bloc/discover_bloc.dart';
 import '../utils/discover_constants.dart';
-import '../utils/discover_theme.dart';
 import '../utils/ingredient_category_label.dart';
 import 'ingredient_pick_card.dart';
 
@@ -228,27 +227,23 @@ class _FridgeIngredientsSheetState extends State<FridgeIngredientsSheet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    FilledButton(
+                    AppButton(
+                      label: l10n.discoverFridgeAddIngredients(
+                        state.sheetSelectedIngredients.length,
+                        DiscoverConstants.maxFridgeIngredients,
+                      ),
                       onPressed: state.canApplyFridgeSelection
                           ? () => Navigator.of(context).pop(true)
                           : null,
-                      style: DiscoverTheme.primaryButtonStyle(
-                        Theme.of(context).brightness,
-                      ),
-                      child: Text(
-                        l10n.discoverFridgeAddIngredients(
-                          state.sheetSelectedIngredients.length,
-                          DiscoverConstants.maxFridgeIngredients,
-                        ),
-                      ),
                     ),
-                    TextButton(
+                    AppButton(
+                      label: l10n.discoverFridgeClearSelection,
+                      variant: AppButtonVariant.text,
                       onPressed: state.sheetSelectedIngredients.isEmpty
                           ? null
                           : () => context.read<DiscoverBloc>().add(
                                 const DiscoverSheetSelectionCleared(),
                               ),
-                      child: Text(l10n.discoverFridgeClearSelection),
                     ),
                   ],
                 ),

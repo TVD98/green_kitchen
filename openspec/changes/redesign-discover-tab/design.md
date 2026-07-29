@@ -73,7 +73,7 @@ Prompt strings from `AppLocalizations`, not hardcoded Vietnamese.
 
 ### 6. Discover theming
 
-Mocks use kitchen green for CTA/toggles/pills. Apply **local** `Theme`/`ButtonStyle` on Discover widgets without changing global Focuso coral brand in `green_kitchen_ui`.
+Discover SHALL consume global `AppTheme` and `green_kitchen_ui` tokens/widgets only (`AppColors`, `AppButton`, `AppSwitch`, `AppCard`, etc.). Discover MUST NOT define local color palettes, custom `ButtonStyle` overrides, or hardcoded hex values outside the design-system package.
 
 ### 7. Local history
 

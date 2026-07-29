@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../utils/discover_theme.dart';
 
 class DiscoverBottomBar extends StatelessWidget {
   const DiscoverBottomBar({
@@ -35,15 +34,9 @@ class DiscoverBottomBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          FilledButton(
+          AppButton(
+            label: l10n.discoverFindRecipes,
             onPressed: canSearch ? onSearch : null,
-            style: DiscoverTheme.primaryButtonStyle(
-              Theme.of(context).brightness,
-            ),
-            child: Text(
-              l10n.discoverFindRecipes,
-              style: const TextStyle(fontWeight: FontWeight.w600),
-            ),
           ),
           const SizedBox(height: AppSpacing.sm),
           AppText(

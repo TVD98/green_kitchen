@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
-import '../utils/discover_theme.dart';
-
 class QuickStartPill extends StatelessWidget {
   const QuickStartPill({
     super.key,
@@ -20,7 +18,7 @@ class QuickStartPill extends StatelessWidget {
     final brightness = Theme.of(context).brightness;
 
     return Material(
-      color: DiscoverTheme.pillBackground(brightness, selected: false),
+      color: AppColors.elevated(brightness),
       borderRadius: BorderRadius.circular(AppRadius.card),
       child: InkWell(
         onTap: onTap,
@@ -33,7 +31,7 @@ class QuickStartPill extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: DiscoverTheme.accent, size: 28),
+              Icon(icon, color: AppColors.brand, size: 28),
               const SizedBox(height: AppSpacing.sm),
               AppText(
                 label,

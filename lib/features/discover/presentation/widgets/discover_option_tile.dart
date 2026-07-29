@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
-import '../utils/discover_theme.dart';
-
 class DiscoverOptionTile extends StatelessWidget {
   const DiscoverOptionTile({
     super.key,
@@ -25,7 +23,7 @@ class DiscoverOptionTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
       child: Row(
         children: [
-          Icon(icon, color: DiscoverTheme.accent),
+          Icon(icon, color: AppColors.brand),
           const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Column(

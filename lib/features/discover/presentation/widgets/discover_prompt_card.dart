@@ -3,7 +3,6 @@ import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../utils/discover_constants.dart';
-import '../utils/discover_theme.dart';
 
 class DiscoverPromptCard extends StatefulWidget {
   const DiscoverPromptCard({
@@ -64,16 +63,14 @@ class _DiscoverPromptCardState extends State<DiscoverPromptCard> {
           const SizedBox(height: AppSpacing.sm),
           Row(
             children: [
-              TextButton.icon(
-                onPressed: widget.onVoiceTap,
-                icon: Icon(
+              AppButton(
+                label: l10n.discoverVoiceSuggestion,
+                variant: AppButtonVariant.text,
+                leading: Icon(
                   widget.isListening ? Icons.mic : Icons.mic_none_outlined,
-                  color: DiscoverTheme.accent,
                 ),
-                label: Text(
-                  l10n.discoverVoiceSuggestion,
-                  style: TextStyle(color: DiscoverTheme.accent),
-                ),
+                onPressed: widget.onVoiceTap,
+                isExpanded: false,
               ),
               const Spacer(),
               AppText(
