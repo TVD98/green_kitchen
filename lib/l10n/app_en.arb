@@ -160,6 +160,11 @@
   "discoverIngredientCategoryProtein": "Protein",
   "discoverIngredientCategoryDairy": "Dairy",
   "discoverIngredientCategoryGrain": "Grains",
+  "discoverIngredientCategoryCarb": "Carbs",
+  "discoverIngredientCategoryAromatic": "Aromatics",
+  "discoverIngredientCategorySpice": "Spices",
+  "discoverIngredientCategorySeasoning": "Seasonings",
+  "discoverIngredientCategoryHerb": "Herbs",
   "discoverIngredientCategoryOther": "Other",
   "discoverRecentSearches": "Recent searches",
   "discoverNoRecent": "No recent searches yet.",
@@ -201,6 +206,116 @@
   "profileTitle": "Profile",
   "profileLanguage": "Language",
   "profileLogout": "Log out",
+  "profilePreferences": "Eating preferences",
+  "profilePreferencesSubtitle": "Diet, spice, cuisines, and goals",
+  "profilePreferencesSubtitleEmpty": "Not set yet",
+  "profilePreferencesSubtitleStyle": "{style}",
+  "@profilePreferencesSubtitleStyle": {
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePreferencesSubtitleParts": "{parts}",
+  "@profilePreferencesSubtitleParts": {
+    "placeholders": {
+      "parts": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePreferencesSubtitleCuisineCount": "{count} cuisines",
+  "@profilePreferencesSubtitleCuisineCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePreferencesSubtitleGoalCount": "{count} goals",
+  "@profilePreferencesSubtitleGoalCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePreferencesSubtitleDislikedCount": "{count} disliked",
+  "@profilePreferencesSubtitleDislikedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileAllergies": "Allergies",
+  "profileAllergiesSubtitleEmpty": "None set",
+  "profileAllergiesSubtitleCount": "{count} ingredients",
+  "@profileAllergiesSubtitleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePreferencesTitle": "Eating preferences",
+  "profilePreferencesSave": "Save",
+  "profilePreferencesRetry": "Try again",
+  "profilePreferencesError": "Could not load preferences. Please try again.",
+  "profilePreferencesSaveError": "Could not save preferences. Please try again.",
+  "profilePreferencesSaved": "Preferences saved",
+  "profilePreferencesSummaryTitle": "Currently applied",
+  "profilePreferencesSummaryEmpty": "Nothing selected yet — pick options below",
+  "profilePreferencesPickOne": "Choose one",
+  "profilePreferencesPickMany": "Select all that apply",
+  "profilePreferencesCountSelected": "{count} selected",
+  "@profilePreferencesCountSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileDietaryStyle": "Dietary style",
+  "profileSpiceLevel": "Spice level",
+  "profileCuisines": "Preferred cuisines",
+  "profileHealthGoals": "Health goals",
+  "profileDislikedIngredients": "Disliked ingredients",
+  "profileDislikedHint": "Add an ingredient",
+  "profileDislikedAdd": "Add",
+  "profileDislikedEmpty": "None yet — add ingredients you prefer to avoid",
+  "profileDietaryOmnivore": "Omnivore",
+  "profileDietaryVegetarian": "Vegetarian",
+  "profileDietaryVegan": "Vegan",
+  "profileDietaryPescatarian": "Pescatarian",
+  "profileSpiceMild": "Mild",
+  "profileSpiceMedium": "Medium",
+  "profileSpiceHot": "Hot",
+  "profileCuisineVietnamese": "Vietnamese",
+  "profileCuisineJapanese": "Japanese",
+  "profileCuisineKorean": "Korean",
+  "profileCuisineChinese": "Chinese",
+  "profileCuisineThai": "Thai",
+  "profileCuisineWestern": "Western",
+  "profileCuisineIndian": "Indian",
+  "profileGoalLowCarb": "Low carb",
+  "profileGoalHighProtein": "High protein",
+  "profileGoalLowFat": "Low fat",
+  "profileGoalBalanced": "Balanced",
+  "profileGoalWeightLoss": "Weight loss",
+  "profileAllergiesTitle": "Allergies",
+  "profileAllergiesSave": "Save",
+  "profileAllergiesClearAll": "Clear all",
+  "profileAllergiesRetry": "Try again",
+  "profileAllergiesError": "Could not load allergies. Please try again.",
+  "profileAllergiesSaveError": "Could not save allergies. Please try again.",
+  "profileAllergiesSaved": "Allergies saved",
+  "profileAllergiesEmpty": "No allergies selected. Search to add ingredients.",
+  "profileAllergiesSearchHint": "Search ingredients",
+  "profileAllergiesSelected": "Selected",
+  "profileAllergiesResults": "Results",
+
   "recipeDetailIngredients": "Ingredients",
   "recipeDetailSteps": "Steps",
   "recipeDetailNutrition": "Nutrition",

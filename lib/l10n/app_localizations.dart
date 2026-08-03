@@ -734,6 +734,36 @@ abstract class AppLocalizations {
   /// **'Grains'**
   String get discoverIngredientCategoryGrain;
 
+  /// No description provided for @discoverIngredientCategoryCarb.
+  ///
+  /// In en, this message translates to:
+  /// **'Carbs'**
+  String get discoverIngredientCategoryCarb;
+
+  /// No description provided for @discoverIngredientCategoryAromatic.
+  ///
+  /// In en, this message translates to:
+  /// **'Aromatics'**
+  String get discoverIngredientCategoryAromatic;
+
+  /// No description provided for @discoverIngredientCategorySpice.
+  ///
+  /// In en, this message translates to:
+  /// **'Spices'**
+  String get discoverIngredientCategorySpice;
+
+  /// No description provided for @discoverIngredientCategorySeasoning.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasonings'**
+  String get discoverIngredientCategorySeasoning;
+
+  /// No description provided for @discoverIngredientCategoryHerb.
+  ///
+  /// In en, this message translates to:
+  /// **'Herbs'**
+  String get discoverIngredientCategoryHerb;
+
   /// No description provided for @discoverIngredientCategoryOther.
   ///
   /// In en, this message translates to:
@@ -937,6 +967,366 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log out'**
   String get profileLogout;
+
+  /// No description provided for @profilePreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Eating preferences'**
+  String get profilePreferences;
+
+  /// No description provided for @profilePreferencesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet, spice, cuisines, and goals'**
+  String get profilePreferencesSubtitle;
+
+  /// No description provided for @profilePreferencesSubtitleEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set yet'**
+  String get profilePreferencesSubtitleEmpty;
+
+  /// No description provided for @profilePreferencesSubtitleStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'{style}'**
+  String profilePreferencesSubtitleStyle(String style);
+
+  /// No description provided for @profilePreferencesSubtitleParts.
+  ///
+  /// In en, this message translates to:
+  /// **'{parts}'**
+  String profilePreferencesSubtitleParts(String parts);
+
+  /// No description provided for @profilePreferencesSubtitleCuisineCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} cuisines'**
+  String profilePreferencesSubtitleCuisineCount(int count);
+
+  /// No description provided for @profilePreferencesSubtitleGoalCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} goals'**
+  String profilePreferencesSubtitleGoalCount(int count);
+
+  /// No description provided for @profilePreferencesSubtitleDislikedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} disliked'**
+  String profilePreferencesSubtitleDislikedCount(int count);
+
+  /// No description provided for @profileAllergies.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies'**
+  String get profileAllergies;
+
+  /// No description provided for @profileAllergiesSubtitleEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'None set'**
+  String get profileAllergiesSubtitleEmpty;
+
+  /// No description provided for @profileAllergiesSubtitleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} ingredients'**
+  String profileAllergiesSubtitleCount(int count);
+
+  /// No description provided for @profilePreferencesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Eating preferences'**
+  String get profilePreferencesTitle;
+
+  /// No description provided for @profilePreferencesSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get profilePreferencesSave;
+
+  /// No description provided for @profilePreferencesRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get profilePreferencesRetry;
+
+  /// No description provided for @profilePreferencesError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load preferences. Please try again.'**
+  String get profilePreferencesError;
+
+  /// No description provided for @profilePreferencesSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save preferences. Please try again.'**
+  String get profilePreferencesSaveError;
+
+  /// No description provided for @profilePreferencesSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences saved'**
+  String get profilePreferencesSaved;
+
+  /// No description provided for @profilePreferencesSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Currently applied'**
+  String get profilePreferencesSummaryTitle;
+
+  /// No description provided for @profilePreferencesSummaryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing selected yet — pick options below'**
+  String get profilePreferencesSummaryEmpty;
+
+  /// No description provided for @profilePreferencesPickOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one'**
+  String get profilePreferencesPickOne;
+
+  /// No description provided for @profilePreferencesPickMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Select all that apply'**
+  String get profilePreferencesPickMany;
+
+  /// No description provided for @profilePreferencesCountSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected'**
+  String profilePreferencesCountSelected(int count);
+
+  /// No description provided for @profileDietaryStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dietary style'**
+  String get profileDietaryStyle;
+
+  /// No description provided for @profileSpiceLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Spice level'**
+  String get profileSpiceLevel;
+
+  /// No description provided for @profileCuisines.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred cuisines'**
+  String get profileCuisines;
+
+  /// No description provided for @profileHealthGoals.
+  ///
+  /// In en, this message translates to:
+  /// **'Health goals'**
+  String get profileHealthGoals;
+
+  /// No description provided for @profileDislikedIngredients.
+  ///
+  /// In en, this message translates to:
+  /// **'Disliked ingredients'**
+  String get profileDislikedIngredients;
+
+  /// No description provided for @profileDislikedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an ingredient'**
+  String get profileDislikedHint;
+
+  /// No description provided for @profileDislikedAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get profileDislikedAdd;
+
+  /// No description provided for @profileDislikedEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'None yet — add ingredients you prefer to avoid'**
+  String get profileDislikedEmpty;
+
+  /// No description provided for @profileDietaryOmnivore.
+  ///
+  /// In en, this message translates to:
+  /// **'Omnivore'**
+  String get profileDietaryOmnivore;
+
+  /// No description provided for @profileDietaryVegetarian.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetarian'**
+  String get profileDietaryVegetarian;
+
+  /// No description provided for @profileDietaryVegan.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegan'**
+  String get profileDietaryVegan;
+
+  /// No description provided for @profileDietaryPescatarian.
+  ///
+  /// In en, this message translates to:
+  /// **'Pescatarian'**
+  String get profileDietaryPescatarian;
+
+  /// No description provided for @profileSpiceMild.
+  ///
+  /// In en, this message translates to:
+  /// **'Mild'**
+  String get profileSpiceMild;
+
+  /// No description provided for @profileSpiceMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get profileSpiceMedium;
+
+  /// No description provided for @profileSpiceHot.
+  ///
+  /// In en, this message translates to:
+  /// **'Hot'**
+  String get profileSpiceHot;
+
+  /// No description provided for @profileCuisineVietnamese.
+  ///
+  /// In en, this message translates to:
+  /// **'Vietnamese'**
+  String get profileCuisineVietnamese;
+
+  /// No description provided for @profileCuisineJapanese.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese'**
+  String get profileCuisineJapanese;
+
+  /// No description provided for @profileCuisineKorean.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean'**
+  String get profileCuisineKorean;
+
+  /// No description provided for @profileCuisineChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get profileCuisineChinese;
+
+  /// No description provided for @profileCuisineThai.
+  ///
+  /// In en, this message translates to:
+  /// **'Thai'**
+  String get profileCuisineThai;
+
+  /// No description provided for @profileCuisineWestern.
+  ///
+  /// In en, this message translates to:
+  /// **'Western'**
+  String get profileCuisineWestern;
+
+  /// No description provided for @profileCuisineIndian.
+  ///
+  /// In en, this message translates to:
+  /// **'Indian'**
+  String get profileCuisineIndian;
+
+  /// No description provided for @profileGoalLowCarb.
+  ///
+  /// In en, this message translates to:
+  /// **'Low carb'**
+  String get profileGoalLowCarb;
+
+  /// No description provided for @profileGoalHighProtein.
+  ///
+  /// In en, this message translates to:
+  /// **'High protein'**
+  String get profileGoalHighProtein;
+
+  /// No description provided for @profileGoalLowFat.
+  ///
+  /// In en, this message translates to:
+  /// **'Low fat'**
+  String get profileGoalLowFat;
+
+  /// No description provided for @profileGoalBalanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Balanced'**
+  String get profileGoalBalanced;
+
+  /// No description provided for @profileGoalWeightLoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight loss'**
+  String get profileGoalWeightLoss;
+
+  /// No description provided for @profileAllergiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies'**
+  String get profileAllergiesTitle;
+
+  /// No description provided for @profileAllergiesSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get profileAllergiesSave;
+
+  /// No description provided for @profileAllergiesClearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get profileAllergiesClearAll;
+
+  /// No description provided for @profileAllergiesRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get profileAllergiesRetry;
+
+  /// No description provided for @profileAllergiesError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load allergies. Please try again.'**
+  String get profileAllergiesError;
+
+  /// No description provided for @profileAllergiesSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save allergies. Please try again.'**
+  String get profileAllergiesSaveError;
+
+  /// No description provided for @profileAllergiesSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies saved'**
+  String get profileAllergiesSaved;
+
+  /// No description provided for @profileAllergiesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No allergies selected. Search to add ingredients.'**
+  String get profileAllergiesEmpty;
+
+  /// No description provided for @profileAllergiesSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search ingredients'**
+  String get profileAllergiesSearchHint;
+
+  /// No description provided for @profileAllergiesSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get profileAllergiesSelected;
+
+  /// No description provided for @profileAllergiesResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Results'**
+  String get profileAllergiesResults;
 
   /// No description provided for @recipeDetailIngredients.
   ///

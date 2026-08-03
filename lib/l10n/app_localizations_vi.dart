@@ -352,13 +352,28 @@ class AppLocalizationsVi extends AppLocalizations {
   String get discoverIngredientCategoryVegetable => 'Rau củ';
 
   @override
-  String get discoverIngredientCategoryProtein => 'Protein';
+  String get discoverIngredientCategoryProtein => 'Đạm';
 
   @override
   String get discoverIngredientCategoryDairy => 'Sữa';
 
   @override
   String get discoverIngredientCategoryGrain => 'Ngũ cốc';
+
+  @override
+  String get discoverIngredientCategoryCarb => 'Tinh bột';
+
+  @override
+  String get discoverIngredientCategoryAromatic => 'Gia vị thơm';
+
+  @override
+  String get discoverIngredientCategorySpice => 'Gia vị';
+
+  @override
+  String get discoverIngredientCategorySeasoning => 'Nêm';
+
+  @override
+  String get discoverIngredientCategoryHerb => 'Rau thơm';
 
   @override
   String get discoverIngredientCategoryOther => 'Khác';
@@ -464,6 +479,208 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get profileLogout => 'Đăng xuất';
+
+  @override
+  String get profilePreferences => 'Sở thích ăn uống';
+
+  @override
+  String get profilePreferencesSubtitle =>
+      'Chế độ ăn, độ cay, ẩm thực và mục tiêu';
+
+  @override
+  String get profilePreferencesSubtitleEmpty => 'Chưa thiết lập';
+
+  @override
+  String profilePreferencesSubtitleStyle(String style) {
+    return '$style';
+  }
+
+  @override
+  String profilePreferencesSubtitleParts(String parts) {
+    return '$parts';
+  }
+
+  @override
+  String profilePreferencesSubtitleCuisineCount(int count) {
+    return '$count ẩm thực';
+  }
+
+  @override
+  String profilePreferencesSubtitleGoalCount(int count) {
+    return '$count mục tiêu';
+  }
+
+  @override
+  String profilePreferencesSubtitleDislikedCount(int count) {
+    return '$count không thích';
+  }
+
+  @override
+  String get profileAllergies => 'Dị ứng';
+
+  @override
+  String get profileAllergiesSubtitleEmpty => 'Chưa thiết lập';
+
+  @override
+  String profileAllergiesSubtitleCount(int count) {
+    return '$count nguyên liệu';
+  }
+
+  @override
+  String get profilePreferencesTitle => 'Sở thích ăn uống';
+
+  @override
+  String get profilePreferencesSave => 'Lưu';
+
+  @override
+  String get profilePreferencesRetry => 'Thử lại';
+
+  @override
+  String get profilePreferencesError =>
+      'Không tải được sở thích. Vui lòng thử lại.';
+
+  @override
+  String get profilePreferencesSaveError =>
+      'Không lưu được sở thích. Vui lòng thử lại.';
+
+  @override
+  String get profilePreferencesSaved => 'Đã lưu sở thích';
+
+  @override
+  String get profilePreferencesSummaryTitle => 'Đang áp dụng';
+
+  @override
+  String get profilePreferencesSummaryEmpty =>
+      'Chưa chọn gì — chọn bên dưới để cá nhân hóa';
+
+  @override
+  String get profilePreferencesPickOne => 'Chọn một';
+
+  @override
+  String get profilePreferencesPickMany => 'Chọn nhiều tùy thích';
+
+  @override
+  String profilePreferencesCountSelected(int count) {
+    return 'Đã chọn $count';
+  }
+
+  @override
+  String get profileDietaryStyle => 'Chế độ ăn';
+
+  @override
+  String get profileSpiceLevel => 'Độ cay';
+
+  @override
+  String get profileCuisines => 'Ẩm thực ưa thích';
+
+  @override
+  String get profileHealthGoals => 'Mục tiêu sức khỏe';
+
+  @override
+  String get profileDislikedIngredients => 'Nguyên liệu không thích';
+
+  @override
+  String get profileDislikedHint => 'Thêm nguyên liệu';
+
+  @override
+  String get profileDislikedAdd => 'Thêm';
+
+  @override
+  String get profileDislikedEmpty =>
+      'Chưa có — thêm nguyên liệu bạn muốn tránh';
+
+  @override
+  String get profileDietaryOmnivore => 'Ăn tạp';
+
+  @override
+  String get profileDietaryVegetarian => 'Ăn chay (có trứng/sữa)';
+
+  @override
+  String get profileDietaryVegan => 'Thuần chay';
+
+  @override
+  String get profileDietaryPescatarian => 'Ăn chay + hải sản';
+
+  @override
+  String get profileSpiceMild => 'Nhẹ';
+
+  @override
+  String get profileSpiceMedium => 'Vừa';
+
+  @override
+  String get profileSpiceHot => 'Cay';
+
+  @override
+  String get profileCuisineVietnamese => 'Việt Nam';
+
+  @override
+  String get profileCuisineJapanese => 'Nhật';
+
+  @override
+  String get profileCuisineKorean => 'Hàn';
+
+  @override
+  String get profileCuisineChinese => 'Trung';
+
+  @override
+  String get profileCuisineThai => 'Thái';
+
+  @override
+  String get profileCuisineWestern => 'Âu Mỹ';
+
+  @override
+  String get profileCuisineIndian => 'Ấn Độ';
+
+  @override
+  String get profileGoalLowCarb => 'Ít tinh bột';
+
+  @override
+  String get profileGoalHighProtein => 'Nhiều đạm';
+
+  @override
+  String get profileGoalLowFat => 'Ít béo';
+
+  @override
+  String get profileGoalBalanced => 'Cân bằng';
+
+  @override
+  String get profileGoalWeightLoss => 'Giảm cân';
+
+  @override
+  String get profileAllergiesTitle => 'Dị ứng';
+
+  @override
+  String get profileAllergiesSave => 'Lưu';
+
+  @override
+  String get profileAllergiesClearAll => 'Xóa hết';
+
+  @override
+  String get profileAllergiesRetry => 'Thử lại';
+
+  @override
+  String get profileAllergiesError =>
+      'Không tải được dị ứng. Vui lòng thử lại.';
+
+  @override
+  String get profileAllergiesSaveError =>
+      'Không lưu được dị ứng. Vui lòng thử lại.';
+
+  @override
+  String get profileAllergiesSaved => 'Đã lưu dị ứng';
+
+  @override
+  String get profileAllergiesEmpty =>
+      'Chưa chọn dị ứng. Tìm kiếm để thêm nguyên liệu.';
+
+  @override
+  String get profileAllergiesSearchHint => 'Tìm nguyên liệu';
+
+  @override
+  String get profileAllergiesSelected => 'Đã chọn';
+
+  @override
+  String get profileAllergiesResults => 'Kết quả';
 
   @override
   String get recipeDetailIngredients => 'Nguyên liệu';

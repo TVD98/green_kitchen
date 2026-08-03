@@ -360,6 +360,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discoverIngredientCategoryGrain => 'Grains';
 
   @override
+  String get discoverIngredientCategoryCarb => 'Carbs';
+
+  @override
+  String get discoverIngredientCategoryAromatic => 'Aromatics';
+
+  @override
+  String get discoverIngredientCategorySpice => 'Spices';
+
+  @override
+  String get discoverIngredientCategorySeasoning => 'Seasonings';
+
+  @override
+  String get discoverIngredientCategoryHerb => 'Herbs';
+
+  @override
   String get discoverIngredientCategoryOther => 'Other';
 
   @override
@@ -463,6 +478,207 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileLogout => 'Log out';
+
+  @override
+  String get profilePreferences => 'Eating preferences';
+
+  @override
+  String get profilePreferencesSubtitle => 'Diet, spice, cuisines, and goals';
+
+  @override
+  String get profilePreferencesSubtitleEmpty => 'Not set yet';
+
+  @override
+  String profilePreferencesSubtitleStyle(String style) {
+    return '$style';
+  }
+
+  @override
+  String profilePreferencesSubtitleParts(String parts) {
+    return '$parts';
+  }
+
+  @override
+  String profilePreferencesSubtitleCuisineCount(int count) {
+    return '$count cuisines';
+  }
+
+  @override
+  String profilePreferencesSubtitleGoalCount(int count) {
+    return '$count goals';
+  }
+
+  @override
+  String profilePreferencesSubtitleDislikedCount(int count) {
+    return '$count disliked';
+  }
+
+  @override
+  String get profileAllergies => 'Allergies';
+
+  @override
+  String get profileAllergiesSubtitleEmpty => 'None set';
+
+  @override
+  String profileAllergiesSubtitleCount(int count) {
+    return '$count ingredients';
+  }
+
+  @override
+  String get profilePreferencesTitle => 'Eating preferences';
+
+  @override
+  String get profilePreferencesSave => 'Save';
+
+  @override
+  String get profilePreferencesRetry => 'Try again';
+
+  @override
+  String get profilePreferencesError =>
+      'Could not load preferences. Please try again.';
+
+  @override
+  String get profilePreferencesSaveError =>
+      'Could not save preferences. Please try again.';
+
+  @override
+  String get profilePreferencesSaved => 'Preferences saved';
+
+  @override
+  String get profilePreferencesSummaryTitle => 'Currently applied';
+
+  @override
+  String get profilePreferencesSummaryEmpty =>
+      'Nothing selected yet — pick options below';
+
+  @override
+  String get profilePreferencesPickOne => 'Choose one';
+
+  @override
+  String get profilePreferencesPickMany => 'Select all that apply';
+
+  @override
+  String profilePreferencesCountSelected(int count) {
+    return '$count selected';
+  }
+
+  @override
+  String get profileDietaryStyle => 'Dietary style';
+
+  @override
+  String get profileSpiceLevel => 'Spice level';
+
+  @override
+  String get profileCuisines => 'Preferred cuisines';
+
+  @override
+  String get profileHealthGoals => 'Health goals';
+
+  @override
+  String get profileDislikedIngredients => 'Disliked ingredients';
+
+  @override
+  String get profileDislikedHint => 'Add an ingredient';
+
+  @override
+  String get profileDislikedAdd => 'Add';
+
+  @override
+  String get profileDislikedEmpty =>
+      'None yet — add ingredients you prefer to avoid';
+
+  @override
+  String get profileDietaryOmnivore => 'Omnivore';
+
+  @override
+  String get profileDietaryVegetarian => 'Vegetarian';
+
+  @override
+  String get profileDietaryVegan => 'Vegan';
+
+  @override
+  String get profileDietaryPescatarian => 'Pescatarian';
+
+  @override
+  String get profileSpiceMild => 'Mild';
+
+  @override
+  String get profileSpiceMedium => 'Medium';
+
+  @override
+  String get profileSpiceHot => 'Hot';
+
+  @override
+  String get profileCuisineVietnamese => 'Vietnamese';
+
+  @override
+  String get profileCuisineJapanese => 'Japanese';
+
+  @override
+  String get profileCuisineKorean => 'Korean';
+
+  @override
+  String get profileCuisineChinese => 'Chinese';
+
+  @override
+  String get profileCuisineThai => 'Thai';
+
+  @override
+  String get profileCuisineWestern => 'Western';
+
+  @override
+  String get profileCuisineIndian => 'Indian';
+
+  @override
+  String get profileGoalLowCarb => 'Low carb';
+
+  @override
+  String get profileGoalHighProtein => 'High protein';
+
+  @override
+  String get profileGoalLowFat => 'Low fat';
+
+  @override
+  String get profileGoalBalanced => 'Balanced';
+
+  @override
+  String get profileGoalWeightLoss => 'Weight loss';
+
+  @override
+  String get profileAllergiesTitle => 'Allergies';
+
+  @override
+  String get profileAllergiesSave => 'Save';
+
+  @override
+  String get profileAllergiesClearAll => 'Clear all';
+
+  @override
+  String get profileAllergiesRetry => 'Try again';
+
+  @override
+  String get profileAllergiesError =>
+      'Could not load allergies. Please try again.';
+
+  @override
+  String get profileAllergiesSaveError =>
+      'Could not save allergies. Please try again.';
+
+  @override
+  String get profileAllergiesSaved => 'Allergies saved';
+
+  @override
+  String get profileAllergiesEmpty =>
+      'No allergies selected. Search to add ingredients.';
+
+  @override
+  String get profileAllergiesSearchHint => 'Search ingredients';
+
+  @override
+  String get profileAllergiesSelected => 'Selected';
+
+  @override
+  String get profileAllergiesResults => 'Results';
 
   @override
   String get recipeDetailIngredients => 'Ingredients';

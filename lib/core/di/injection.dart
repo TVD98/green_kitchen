@@ -26,6 +26,13 @@ import '../../features/locale_preference/domain/usecases/get_locale_preference.d
 import '../../features/locale_preference/domain/usecases/set_locale_preference.dart';
 import '../../features/locale_preference/presentation/cubit/locale_preference_cubit.dart';
 import '../../features/pantry/presentation/bloc/pantry_bloc.dart';
+import '../../features/profile/data/datasources/profile_remote_data_source.dart';
+import '../../features/profile/data/repositories/profile_repository_impl.dart';
+import '../../features/profile/domain/repositories/profile_repository.dart';
+import '../../features/profile/domain/usecases/profile_usecases.dart';
+import '../../features/profile/presentation/bloc/allergies_bloc.dart';
+import '../../features/profile/presentation/bloc/preferences_bloc.dart';
+import '../../features/profile/presentation/cubit/profile_hub_cubit.dart';
 import '../../features/recipe_interactions/data/datasources/recipe_interactions_local_data_source.dart';
 import '../../features/recipe_interactions/data/repositories/recipe_interactions_repository_impl.dart';
 import '../../features/recipe_interactions/domain/repositories/recipe_interactions_repository.dart';
@@ -210,6 +217,35 @@ Future<void> configureDependencies({
     )
     ..registerFactory(
       () => SuggestionsBloc(searchRecipes: getIt()),
+    )
+    ..registerLazySingleton(
+      () => ProfileRemoteDataSource(dio: getIt<DioClient>().dio),
+    )
+    ..registerLazySingleton<ProfileRepository>(
+      () => ProfileRepositoryImpl(remote: getIt<ProfileRemoteDataSource>()),
+    )
+    ..registerLazySingleton(() => GetUserPreferences(getIt()))
+    ..registerLazySingleton(() => UpdateUserPreferences(getIt()))
+    ..registerLazySingleton(() => GetUserAllergies(getIt()))
+    ..registerLazySingleton(() => ReplaceUserAllergies(getIt()))
+    ..registerFactory(
+      () => ProfileHubCubit(
+        getUserPreferences: getIt(),
+        getUserAllergies: getIt(),
+      ),
+    )
+    ..registerFactory(
+      () => PreferencesBloc(
+        getUserPreferences: getIt(),
+        updateUserPreferences: getIt(),
+      ),
+    )
+    ..registerFactory(
+      () => AllergiesBloc(
+        getUserAllergies: getIt(),
+        replaceUserAllergies: getIt(),
+        searchIngredients: getIt(),
+      ),
     );
 
   final dio = getIt<DioClient>().dio;
