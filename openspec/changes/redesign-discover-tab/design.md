@@ -33,6 +33,8 @@ Constraints: Clean Architecture + BLoC, `green_kitchen_ui` only, vi/en via ARB, 
 
 One `DiscoverBloc` holds both `prompt`/toggles/filters and sheet fields (`ingredientQuery`, `suggestions`, `selectedIngredients`, `recentIngredientSets`). Sheet is presentation-only overlay; closing or applying from the sheet does not reset sheet search/selection — only the search clear control and **Xóa lựa chọn** mutate those fields.
 
+**Locale change:** When `LocalePreferenceCubit` emits a different preference, Discover listens and dispatches `DiscoverContentReset`, clearing prompt, filters, sheet fields, and in-memory recent sets. Persistence of recent sets is cleared by the locale layer via `ClearRecentIngredientSets`.
+
 **Alternative considered:** separate `FridgePickerBloc`. Rejected — shared apply-to-prompt and simpler DI for MVP.
 
 ### 2. Search entry point switches from pantry to discovery
@@ -83,7 +85,7 @@ On successful discovery search, persist:
 DiscoverySession { prompt, recipeIds, searchedAt }
 ```
 
-Keep `recentIngredientSets` for fridge sheet only (update when sheet apply succeeds).
+Keep `recentIngredientSets` for fridge sheet only (update when sheet apply succeeds). Changing the app language preference clears these sets (language-bound ingredient names).
 
 ### 8. Voice
 

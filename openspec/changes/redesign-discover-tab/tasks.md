@@ -23,6 +23,7 @@
 - [ ] 4.2 Add events: prompt, options, quick start, fridge apply/clear, ingredient toggle (max 7)
 - [ ] 4.3 Keep debounced `SearchIngredients` for sheet only
 - [ ] 4.4 Update `discover_bloc_test.dart`
+- [x] 4.5 On language preference change: `DiscoverContentReset` clears prompt, sheet draft, filters, and recent sets; `ClearRecentIngredientSets` clears persistence
 
 ## 5. Discovery results flow
 

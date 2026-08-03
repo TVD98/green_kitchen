@@ -61,6 +61,7 @@ lib/features/locale_preference/
 - Accessible from app navigation (minimal entry for v1 — e.g. Settings page or section reachable from current shell)
 - Options rendered with `green_kitchen_ui` components; labels themselves come from l10n
 - Changing preference updates UI immediately (no app restart)
+- Changing to a **different** preference clears language-bound Discover draft state: main `prompt`, fridge sheet selection/search, and persisted `recentIngredientSets` (`ClearRecentIngredientSets`). Re-selecting the same option is a no-op.
 
 ### 6. Hardcode ban for new screens
 

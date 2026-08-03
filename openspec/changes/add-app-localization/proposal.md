@@ -8,6 +8,7 @@ The app currently hardcodes English copy in UI screens and has no locale wiring,
 - Wire `MaterialApp` with localization delegates, supported locales, and locale resolution
 - Default locale follows the **device/system**; when the system locale is neither `vi` nor `en`, fall back to **`vi`**
 - Add a **Settings** language control: System / Vietnamese / English, with preference persisted across restarts
+- Changing to a different language preference SHALL reset Discover draft content (prompt, fridge selection, recent ingredient searches) so leftover locale-specific text is not kept
 - Establish a project rule: **new feature screens MUST NOT hardcode user-facing copy**; strings resolve via the localization layer and are passed into `green_kitchen_ui` widgets as `String`s
 - Scaffold localization as a Clean Architecture feature module (domain/data/presentation + BLoC) where locale preference lives
 - Settings UI uses `green_kitchen_ui` tokens/widgets/theme

@@ -116,6 +116,25 @@ The main Discover screen SHALL NOT display a recent prompts section. Recent ingr
 - **WHEN** the Discover tab is displayed
 - **THEN** there SHALL be no recent-search list on the main scroll content
 
+### Requirement: Locale change resets Discover draft via DiscoverContentReset
+When the app language preference changes to a different value, Discover SHALL handle a `DiscoverContentReset` event that clears:
+
+- `prompt` (and the prompt text field UI)
+- Quick Start `filters`
+- Fridge sheet fields: `sheetQuery`, `sheetSuggestions`, `sheetSelectedIngredients`
+- In-memory `recentIngredientSets` (persistence clear is owned by the locale preference layer — see `settings-language`)
+
+`usePreferences` and `excludeAllergies` SHALL NOT be reset by this event.
+
+#### Scenario: Locale change empties prompt and disables CTA
+- **WHEN** the language preference changes while Discover is mounted (including via shell IndexedStack)
+- **THEN** the prompt field SHALL become empty
+- **AND** the Find recipes CTA SHALL be disabled
+
+#### Scenario: Locale change clears Quick Start filters
+- **WHEN** the user had applied Fast & healthy or Vegetarian filters and then changes language
+- **THEN** Discover `filters` SHALL return to the default empty `PantryFilters`
+
 ## REMOVED Requirements
 
 ### Requirement: Selected ingredients appear as removable chips on main Discover

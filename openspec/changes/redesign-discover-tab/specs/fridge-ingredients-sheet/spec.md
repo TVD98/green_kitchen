@@ -18,14 +18,15 @@ The sheet header SHALL include:
 - **AND** sheet search query, search results, and selected ingredients SHALL remain in bloc state for the next open
 
 ### Requirement: Sheet state persists across open and apply
-Closing the fridge sheet (via dismiss, close control, or **Thêm nguyên liệu**) SHALL NOT clear sheet search query, ingredient search results, or selected ingredients. Only explicit user actions clear sheet fields:
+Closing the fridge sheet (via dismiss, close control, or **Thêm nguyên liệu**) SHALL NOT clear sheet search query, ingredient search results, or selected ingredients. Only explicit user actions (and locale change) clear sheet fields:
 
-| Action | Clears search | Clears results | Clears selection |
-|--------|---------------|----------------|------------------|
-| Search clear (×) on search field | yes | yes | no |
-| **Xóa lựa chọn** | no | no | yes |
-| Close / dismiss sheet | no | no | no |
-| **Thêm nguyên liệu** (apply) | no | no | no |
+| Action | Clears search | Clears results | Clears selection | Clears recent sets |
+|--------|---------------|----------------|------------------|--------------------|
+| Search clear (×) on search field | yes | yes | no | no |
+| **Xóa lựa chọn** | no | no | yes | no |
+| Close / dismiss sheet | no | no | no | no |
+| **Thêm nguyên liệu** (apply) | no | no | no | no (updates recent) |
+| Language preference change | yes | yes | yes | yes |
 
 #### Scenario: Apply preserves sheet state
 - **WHEN** the user has search text, results, and selected ingredients and taps **Thêm nguyên liệu**
@@ -35,6 +36,12 @@ Closing the fridge sheet (via dismiss, close control, or **Thêm nguyên liệu*
 #### Scenario: Dismiss preserves sheet state
 - **WHEN** the user dismisses the sheet without applying
 - **THEN** reopening the sheet SHALL restore the previous search text, results, and selection
+
+#### Scenario: Language change clears sheet draft and recent sets
+- **WHEN** the user changes the app language preference
+- **THEN** sheet search query, results, and selected ingredients SHALL be cleared
+- **AND** local `recentIngredientSets` SHALL be emptied
+- **AND** reopening the sheet with an empty search field SHALL show no recent sets
 
 ### Requirement: Fridge sheet searches ingredients with debounced API
 The sheet SHALL provide a search field with hint `discoverFridgeSearchHint`. As the user types, the app SHALL debounce (300ms) and call `GET /api/v1/ingredients?q=` with the authenticated session.
@@ -49,11 +56,15 @@ The sheet SHALL provide a search field with hint `discoverFridgeSearchHint`. As 
 - **THEN** results SHALL be displayed in a **two-column grid**, grouped by `category` with localized category headers (e.g. vegetable → `discoverIngredientCategoryVegetable`)
 
 ### Requirement: Fridge sheet shows recent ingredient sets on open
-When the sheet opens and the search field is empty, the app SHALL display up to **five** recent ingredient sets from local storage (`recentIngredientSets`).
+When the sheet opens and the search field is empty, the app SHALL display up to **five** recent ingredient sets from local storage (`recentIngredientSets`). Recent sets are language-bound draft history: changing the app language preference SHALL clear them (see sheet persistence table and `settings-language`).
 
 #### Scenario: User reuses recent set in sheet
 - **WHEN** the user taps a recent ingredient set
 - **THEN** the sheet selection SHALL be pre-filled with those ingredient names
+
+#### Scenario: No recent sets after language change
+- **WHEN** the user changes language and then opens the fridge sheet with an empty search field
+- **THEN** the recent searches section SHALL be empty (or show only the empty-search hint)
 
 ### Requirement: Ingredient selection uses grid cards with toggle
 Each ingredient in the grid SHALL appear as a card with the canonical name and a circular add control (`+`). Tapping SHALL toggle selection.

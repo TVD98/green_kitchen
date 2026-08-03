@@ -25,6 +25,7 @@
 - [x] 4.2 Build System / Vietnamese / English selection with `green_kitchen_ui` widgets (`AppRadioGroup` or equivalent) and app theme/tokens
 - [x] 4.3 Bind selection to Cubit/Bloc; verify immediate UI language switch without restart
 - [x] 4.4 Verify preference survives app restart
+- [x] 4.5 On distinct language change: clear Discover prompt, fridge sheet selection, and persisted recent ingredient sets
 
 ## 5. Sample usage and hardcode rule
 

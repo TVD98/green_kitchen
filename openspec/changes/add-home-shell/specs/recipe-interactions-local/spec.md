@@ -29,8 +29,19 @@ The implementation SHALL cap stored history length (documented constants in code
 - **THEN** the oldest viewed entries SHALL be removed before adding new ones
 
 ### Requirement: Domain layer exposes interaction use cases
-Interaction reads and writes SHALL live behind a repository interface in the domain layer (`RecordRecipeViewed`, `ToggleRecipeSaved`, `GetViewedRecipeIds`, `GetSavedRecipeIds`, `GetPantrySessions`, `SavePantrySession`) so presentation does not access `SharedPreferences` directly.
+Interaction reads and writes SHALL live behind a repository interface in the domain layer (`RecordRecipeViewed`, `ToggleRecipeSaved`, `GetViewedRecipeIds`, `GetSavedRecipeIds`, `GetPantrySessions`, `SavePantrySession`, `GetRecentIngredientSets`, `SaveRecentIngredientSet`, `ClearRecentIngredientSets`) so presentation does not access `SharedPreferences` directly.
 
 #### Scenario: BLoC uses repository
 - **WHEN** recipe detail records a view
 - **THEN** the presentation layer SHALL call a domain use case, not a storage API directly from widgets
+
+### Requirement: Local store can clear recent ingredient sets
+The interactions repository SHALL expose clearing of `recentIngredientSets` so language preference changes (and similar resets) can wipe language-bound fridge recent searches from local storage.
+
+#### Scenario: Clear empties persisted recent sets
+- **WHEN** `ClearRecentIngredientSets` is invoked
+- **THEN** subsequent `GetRecentIngredientSets` SHALL return an empty list
+
+#### Scenario: Locale preference change clears recent sets
+- **WHEN** the user selects a different language preference
+- **THEN** the locale preference layer SHALL call `ClearRecentIngredientSets` so persisted recent fridge searches do not survive the locale switch
