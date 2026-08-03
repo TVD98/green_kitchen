@@ -7,6 +7,7 @@ import 'package:green_kitchen_ui/green_kitchen_ui.dart';
 
 import '../../../../core/di/injection.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../locale_preference/presentation/cubit/locale_preference_cubit.dart';
 import '../bloc/discover_bloc.dart';
 import '../models/discovery_search_args.dart';
 import '../services/discover_speech_service.dart';
@@ -137,13 +138,24 @@ class _DiscoverPageState extends State<DiscoverPage> {
 
     return BlocProvider(
       create: (_) => getIt<DiscoverBloc>()..add(const DiscoverStarted()),
-      child: BlocListener<DiscoverBloc, DiscoverState>(
-        listenWhen: (prev, next) => prev.prompt != next.prompt,
-        listener: (context, state) {
-          if (_promptController.text != state.prompt) {
-            _promptController.text = state.prompt;
-          }
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<LocalePreferenceCubit, LocalePreferenceState>(
+            listenWhen: (prev, next) => prev.preference != next.preference,
+            listener: (context, _) {
+              context.read<DiscoverBloc>().add(const DiscoverContentReset());
+              _promptController.clear();
+            },
+          ),
+          BlocListener<DiscoverBloc, DiscoverState>(
+            listenWhen: (prev, next) => prev.prompt != next.prompt,
+            listener: (context, state) {
+              if (_promptController.text != state.prompt) {
+                _promptController.text = state.prompt;
+              }
+            },
+          ),
+        ],
         child: Scaffold(
           body: SafeArea(
             child: Column(

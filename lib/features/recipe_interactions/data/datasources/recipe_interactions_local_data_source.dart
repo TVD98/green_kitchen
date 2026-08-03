@@ -42,7 +42,7 @@ class RecipeInteractionsLocalDataSource {
         .map(
           (item) => (item as List<dynamic>).map((e) => e.toString()).toList(),
         )
-        .toList(growable: false);
+        .toList();
   }
 
   Future<void> writeViewed(List<Map<String, dynamic>> items) =>

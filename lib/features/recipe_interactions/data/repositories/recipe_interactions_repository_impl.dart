@@ -113,6 +113,10 @@ class RecipeInteractionsRepositoryImpl implements RecipeInteractionsRepository {
   }
 
   @override
+  Future<void> clearRecentIngredientSets() =>
+      _local.writeRecentIngredientSets(const []);
+
+  @override
   Future<List<DiscoverySession>> getDiscoverySessions() async {
     final items = await _local.readDiscoverySessions();
     return items

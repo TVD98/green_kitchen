@@ -45,4 +45,12 @@ void main() {
     final recent = await repository.getRecentIngredientSets();
     expect(recent.first, ['trứng', 'cà chua']);
   });
+
+  test('clear recent ingredient sets removes all', () async {
+    await repository.saveRecentIngredientSet(['trứng']);
+    await repository.saveRecentIngredientSet(['cà chua']);
+    await repository.clearRecentIngredientSets();
+
+    expect(await repository.getRecentIngredientSets(), isEmpty);
+  });
 }

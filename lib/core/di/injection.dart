@@ -45,10 +45,10 @@ import '../storage/key_value_store.dart';
 
 final getIt = GetIt.instance;
 
-/// When true (default), uses [FakeAuthRemoteDataSource] so UI works offline.
+/// When true, uses [FakeAuthRemoteDataSource] (offline UI). Default is real API.
 const useFakeAuthBackend = bool.fromEnvironment(
   'USE_FAKE_AUTH',
-  defaultValue: true,
+  defaultValue: false,
 );
 
 Future<void> configureDependencies({
@@ -77,13 +77,6 @@ Future<void> configureDependencies({
     )
     ..registerLazySingleton(() => GetLocalePreference(getIt()))
     ..registerLazySingleton(() => SetLocalePreference(getIt()))
-    ..registerLazySingleton(
-      () => LocalePreferenceCubit(
-        getLocalePreference: getIt(),
-        setLocalePreference: getIt(),
-        initialPreference: getIt<LocalePreferenceLocalDataSource>().read(),
-      ),
-    )
     ..registerLazySingleton<DioClient>(DioClient.new)
     ..registerLazySingleton<DeviceInfoProvider>(
       () => DeviceInfoProvider(storage: getIt<KeyValueStore>()),
@@ -173,7 +166,16 @@ Future<void> configureDependencies({
     ..registerLazySingleton(() => SavePantrySession(getIt()))
     ..registerLazySingleton(() => GetRecentIngredientSets(getIt()))
     ..registerLazySingleton(() => SaveRecentIngredientSet(getIt()))
+    ..registerLazySingleton(() => ClearRecentIngredientSets(getIt()))
     ..registerLazySingleton(() => SaveDiscoverySession(getIt()))
+    ..registerLazySingleton(
+      () => LocalePreferenceCubit(
+        getLocalePreference: getIt(),
+        setLocalePreference: getIt(),
+        clearRecentIngredientSets: getIt(),
+        initialPreference: getIt<LocalePreferenceLocalDataSource>().read(),
+      ),
+    )
     ..registerFactory(
       () => DiscoverBloc(
         searchIngredients: getIt(),

@@ -163,4 +163,27 @@ void main() {
       verify(() => saveRecentIngredientSet(['cà chua'])).called(1);
     },
   );
+
+  blocTest<DiscoverBloc, DiscoverState>(
+    'content reset clears prompt, ingredients, and recent searches',
+    build: buildBloc,
+    seed: () => const DiscoverState(
+      prompt: 'Tôi có: cà chua. Gợi ý món nấu.',
+      sheetQuery: 'cà',
+      sheetSelectedIngredients: ['cà chua'],
+      recentIngredientSets: [
+        ['cà chua'],
+        ['trứng', 'cà chua'],
+      ],
+      filters: PantryFilters(maxTime: 30, tags: ['healthy']),
+    ),
+    act: (bloc) => bloc.add(const DiscoverContentReset()),
+    verify: (bloc) {
+      expect(bloc.state.prompt, isEmpty);
+      expect(bloc.state.sheetQuery, isEmpty);
+      expect(bloc.state.sheetSelectedIngredients, isEmpty);
+      expect(bloc.state.recentIngredientSets, isEmpty);
+      expect(bloc.state.filters, const PantryFilters());
+    },
+  );
 }

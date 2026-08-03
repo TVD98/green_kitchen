@@ -112,3 +112,8 @@ final class DiscoverFridgeApplied extends DiscoverEvent {
   @override
   List<Object?> get props => [prompt, ingredients];
 }
+
+/// Clears language-bound discover draft state after a locale change.
+final class DiscoverContentReset extends DiscoverEvent {
+  const DiscoverContentReset();
+}

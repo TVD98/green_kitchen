@@ -77,6 +77,14 @@ class SaveRecentIngredientSet {
       _repository.saveRecentIngredientSet(ingredients);
 }
 
+class ClearRecentIngredientSets {
+  ClearRecentIngredientSets(this._repository);
+
+  final RecipeInteractionsRepository _repository;
+
+  Future<void> call() => _repository.clearRecentIngredientSets();
+}
+
 class SaveDiscoverySession {
   SaveDiscoverySession(this._repository);
 

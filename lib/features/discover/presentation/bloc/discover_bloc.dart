@@ -33,6 +33,7 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     on<DiscoverSheetSelectionCleared>(_onSheetSelectionCleared);
     on<DiscoverSheetRecentSelected>(_onSheetRecentSelected);
     on<DiscoverFridgeApplied>(_onFridgeApplied);
+    on<DiscoverContentReset>(_onContentReset);
   }
 
   final SearchIngredients _searchIngredients;
@@ -199,5 +200,22 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     await _saveRecentIngredientSet(event.ingredients);
     final recent = await _getRecentIngredientSets();
     emit(state.copyWith(recentIngredientSets: recent));
+  }
+
+  void _onContentReset(
+    DiscoverContentReset event,
+    Emitter<DiscoverState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        prompt: '',
+        filters: const PantryFilters(),
+        sheetQuery: '',
+        sheetSelectedIngredients: const [],
+        sheetSuggestions: const [],
+        recentIngredientSets: const [],
+        isLoadingSheetSuggestions: false,
+      ),
+    );
   }
 }

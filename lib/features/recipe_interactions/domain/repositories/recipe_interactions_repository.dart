@@ -22,4 +22,6 @@ abstract class RecipeInteractionsRepository {
   Future<List<List<String>>> getRecentIngredientSets();
 
   Future<void> saveRecentIngredientSet(List<String> ingredients);
+
+  Future<void> clearRecentIngredientSets();
 }
