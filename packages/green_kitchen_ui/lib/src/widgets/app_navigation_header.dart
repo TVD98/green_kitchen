@@ -45,36 +45,44 @@ class AppNavigationHeader extends StatelessWidget
               )
             : null);
 
-    return SizedBox(
-      height: height,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 48,
-            child: hasLeading ? leadingWidget : null,
+    // Mirror Material AppBar: Scaffold allocates preferredSize + status-bar
+    // inset, and the toolbar itself must sit below the safe area.
+    return Material(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: SafeArea(
+        bottom: false,
+        child: SizedBox(
+          height: height,
+          child: Row(
+            children: [
+              SizedBox(
+                width: 48,
+                child: hasLeading ? leadingWidget : null,
+              ),
+              Expanded(
+                child: titleWidget ??
+                    (title == null
+                        ? const SizedBox.shrink()
+                        : Text(
+                            title!,
+                            textAlign: TextAlign.center,
+                            style: AppTypography.h4(color: onSurface),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          )),
+              ),
+              SizedBox(
+                width: hasActions ? null : 48,
+                child: hasActions
+                    ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: actions!,
+                      )
+                    : null,
+              ),
+            ],
           ),
-          Expanded(
-            child: titleWidget ??
-                (title == null
-                    ? const SizedBox.shrink()
-                    : Text(
-                        title!,
-                        textAlign: TextAlign.center,
-                        style: AppTypography.h4(color: onSurface),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      )),
-          ),
-          SizedBox(
-            width: hasActions ? null : 48,
-            child: hasActions
-                ? Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: actions!,
-                  )
-                : null,
-          ),
-        ],
+        ),
       ),
     );
   }

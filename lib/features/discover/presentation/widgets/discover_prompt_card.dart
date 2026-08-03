@@ -63,16 +63,17 @@ class _DiscoverPromptCardState extends State<DiscoverPromptCard> {
           const SizedBox(height: AppSpacing.sm),
           Row(
             children: [
-              AppButton(
-                label: l10n.discoverVoiceSuggestion,
-                variant: AppButtonVariant.text,
-                leading: Icon(
-                  widget.isListening ? Icons.mic : Icons.mic_none_outlined,
+              Expanded(
+                child: AppButton(
+                  label: l10n.discoverVoiceSuggestion,
+                  variant: AppButtonVariant.text,
+                  leading: Icon(
+                    widget.isListening ? Icons.mic : Icons.mic_none_outlined,
+                  ),
+                  onPressed: widget.onVoiceTap,
                 ),
-                onPressed: widget.onVoiceTap,
-                isExpanded: false,
               ),
-              const Spacer(),
+              const SizedBox(width: AppSpacing.sm),
               AppText(
                 '$count/${DiscoverConstants.maxPromptLength}',
                 variant: AppTextVariant.caption,
@@ -83,6 +84,7 @@ class _DiscoverPromptCardState extends State<DiscoverPromptCard> {
                     widget.controller.text.isEmpty ? null : widget.onClear,
                 icon: const Icon(Icons.close),
                 tooltip: MaterialLocalizations.of(context).clearButtonTooltip,
+                visualDensity: VisualDensity.compact,
               ),
             ],
           ),
