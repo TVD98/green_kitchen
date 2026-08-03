@@ -119,9 +119,14 @@
   "discoverPromptFastHealthy": "Gợi ý món nhanh và lành mạnh",
   "discoverPromptVegetarian": "Gợi ý món chay",
   "discoverIngredientCategoryVegetable": "Rau củ",
-  "discoverIngredientCategoryProtein": "Protein",
+  "discoverIngredientCategoryProtein": "Đạm",
   "discoverIngredientCategoryDairy": "Sữa",
   "discoverIngredientCategoryGrain": "Ngũ cốc",
+  "discoverIngredientCategoryCarb": "Tinh bột",
+  "discoverIngredientCategoryAromatic": "Gia vị thơm",
+  "discoverIngredientCategorySpice": "Gia vị",
+  "discoverIngredientCategorySeasoning": "Nêm",
+  "discoverIngredientCategoryHerb": "Rau thơm",
   "discoverIngredientCategoryOther": "Khác",
   "discoverRecentSearches": "Tìm gần đây",
   "discoverNoRecent": "Chưa có lần tìm nào.",
@@ -163,6 +168,115 @@
   "profileTitle": "Cá nhân",
   "profileLanguage": "Ngôn ngữ",
   "profileLogout": "Đăng xuất",
+  "profilePreferences": "Sở thích ăn uống",
+  "profilePreferencesSubtitle": "Chế độ ăn, độ cay, ẩm thực và mục tiêu",
+  "profilePreferencesSubtitleEmpty": "Chưa thiết lập",
+  "profilePreferencesSubtitleStyle": "{style}",
+  "@profilePreferencesSubtitleStyle": {
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePreferencesSubtitleParts": "{parts}",
+  "@profilePreferencesSubtitleParts": {
+    "placeholders": {
+      "parts": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePreferencesSubtitleCuisineCount": "{count} ẩm thực",
+  "@profilePreferencesSubtitleCuisineCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePreferencesSubtitleGoalCount": "{count} mục tiêu",
+  "@profilePreferencesSubtitleGoalCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePreferencesSubtitleDislikedCount": "{count} không thích",
+  "@profilePreferencesSubtitleDislikedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileAllergies": "Dị ứng",
+  "profileAllergiesSubtitleEmpty": "Chưa thiết lập",
+  "profileAllergiesSubtitleCount": "{count} nguyên liệu",
+  "@profileAllergiesSubtitleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePreferencesTitle": "Sở thích ăn uống",
+  "profilePreferencesSave": "Lưu",
+  "profilePreferencesRetry": "Thử lại",
+  "profilePreferencesError": "Không tải được sở thích. Vui lòng thử lại.",
+  "profilePreferencesSaveError": "Không lưu được sở thích. Vui lòng thử lại.",
+  "profilePreferencesSaved": "Đã lưu sở thích",
+  "profilePreferencesSummaryTitle": "Đang áp dụng",
+  "profilePreferencesSummaryEmpty": "Chưa chọn gì — chọn bên dưới để cá nhân hóa",
+  "profilePreferencesPickOne": "Chọn một",
+  "profilePreferencesPickMany": "Chọn nhiều tùy thích",
+  "profilePreferencesCountSelected": "Đã chọn {count}",
+  "@profilePreferencesCountSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileDietaryStyle": "Chế độ ăn",
+  "profileSpiceLevel": "Độ cay",
+  "profileCuisines": "Ẩm thực ưa thích",
+  "profileHealthGoals": "Mục tiêu sức khỏe",
+  "profileDislikedIngredients": "Nguyên liệu không thích",
+  "profileDislikedHint": "Thêm nguyên liệu",
+  "profileDislikedAdd": "Thêm",
+  "profileDislikedEmpty": "Chưa có — thêm nguyên liệu bạn muốn tránh",
+  "profileDietaryOmnivore": "Ăn tạp",
+  "profileDietaryVegetarian": "Ăn chay (có trứng/sữa)",
+  "profileDietaryVegan": "Thuần chay",
+  "profileDietaryPescatarian": "Ăn chay + hải sản",
+  "profileSpiceMild": "Nhẹ",
+  "profileSpiceMedium": "Vừa",
+  "profileSpiceHot": "Cay",
+  "profileCuisineVietnamese": "Việt Nam",
+  "profileCuisineJapanese": "Nhật",
+  "profileCuisineKorean": "Hàn",
+  "profileCuisineChinese": "Trung",
+  "profileCuisineThai": "Thái",
+  "profileCuisineWestern": "Âu Mỹ",
+  "profileCuisineIndian": "Ấn Độ",
+  "profileGoalLowCarb": "Ít tinh bột",
+  "profileGoalHighProtein": "Nhiều đạm",
+  "profileGoalLowFat": "Ít béo",
+  "profileGoalBalanced": "Cân bằng",
+  "profileGoalWeightLoss": "Giảm cân",
+  "profileAllergiesTitle": "Dị ứng",
+  "profileAllergiesSave": "Lưu",
+  "profileAllergiesClearAll": "Xóa hết",
+  "profileAllergiesRetry": "Thử lại",
+  "profileAllergiesError": "Không tải được dị ứng. Vui lòng thử lại.",
+  "profileAllergiesSaveError": "Không lưu được dị ứng. Vui lòng thử lại.",
+  "profileAllergiesSaved": "Đã lưu dị ứng",
+  "profileAllergiesEmpty": "Chưa chọn dị ứng. Tìm kiếm để thêm nguyên liệu.",
+  "profileAllergiesSearchHint": "Tìm nguyên liệu",
+  "profileAllergiesSelected": "Đã chọn",
+  "profileAllergiesResults": "Kết quả",
   "recipeDetailIngredients": "Nguyên liệu",
   "recipeDetailSteps": "Các bước",
   "recipeDetailNutrition": "Dinh dưỡng",

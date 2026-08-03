@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
@@ -18,10 +19,16 @@ import '../../features/home_shell/presentation/pages/home_shell_page.dart';
 import '../../features/locale_preference/presentation/pages/language_settings_page.dart';
 import '../../features/pantry/presentation/models/pantry_search_args.dart';
 import '../../features/pantry/presentation/pages/pantry_results_page.dart';
+import '../../features/profile/presentation/bloc/allergies_bloc.dart';
+import '../../features/profile/presentation/bloc/preferences_bloc.dart';
+import '../../features/profile/presentation/pages/allergies_page.dart';
+import '../../features/profile/presentation/pages/preferences_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/profile/presentation/utils/profile_content_lang.dart';
 import '../../features/recipe_library/presentation/pages/recipe_library_page.dart';
 import '../../features/recipes/presentation/pages/recipe_detail_page.dart';
 import '../../features/suggestions/presentation/pages/suggestions_page.dart';
+import '../di/injection.dart';
 
 class AppRouter {
   AppRouter(this.authBloc);
@@ -160,6 +167,27 @@ class AppRouter {
               GoRoute(
                 path: '/home/profile',
                 builder: (context, state) => const ProfilePage(),
+                routes: [
+                  GoRoute(
+                    path: 'preferences',
+                    builder: (context, state) => BlocProvider(
+                      create: (_) => getIt<PreferencesBloc>()
+                        ..add(const PreferencesStarted()),
+                      child: const PreferencesPage(),
+                    ),
+                  ),
+                  GoRoute(
+                    path: 'allergies',
+                    builder: (context, state) {
+                      final lang = profileContentLang(context);
+                      return BlocProvider(
+                        create: (_) => getIt<AllergiesBloc>()
+                          ..add(AllergiesStarted(lang: lang)),
+                        child: const AllergiesPage(),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),

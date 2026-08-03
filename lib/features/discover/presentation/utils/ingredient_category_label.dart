@@ -15,6 +15,21 @@ String discoverIngredientCategoryLabel(
     case 'grain':
     case 'grains':
       return l10n.discoverIngredientCategoryGrain;
+    case 'carb':
+    case 'carbs':
+      return l10n.discoverIngredientCategoryCarb;
+    case 'aromatic':
+    case 'aromatics':
+      return l10n.discoverIngredientCategoryAromatic;
+    case 'spice':
+    case 'spices':
+      return l10n.discoverIngredientCategorySpice;
+    case 'seasoning':
+    case 'seasonings':
+      return l10n.discoverIngredientCategorySeasoning;
+    case 'herb':
+    case 'herbs':
+      return l10n.discoverIngredientCategoryHerb;
     default:
       return l10n.discoverIngredientCategoryOther;
   }
