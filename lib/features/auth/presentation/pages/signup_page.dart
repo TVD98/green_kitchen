@@ -115,7 +115,7 @@ class _SignupView extends StatelessWidget {
                         AppTextSpan(text: l10n.authHaveAccountPrompt),
                         AppTextSpan(
                           text: l10n.authSignIn,
-                          onTap: () => context.go('/login'),
+                          onTap: () => context.pushReplacement('/login'),
                         ),
                       ],
                     ),
