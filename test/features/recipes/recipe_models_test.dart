@@ -24,6 +24,7 @@ void main() {
         'carbs_g': 2,
         'fat_g': 14,
       },
+      'image_url': 'https://example.com/trung-chien.jpg',
       'source': 'gemini',
       'created_at': '2026-07-26T10:00:00.000Z',
     });
@@ -34,6 +35,7 @@ void main() {
     expect(entity.timeMinutes, 15);
     expect(entity.ingredients.first.name, 'trứng');
     expect(entity.nutrition?.calories, 200);
+    expect(entity.imageUrl, 'https://example.com/trung-chien.jpg');
   });
 
   test('IngredientModel maps canonical_name', () {

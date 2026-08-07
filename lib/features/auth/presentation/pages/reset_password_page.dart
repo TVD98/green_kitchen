@@ -9,6 +9,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/reset_password.dart';
 import '../bloc/reset_password_bloc.dart';
 import '../utils/auth_failure_messages.dart';
+import '../widgets/auth_scroll_body.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   const ResetPasswordPage({super.key, required this.resetToken});
@@ -51,12 +52,11 @@ class _ResetPasswordView extends StatelessWidget {
           onBack: () => context.pop(),
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.lg),
-            child: BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
-              builder: (context, state) {
-                final loading = state.status == ResetPasswordStatus.loading;
-                return Column(
+          child: BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
+            builder: (context, state) {
+              final loading = state.status == ResetPasswordStatus.loading;
+              return AuthScrollBody(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AppText(
@@ -115,9 +115,9 @@ class _ResetPasswordView extends StatelessWidget {
                           : null,
                     ),
                   ],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

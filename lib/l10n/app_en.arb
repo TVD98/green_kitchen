@@ -169,7 +169,17 @@
   "discoverRecentSearches": "Recent searches",
   "discoverNoRecent": "No recent searches yet.",
   "discoveryResultsTitle": "Search results",
+  "discoveryResultsCount": "{count} recipes",
+  "@discoveryResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverySearching": "Finding recipes for you…",
   "discoveryEmpty": "No matching recipes found.",
+  "discoveryEmptyHint": "Try another prompt or adjust preferences and allergies.",
   "discoveryRetry": "Try again",
   "pantryResultsTitle": "Suggested dishes",
   "pantryRetry": "Try again",

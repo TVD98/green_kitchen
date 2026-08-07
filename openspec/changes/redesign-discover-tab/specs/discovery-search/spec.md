@@ -22,7 +22,8 @@ using the authenticated Bearer token.
 
 #### Scenario: Successful discovery search
 - **WHEN** the server returns `success: true` with a recipe array in `data`
-- **THEN** the results screen SHALL list each recipe with title, time, and difficulty via `RecipeListTile`
+- **THEN** the results screen SHALL list each recipe via `RecipeListTile` with title, time, difficulty, and optional cover image when `image_url` is present
+- **AND** the screen SHALL use Discover theming (`green_kitchen_ui` tokens, themed AppBar, hero with prompt + result count)
 
 #### Scenario: Unauthenticated discovery search blocked
 - **WHEN** the access token is missing or rejected
@@ -42,7 +43,7 @@ Registration SHALL occur in `injection.dart` alongside existing pantry/recipes d
 - **THEN** the repository SHALL map to existing `DiscoveryFailureCodes` for localized UI messages
 
 ### Requirement: Discovery results page shows loading and error states
-While discovery search is in flight, the results screen SHALL show `AppLoading`. Failures SHALL show a localized error via `discoveryFailureMessage` with a retry affordance.
+While discovery search is in flight, the results screen SHALL show `AppLoading` with localized searching copy. Failures SHALL show a localized error via `discoveryFailureMessage` with a retry affordance. Empty results SHALL show localized empty copy plus a short hint. Presentation SHALL match Discover theming (scaffold background, themed AppBar, hero prompt).
 
 #### Scenario: User retries after failure
 - **WHEN** discovery search fails and the user taps retry
@@ -50,7 +51,7 @@ While discovery search is in flight, the results screen SHALL show `AppLoading`.
 
 #### Scenario: Empty results
 - **WHEN** the API returns an empty recipe array
-- **THEN** the results screen SHALL show a localized empty state
+- **THEN** the results screen SHALL show a localized empty state with supporting hint copy
 
 ### Requirement: Successful discovery search persists local session
 On successful discovery search, the app SHALL append a `DiscoverySession` record `{ prompt, recipe_ids, searched_at }` to local storage for the Library tab "Từ tủ bếp" / discover history use cases.

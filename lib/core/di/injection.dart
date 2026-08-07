@@ -39,6 +39,8 @@ import '../../features/recipe_interactions/domain/repositories/recipe_interactio
 import '../../features/recipe_interactions/domain/usecases/recipe_interaction_usecases.dart';
 import '../../features/recipe_library/presentation/bloc/recipe_library_bloc.dart';
 import '../../features/recipes/data/datasources/discovery_remote_data_sources.dart';
+import '../../features/recipes/data/datasources/fake_aware_recipes_remote_data_source.dart';
+import '../../features/recipes/data/datasources/fake_discovery_remote_data_source.dart';
 import '../../features/recipes/data/repositories/recipes_repository_impl.dart';
 import '../../features/recipes/domain/entities/pantry_filters.dart';
 import '../../features/recipes/domain/repositories/recipes_repository.dart';
@@ -55,6 +57,12 @@ final getIt = GetIt.instance;
 /// When true, uses [FakeAuthRemoteDataSource] (offline UI). Default is real API.
 const useFakeAuthBackend = bool.fromEnvironment(
   'USE_FAKE_AUTH',
+  defaultValue: false,
+);
+
+/// When true, discovery search returns canned recipes (no Gemini/API).
+const useFakeDiscovery = bool.fromEnvironment(
+  'USE_FAKE_DISCOVERY',
   defaultValue: false,
 );
 
@@ -124,8 +132,10 @@ Future<void> configureDependencies({
         logOut: getIt(),
       ),
     )
-    ..registerLazySingleton(
-      () => RecipesRemoteDataSource(dio: getIt<DioClient>().dio),
+    ..registerLazySingleton<RecipesRemoteDataSource>(
+      () => useFakeDiscovery
+          ? FakeAwareRecipesRemoteDataSource(dio: getIt<DioClient>().dio)
+          : RecipesRemoteDataSource(dio: getIt<DioClient>().dio),
     )
     ..registerLazySingleton(
       () => IngredientsRemoteDataSource(dio: getIt<DioClient>().dio),
@@ -133,8 +143,10 @@ Future<void> configureDependencies({
     ..registerLazySingleton(
       () => PantryRemoteDataSource(dio: getIt<DioClient>().dio),
     )
-    ..registerLazySingleton(
-      () => DiscoveryRemoteDataSource(dio: getIt<DioClient>().dio),
+    ..registerLazySingleton<DiscoveryRemoteDataSource>(
+      () => useFakeDiscovery
+          ? FakeDiscoveryRemoteDataSource(dio: getIt<DioClient>().dio)
+          : DiscoveryRemoteDataSource(dio: getIt<DioClient>().dio),
     )
     ..registerLazySingleton<RecipesRepository>(
       () => RecipesRepositoryImpl(remote: getIt<RecipesRemoteDataSource>()),

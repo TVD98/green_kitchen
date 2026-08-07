@@ -10,11 +10,14 @@ class AppCard extends StatelessWidget {
     required this.child,
     this.padding,
     this.onTap,
+    this.color,
   });
 
   final Widget child;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onTap;
+  /// Defaults to [ColorScheme.surface].
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class AppCard extends StatelessWidget {
     );
 
     return Material(
-      color: Theme.of(context).colorScheme.surface,
+      color: color ?? Theme.of(context).colorScheme.surface,
       elevation: brightness == Brightness.light ? 2 : 0,
       shadowColor: Colors.black.withValues(alpha: 0.08),
       borderRadius: BorderRadius.circular(AppRadius.card),

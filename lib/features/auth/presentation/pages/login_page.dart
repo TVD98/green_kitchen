@@ -12,6 +12,7 @@ import '../../domain/usecases/log_in_with_social.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/login_bloc.dart';
 import '../utils/auth_failure_messages.dart';
+import '../widgets/auth_scroll_body.dart';
 import '../widgets/social_auth_row.dart';
 
 class LoginPage extends StatelessWidget {
@@ -56,12 +57,11 @@ class _LoginView extends StatelessWidget {
           onBack: () => context.pop(),
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.lg),
-            child: BlocBuilder<LoginBloc, LoginState>(
-              builder: (context, state) {
-                final loading = state.status == LoginStatus.loading;
-                return Column(
+          child: BlocBuilder<LoginBloc, LoginState>(
+            builder: (context, state) {
+              final loading = state.status == LoginStatus.loading;
+              return AuthScrollBody(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AppText(
@@ -158,9 +158,9 @@ class _LoginView extends StatelessWidget {
                           : null,
                     ),
                   ],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

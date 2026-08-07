@@ -52,6 +52,7 @@ class Recipe extends Equatable {
     required this.source,
     required this.createdAt,
     this.nutrition,
+    this.imageUrl,
   });
 
   final String id;
@@ -67,7 +68,9 @@ class Recipe extends Equatable {
   final RecipeNutrition? nutrition;
   final String source;
   final DateTime createdAt;
+  /// Optional cover / intro image (API `image_url` when present).
+  final String? imageUrl;
 
   @override
-  List<Object?> get props => [id, title, slug];
+  List<Object?> get props => [id, title, slug, imageUrl];
 }

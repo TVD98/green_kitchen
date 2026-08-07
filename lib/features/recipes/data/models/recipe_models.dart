@@ -16,6 +16,7 @@ class RecipeModel {
     required this.source,
     required this.createdAt,
     this.nutrition,
+    this.imageUrl,
   });
 
   final String id;
@@ -31,6 +32,7 @@ class RecipeModel {
   final Map<String, dynamic>? nutrition;
   final String source;
   final DateTime createdAt;
+  final String? imageUrl;
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
     return RecipeModel(
@@ -53,6 +55,7 @@ class RecipeModel {
       nutrition: json['nutrition'] as Map<String, dynamic>?,
       source: json['source'] as String? ?? 'gemini',
       createdAt: DateTime.parse(json['created_at'] as String),
+      imageUrl: json['image_url'] as String?,
     );
   }
 
@@ -92,6 +95,7 @@ class RecipeModel {
             ),
       source: source,
       createdAt: createdAt,
+      imageUrl: imageUrl,
     );
   }
 }

@@ -19,6 +19,9 @@ class AppTextField extends StatefulWidget {
     this.keyboardType,
     this.onChanged,
     this.enabled = true,
+    this.maxLines = 1,
+    this.minLines,
+    this.maxLength,
   });
 
   final TextEditingController? controller;
@@ -31,6 +34,9 @@ class AppTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
   final bool enabled;
+  final int? maxLines;
+  final int? minLines;
+  final int? maxLength;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -122,11 +128,16 @@ class _AppTextFieldState extends State<AppTextField> {
           keyboardType: widget.keyboardType,
           onChanged: widget.onChanged,
           enabled: widget.enabled,
+          maxLines: widget.obscureText ? 1 : widget.maxLines,
+          minLines: widget.obscureText ? null : widget.minLines,
+          maxLength: widget.maxLength,
+          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
           style: AppTypography.body(color: onSurface),
           cursorColor: AppColors.brand,
           decoration: InputDecoration(
             hintText: widget.hint,
             errorText: widget.errorText,
+            counterText: widget.maxLength != null ? '' : null,
             filled: true,
             fillColor: AppColors.elevated(brightness),
             prefixIcon: widget.prefixIcon == null

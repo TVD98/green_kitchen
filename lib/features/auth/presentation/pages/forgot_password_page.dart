@@ -8,6 +8,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/forgot_password.dart';
 import '../bloc/forgot_password_bloc.dart';
 import '../utils/auth_failure_messages.dart';
+import '../widgets/auth_scroll_body.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -57,12 +58,11 @@ class _ForgotPasswordView extends StatelessWidget {
           onBack: () => context.pop(),
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.lg),
-            child: BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-              builder: (context, state) {
-                final loading = state.status == ForgotPasswordStatus.loading;
-                return Column(
+          child: BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+            builder: (context, state) {
+              final loading = state.status == ForgotPasswordStatus.loading;
+              return AuthScrollBody(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AppText(
@@ -97,9 +97,9 @@ class _ForgotPasswordView extends StatelessWidget {
                           : null,
                     ),
                   ],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

@@ -48,17 +48,13 @@ class _DiscoverPromptCardState extends State<DiscoverPromptCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextField(
+          AppTextField(
             controller: widget.controller,
             onChanged: widget.onChanged,
+            hint: l10n.discoverPromptHint,
             maxLines: 4,
             minLines: 3,
             maxLength: DiscoverConstants.maxPromptLength,
-            decoration: InputDecoration(
-              hintText: l10n.discoverPromptHint,
-              border: InputBorder.none,
-              counterText: '',
-            ),
           ),
           const SizedBox(height: AppSpacing.sm),
           Row(

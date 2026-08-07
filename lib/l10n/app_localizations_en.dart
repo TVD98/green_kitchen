@@ -387,7 +387,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discoveryResultsTitle => 'Search results';
 
   @override
+  String discoveryResultsCount(int count) {
+    return '$count recipes';
+  }
+
+  @override
+  String get discoverySearching => 'Finding recipes for you…';
+
+  @override
   String get discoveryEmpty => 'No matching recipes found.';
+
+  @override
+  String get discoveryEmptyHint =>
+      'Try another prompt or adjust preferences and allergies.';
 
   @override
   String get discoveryRetry => 'Try again';

@@ -12,6 +12,7 @@ import '../../domain/usecases/sign_up.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/signup_bloc.dart';
 import '../utils/auth_failure_messages.dart';
+import '../widgets/auth_scroll_body.dart';
 import '../widgets/social_auth_row.dart';
 
 class SignupPage extends StatelessWidget {
@@ -56,12 +57,11 @@ class _SignupView extends StatelessWidget {
           onBack: () => context.pop(),
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.lg),
-            child: BlocBuilder<SignupBloc, SignupState>(
-              builder: (context, state) {
-                final loading = state.status == SignupStatus.loading;
-                return Column(
+          child: BlocBuilder<SignupBloc, SignupState>(
+            builder: (context, state) {
+              final loading = state.status == SignupStatus.loading;
+              return AuthScrollBody(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AppText(
@@ -144,9 +144,9 @@ class _SignupView extends StatelessWidget {
                           : null,
                     ),
                   ],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

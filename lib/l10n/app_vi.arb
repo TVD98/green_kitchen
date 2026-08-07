@@ -131,7 +131,17 @@
   "discoverRecentSearches": "Tìm gần đây",
   "discoverNoRecent": "Chưa có lần tìm nào.",
   "discoveryResultsTitle": "Kết quả tìm kiếm",
+  "discoveryResultsCount": "{count} công thức",
+  "@discoveryResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverySearching": "Đang tìm công thức phù hợp…",
   "discoveryEmpty": "Không tìm thấy công thức phù hợp.",
+  "discoveryEmptyHint": "Thử đổi câu hỏi hoặc chỉnh sở thích và dị ứng.",
   "discoveryRetry": "Thử lại",
   "pantryResultsTitle": "Món gợi ý",
   "pantryRetry": "Thử lại",

@@ -60,15 +60,19 @@ class GreenKitchenApp extends StatelessWidget {
             localeListResolutionCallback: resolveAppLocale,
             routerConfig: appRouter.router,
             builder: (context, child) {
-              return BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) {
-                  if (state.status == AuthStatus.unknown) {
-                    return const Scaffold(
-                      body: Center(child: AppLoading()),
-                    );
-                  }
-                  return child ?? const SizedBox.shrink();
-                },
+              return GestureDetector(
+                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                behavior: HitTestBehavior.translucent,
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    if (state.status == AuthStatus.unknown) {
+                      return const Scaffold(
+                        body: Center(child: AppLoading()),
+                      );
+                    }
+                    return child ?? const SizedBox.shrink();
+                  },
+                ),
               );
             },
           );

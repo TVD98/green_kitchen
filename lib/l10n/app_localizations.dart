@@ -788,11 +788,29 @@ abstract class AppLocalizations {
   /// **'Search results'**
   String get discoveryResultsTitle;
 
+  /// No description provided for @discoveryResultsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} recipes'**
+  String discoveryResultsCount(int count);
+
+  /// No description provided for @discoverySearching.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding recipes for you…'**
+  String get discoverySearching;
+
   /// No description provided for @discoveryEmpty.
   ///
   /// In en, this message translates to:
   /// **'No matching recipes found.'**
   String get discoveryEmpty;
+
+  /// No description provided for @discoveryEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another prompt or adjust preferences and allergies.'**
+  String get discoveryEmptyHint;
 
   /// No description provided for @discoveryRetry.
   ///

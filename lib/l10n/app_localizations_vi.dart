@@ -388,7 +388,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get discoveryResultsTitle => 'Kết quả tìm kiếm';
 
   @override
+  String discoveryResultsCount(int count) {
+    return '$count công thức';
+  }
+
+  @override
+  String get discoverySearching => 'Đang tìm công thức phù hợp…';
+
+  @override
   String get discoveryEmpty => 'Không tìm thấy công thức phù hợp.';
+
+  @override
+  String get discoveryEmptyHint =>
+      'Thử đổi câu hỏi hoặc chỉnh sở thích và dị ứng.';
 
   @override
   String get discoveryRetry => 'Thử lại';
